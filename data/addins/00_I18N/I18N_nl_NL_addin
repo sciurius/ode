@@ -28,7 +28,7 @@
 use strict;
 use warnings;
 
-package I18N_NL_nl_addin;
+package I18N_nl_NL_addin;
 
 my %t = (
 
