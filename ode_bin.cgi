@@ -311,7 +311,64 @@ my (
     $config_file_f,
 );
 
+# LOCALISATION --------------------------------------------------------------
 
+# Implemented GNU Gettext compliant methods are:
+#
+# _T("text")
+# Returns the translated version of "text", or just "text" if
+# there's no translation defined.
+#
+# __x("text", %vars)
+# Returns the translated version of "text", where occurrences of {var}
+# are replaced by the value of the corresponding key in %vars.
+# For example: __x("Link to {component}", component => $this)
+#
+# __n("sing", "plur", $n)
+# Returns the translation of "sing" if $n is singular, "plur" otherwise.
+#
+# __nx("sing", "plur", $n, %vars)
+# Translation w/ singular/plural handling and variables.
+#
+# N__("text")
+# Dummy, non-translating function (for gettext use).
+
+# Helper for variable expansion. See GNU gettext for details.
+sub __expand($%) {
+    my ($t, %args) = @_;
+    my $re = join('|', map { quotemeta($_) } keys(%args));
+    $t =~ s/\{($re)\}/defined($args{$1}) ? $args{$1} : "{$1}"/ge;
+    $t;
+}
+
+# Translation w/ variables.
+sub __x($@) {
+    my ($t, %vars) = @_;
+    __expand(_T($t), %vars);
+}
+
+# Translation w/ singular/plural handling.
+sub __n($$$) {
+    my ($sing, $plur, $n) = @_;
+    _T($n == 1 ? $sing : $plur);
+}
+
+# Translation w/ singular/plural handling and variables.
+sub __nx($$$@) {
+    my ($sing, $plur, $n, %vars) = @_;
+    __expand(__n($sing, $plur, $n), %vars);
+}
+
+# Make __xn a synonym for __nx.
+*__xn = \&__nx;
+
+# And the dummy...
+sub N__($) { $_[0] };
+
+# This stub function will be redefined by a suitable addin to perform
+# the actual translation.
+
+sub _T { $_[0] };
 
 # CONFIGURATION SECTION -----------------------------------------------------
 
@@ -421,7 +478,7 @@ our (
     %access_title_tags_and_body_early_addins, $exempt_file_g,
     %access_posts_theme_early_addins, %access_foot_theme_early_addins,
     %access_page_late_addins, $path, $post_breadcrumb_trail, $filename,
-    $title, $tags, $body, $year, $month_name, $month_num, $month_day,
+    $title, $tags, $body, $year, $month_name, $month_num, $month_day, $month_day_nz,
     $wkday_name, $time, $hour, $hour_12, $am_pm, $min, $sec,
     $post_advertised_time_zone, $page_title, $first_post, $num_posts,
     $previous_count, $previous_first_post, $previous_post_string, $next_count,
@@ -1920,9 +1977,9 @@ sub generate_page
 
         $previous_post_or_posts_s = undef;
 
-        $previous_post_or_posts_s = $previous_count_s > 1 ? 'posts' : 'post';
+        $previous_post_or_posts_s = __nx("Previous post", "Previous {count} posts", $previous_count_s, count => $previous_count_s);
 
-        $previous_post_string = "<a href=\"$req_components_at_sub{base_url}$req_components_at_sub{req_path_with_file}$previous_query_string_s\">Previous $previous_count_s $previous_post_or_posts_s</a>";
+        $previous_post_string = "<a href=\"$req_components_at_sub{base_url}$req_components_at_sub{req_path_with_file}$previous_query_string_s\">$previous_post_or_posts_s</a>";
 
     } # End, if ($first_post_s > 1)
 
@@ -1931,7 +1988,7 @@ sub generate_page
 
         $previous_count_s = 0;
 
-        $previous_post_string = "No previous posts";
+        $previous_post_string = _T("No previous posts");
 
     } # End, else
 
@@ -1984,9 +2041,9 @@ sub generate_page
 
         $next_post_or_posts_s = undef;
 
-        $next_post_or_posts_s = $next_count_s > 1 ? 'posts' : 'post';
+        $next_post_or_posts_s = __nx("Next post", "Next {count} posts", $next_count_s, count => $next_count_s);
 
-        $next_post_string = "<a href=\"$req_components_at_sub{base_url}$req_components_at_sub{req_path_with_file}$next_query_string_s\">Next $next_count_s $next_post_or_posts_s</a>";
+        $next_post_string = "<a href=\"$req_components_at_sub{base_url}$req_components_at_sub{req_path_with_file}$next_query_string_s\">$next_post_or_posts_s</a>";
 
     } # End, if ($last_post_cur_page_s < $select_num_posts_s)
 
@@ -1995,7 +2052,7 @@ sub generate_page
 
         $next_count_s = 0;
 
-        $next_post_string = "No more posts";
+        $next_post_string = _T("No more posts");
     }
 
     $previous_and_next_post_string = undef;
@@ -2015,8 +2072,8 @@ sub generate_page
     if ($select_num_posts_s <= 0)
     {
 
-        $title = 'There are no posts matching that request';
-        $body = '<p>Please try again.</p>';
+        $title = _T("There are no posts matching that request");
+        $body = _T("<p>Please try again.</p>");
 
         my $posts_content_l = $theme_component_contents_s{'posts'};
 
@@ -2083,14 +2140,14 @@ sub generate_page
                 $path_so_far_l,
             );
 
-            $breadcrumbs_path_to_post_l = "<a href=\"$req_base_url/\" title=\"Link to home\">$config::label_for_breadcrumb_trail_root</a>";
+            $breadcrumbs_path_to_post_l = "<a href=\"$req_base_url/\" title=\""._T("Link to home")."\">$config::label_for_breadcrumb_trail_root</a>";
 
             foreach my $path_component (@bpath_only_to_post_components_l)
             {
 
                 $path_so_far_l .= "$path_component/";
 
-                $link_to_path_component_l = "<a href=\"$req_base_url/$path_so_far_l\" title=\"Link to $path_component\">$path_component</a>";
+                $link_to_path_component_l = "<a href=\"$req_base_url/$path_so_far_l\" title=\"".__x("Link to {component}", component => $path_component)."\">$path_component</a>";
 
                 $breadcrumbs_path_to_post_l .= "$config::breadcrumb_trail_category_separator$link_to_path_component_l";
 
@@ -2110,11 +2167,14 @@ sub generate_page
          $sec, $year,
          $isdst_l) = parse_date($select_fp_unixtime_hs{$ffp_to_post_l});
 
+	# I18N: Month day without leading zero.
+	$month_day_nz = sprintf("%d", $month_day);
+
         $post_advertised_time_zone = $isdst_l ? $config::advertised_time_zone_dst : $config::advertised_time_zone;
 
         ($hour, $min) = split( /:/, $time);
 
-        ($hour_12, $am_pm) = $hour >= 12 ? ($hour - 12,'pm') : ($hour, 'am');
+        ($hour_12, $am_pm) = $hour >= 12 ? ($hour - 12, _T("pm")) : ($hour, _T("am"));
 
         $hour_12 = 12 if $hour_12 eq '0';
 
@@ -2369,8 +2429,8 @@ sub generate_page
 
              ($page_title_hour_12_l, $page_title_am_pm_l) =
                 $req_components_final{hour_in_path} >= 12 ?
-                ($req_components_final{hour_in_path} - 12,'pm') :
-                ($req_components_final{hour_in_path}, 'am');
+                ($req_components_final{hour_in_path} - 12, _T("pm")) :
+                ($req_components_final{hour_in_path}, _T("am"));
 
              $page_title_hour_12_l = 12 if $page_title_hour_12_l eq '0';
 
@@ -2477,6 +2537,8 @@ sub generate_page
 
                 ( $date_pattern_year_l, $date_pattern_month_l, $date_pattern_day_l) = $req_query_string_components_final{date_pattern} =~ m!^((?:\d|-){4})((?:\d|-){2})((?:\d|-){2})$!;
 
+		####TODO: I18N vvvvv
+
                 $date_pattern_string_l .= "Year: ";
 
                 if ($date_pattern_year_l eq '----')
@@ -2550,6 +2612,8 @@ sub generate_page
         } # End, else
 
         $page_title .= " &#x007C; $page_title_date_part_l";
+
+	####TODO: I18N ^^^^^^
 
     } # End, if($req_is_date_restricted_g and ($request_is_type_root_g or ...
 
@@ -4443,10 +4507,10 @@ sub parse_date
     );
 
     @day_num2name_s =
-        qw/Sun Mon Tue Wed Thu Fri Sat/;
+        split( ' ', _T("Sun Mon Tue Wed Thu Fri Sat") );
 
     @month_num2name_s =
-        qw/MOVEALONG Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec/;
+        split( ' ', _T("MOVEALONG Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec") );
 
     if($use_local_time_g)
     {
@@ -4500,6 +4564,7 @@ sub parse_date
 
     $month_name_s = $month_num2name_s[$month_num_s];
 
+    ####TODO: I18N
     $time_s = "$hour_s:$min_s";
 
     return ( $wkday_name_s, $month_name_s, $month_num_s, $month_day_s,
@@ -6836,14 +6901,14 @@ $req_theme              = $req_components_final{theme};
     shift @req_path_wo_file_components_l
         if $req_path_wo_file_components_l[0] eq '';
 
-    $breadcrumbs_req_path_wo_file_l = "<a href=\"$req_base_url/\" title=\"Link to home\">$config::label_for_breadcrumb_trail_root</a>";
+    $breadcrumbs_req_path_wo_file_l = "<a href=\"$req_base_url/\" title=\""._T("Link to home")."\">$config::label_for_breadcrumb_trail_root</a>";
 
     foreach my $path_component (@req_path_wo_file_components_l)
     {
 
         $path_so_far_l .= "$path_component/";
 
-        $link_to_path_component_l = "<a href=\"$req_base_url/$path_so_far_l\" title=\"Link to $path_component\">$path_component</a>";
+        $link_to_path_component_l = "<a href=\"$req_base_url/$path_so_far_l\" title=\"".__x("Link to {component}", component => $path_component)."\">$path_component</a>";
 
         $breadcrumbs_req_path_wo_file_l .= "$config::breadcrumb_trail_category_separator$link_to_path_component_l";
 
