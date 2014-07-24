@@ -1,0 +1,83 @@
+#! perl
+
+# Ode localisation uses GNU Gettext compliant methods to provide translations.
+#
+# Implemented methods are:
+#
+# _T("text")
+# Returns the translated version of "text", or just "text" if
+# there's no translation defined.
+#
+# __x("text", %vars)
+# Returns the translated version of "text", where occurrences of {var}
+# are replaced by the value of the corresponding key in %vars.
+# For example: __x("Link to {component}", component => $this)
+#
+# __n("sing", "plur", $n)
+# Returns the translation of "sing" if $n is singular, "plur" otherwise.
+#
+# __nx("sing", "plur", $n, %vars)
+# Translation w/ singular/plural handling and variables.
+#
+# N__("text")
+# Dummy, non-translating function (for gettext use).
+
+# This Ode addin provides translations for the NL_nl (Dutch,
+# Netherlands) locale.
+
+use strict;
+use warnings;
+
+package I18N_NL_nl_addin;
+
+my %t = (
+
+# Home page name.
+"Home" => "Startpagina",
+"home" => "startpagina",
+
+# Day names. We prefer the full names.
+"Sun Mon Tue Wed Thu Fri Sat" =>
+  "Zondag Maandag Dinsdag Woensdag Donderdag Vrijdag Zaterdag",
+
+# Month names. In Dutch they're written with lowercase.
+"MOVEALONG Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec" =>
+  "MOVEALONG januari februari maart april mei juni juli augustus september oktober november december",
+
+# AM/PM. Not used since we use 24-hour time formats.
+"am" => "vm",
+"pm" => "nm",
+
+# Next/Previous links. Singular and plural.
+"No more posts" => "Geen verdere artikelen",
+"No previous posts" => "Geen voorafgaande artikelen",
+"Previous post" => "Vorige artikel",
+"Previous {count} posts" => "Vorige {count} artikelen",
+"Next post" => "Volgende artikel",
+"Next {count} posts" => "Volgende {count} artikelen",
+"There are no posts matching that request" =>
+  "Er zijn geen artikelen die hieraan voldoen",
+"<p>Please try again.</p>" => "<p>Probeer het nogmaals.</p>",
+
+# Misc. links
+"Link to home" => "Link naar de startpagina",
+"Link to {component}" => "Link naar {component}",
+
+);
+
+# Note that the package redefines the global _T routine.
+*ode::_T = sub {
+    my ( $t ) = @_;
+
+    # Return the translation if we have one, otherwise just return the
+    # untranslated string.
+
+    return $t{$t} || $t;
+};
+
+# Mandatory requirement (Ode API).
+sub inventory_ping_response {
+    1;
+}
+
+1;
