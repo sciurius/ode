@@ -1,0 +1,2959 @@
+# Configuration file for ode.cgi
+
+# ----------
+
+# Distributed with Ode
+
+# Version: 1.2.3
+# build: 2010_0601_00_00_01
+
+# ----------
+
+# Author: Rob Reed
+# Contact: rob at ode-is-simple.com
+
+# Project: Ode (pronounced oh-dee)
+# Website: ode-is-simple.com/
+# Weblog:  news.ode-is-simple.com/weblog
+# Forum:   ode-is-simple.com/vanilla2_forum/
+
+# ----------
+
+# License
+
+
+# Creative Commons Attribution-Share Alike 3.0 United States
+
+# For more information refer to:
+# http://creativecommons.org/licenses/by-sa/3.0/us/
+
+# Note: Be aware that continued use of this license is something that
+# I am still considering.
+
+# Future versions may be released under some other license.
+
+# I do expect that any future license will be for the most part compatible
+# this one.
+
+
+# ----------
+# Notes
+# ----------
+
+# If you are installing or configuring Ode you'll want to
+# jump down to the
+# configuration section below (just below).
+
+
+
+package config;
+
+use strict;
+
+
+our (
+    $site_title, $site_title_short, $site_description, $site_language,
+    $document_root, $base_url, $document_root_url, $depth, $num_posts,
+    $post_file_ext, $default_theme, $show_future_posts, $file_permissions,
+    $folder_permissions, $addin_dir, $addin_state_dir, $use_local_time,
+    $local_time_zone, $show_tags, $compare_paths_and_posts_to_exempt,
+    $exempt_filename, $use_site_look_date, $respect_case_of_request, 
+    $warning_threshold, $set_umask, $umask, $page_title_category_separator,
+    $advertised_time_zone, $advertised_time_zone_dst,
+    $page_delimiter_head_posts, $page_delimiter_posts_foot,
+    $use_path_date_restrictions, $label_for_breadcrumb_trail_root,
+    $breadcrumb_trail_category_separator, $eol,
+);
+
+
+# CONFIGURATION SECTION -----------------------------------------------------
+
+# Note: There are only three (3) settings that _MUST_ be changed.
+
+# The others are all optional in the sense that you
+# can keep the default values.
+
+# Please carefully read the annotations associated with each of these
+# required settings and
+# make sure you understand what they are.
+
+# Next, after making only the necessary changes,
+# confirm that your new site is working properly, BEFORE making any
+# other changes.
+
+# This will help to keep installation as simple as possible.
+
+# ** - Appearing after an entry in the list below,
+#      indicates a setting which
+#      _must be changed_ before your site will work properly.
+
+#      These all appear near the top of the list of
+#      configuration options.
+
+
+# + ------------------------------------------------------
+# | C O N F I G U R A T I O N  O P T I O N S
+# + ------------------------------------------------------
+# | SETTING 01. Site document root **
+# + ------------------------------------------------------
+# | SETTING 02. Addin directory **
+# + ------------------------------------------------------
+# | SETTING 03. Preferred base URL
+# + ------------------------------------------------------
+# | SETTING 04. Document root URL **
+# + ------------------------------------------------------
+# | SETTING 05. Site title
+# + ------------------------------------------------------
+# | SETTING 06. Site title - short
+# + ------------------------------------------------------
+# | SETTING 07. Site description
+# + ------------------------------------------------------
+# | SETTING 08. Addin state directory
+# + ------------------------------------------------------
+# | SETTING 09. Default theme
+# + ------------------------------------------------------
+# | SETTING 10. Use site-look-date mechanism (Bool)
+# + ------------------------------------------------------
+# | SETTING 11. Post file extension
+# + ------------------------------------------------------
+# | SETTING 12. Number of posts per page
+# + ------------------------------------------------------
+# | SETTING 13. Use local time (Bool)
+# + ------------------------------------------------------
+# | SETTING 14. Local time zone
+# + ------------------------------------------------------
+# | SETTING 15. Advertised time zone
+# | SETTING 16. Advertised time zone dst
+# + ------------------------------------------------------
+# | SETTING 17. Page title category list separator
+# + ------------------------------------------------------
+# | SETTING 18. Label for breadcrumb trail root
+# + ------------------------------------------------------
+# | SETTING 19. Breadcrumb trail category list separator
+# + ------------------------------------------------------
+# | SETTING 20. Compare paths and posts to exempt (Bool)
+# + ------------------------------------------------------
+# | SETTING 21. Exemption file
+# + ------------------------------------------------------
+# | SETTING 22. Warning threshold
+# + ------------------------------------------------------
+# | SETTING 23. Depth of traversal for content
+# + ------------------------------------------------------
+# | SETTING 24. Primary language
+# + ------------------------------------------------------
+# | SETTING 25. Show future posts (Bool)
+# + ------------------------------------------------------
+# | SETTING 26. Respect case of request (Bool)
+# + ------------------------------------------------------
+# | SETTING 27. Show tags (Bool)
+# + ------------------------------------------------------
+# | SETTING 28. page._ theme file delimiter: head/posts
+# | SETTING 29. page._ theme file delimiter: posts/foot
+# + ------------------------------------------------------
+# | SETTING 30. Use path-based date restrictions (Bool)
+# + ------------------------------------------------------
+
+
+
+# + ------------------------------------------------------
+# | ADVANCED SETTINGS
+# |
+# | You should not need to change the default values
+# | for these.
+# + ------------------------------------------------------
+
+# + ------------------------------------------------------
+# | SETTING ADV01. File and folder permissions
+# + ------------------------------------------------------
+# | SETTING ADV02. Set umask (Bool)
+# + ------------------------------------------------------
+# | SETTING ADV03. umask value
+# + ------------------------------------------------------
+
+
+# Note:
+
+# Addins may override many of these settings.
+
+# (Always read through the documentation accompanying addins
+# _before_ you install them.)
+
+
+# + ----------------------------------------------------------------------
+
+
+# ----------
+# SETTING 01. Site document root
+# ----------
+# Absolute path to the root of the site's document directory
+# (i.e. the directory where the posts are kept).
+
+
+# Important: This is Ode's document root, which is
+# not necessarily the domain document root, or general website's document
+# root.
+
+
+# For example, let's say I have a website for the domain sample.net.
+
+# the root of my website might be something like:
+
+# '/Library/WebServer/Documents'
+
+# If I were going to set up site an html file for the homepage titled
+# 'index.html', the path to that file would be:
+
+# '/Library/WebServer/Documents/index.html'
+
+
+# That page would be accessible at the URL:
+
+# http://sample.net/index.html
+
+# or if your webserver is configured to use index files as the default
+# in any directory (many are), then the URL would be:
+
+# http://sample.net/
+
+
+# OK?
+
+
+# But I might want to keep ode's contents in a subdirectory
+# the general site's doc root,
+# in a directory called 'ode_site' for example.
+
+# Then the absolute path to the ode_site directory might be:
+
+# '/Library/WebServer/Documents/ode_site'
+
+# and this would be the value of $document root.
+
+
+# (Read the installation instructions distributed with the project
+# for more info.)
+
+
+# Note that this string _should not_ include a trailing path delimiter.
+
+# Why? Because the path which is taken from CGI's url method
+# will always include a leading path delimiter.
+
+# Since some path, at least a single path delimiter
+# representing the root path, will always follow $config::document_root
+# the value of setting cannot include a trailing slash,
+# or we would double the path delimiter
+# whenever the value of $document_root is combined with the path.
+
+
+# Tip
+
+# If you're unsure about the path that you should be using, try this
+# if you have shell access to your hosting account/your site:
+
+# 1. Connect to the site via the shell access to your account.
+# 2. Navigate to the directory that you would like
+#    to use as the site document root.
+
+# 3. Type 'pwd' at the prompt and press return.
+
+# The pwd command will return the absolute pathname of the current working
+# directory. This is the value you want to use here.
+
+
+# !YOU MUST CHANGE THE DEFAULT VALUE FOR THIS SETTING!
+
+
+# Default value:
+# ''
+
+# Recommended value:
+# n/a
+
+# Example:
+# $document_root = '/Library/WebServer/Documents/ode_site';
+# ----------
+
+
+$document_root = '';
+
+
+# + ----------------------------------------------------------------------
+
+
+# ----------
+# SETTING 02. Addins directory
+# ----------
+# Absolute path to the addins container directory. (i.e. The directory
+# where all of the addin bundles are kept).
+
+# Note that this string _should_ include a trailing path delimiter.
+
+
+# Addins are 'drop-in' enhancements to Ode. For example, the markdown
+# addin, which is distributed with the project, adds
+# support for John Gruber's markdown formatting syntax.
+
+# http://daringfireball.net/projects/markdown/ (2010_0601 2:37 pm)
+
+
+# Each addin consists of one or more files, all of which are contained
+# within a single directory referred to as a 'bundle'.
+
+
+# There is at least one addin distributed with this project.
+# The path you should use here is the path to the directory containing that
+# addin bundle.
+
+# Read the installation instructions distributed with the project
+# for more info about the addins directory.
+
+
+# !YOU MUST CHANGE THE DEFAULT VALUE FOR THIS SETTING!
+
+
+# Default value:
+# ''
+
+# Recommended value:
+# n/a
+
+# Example:
+# $addin_dir = "/Library/WebServer/Data/ode/addins/";
+# ----------
+
+
+$addin_dir = '';
+
+
+# + ----------------------------------------------------------------------
+
+
+# ----------
+# SETTING 03. Preferred base URL for this site
+# ----------
+# The base url includes:
+
+# the scheme, hostname, domain, port number, and path to the script file.
+
+# In the absence of any sort of redirection
+# $base_url ends with the name of the the script file itself,
+# e.g. 'ode.cgi'.
+
+# (Leave blank to have the script determine the base url.)
+
+
+# For example given a request like:
+
+# http://sample.net/cgi-bin/ode.cgi/technology/apple/some_post
+
+# The base url is:
+
+#           (hostname)                  (port) 
+#   scheme      |         domain          |      path to the script file
+#      |        |            |            |               |
+#   http://             sample.net/                 cgi-bin/ode.cgi
+
+# Note that in this example, the hostname and port are not specified.
+
+# Q: Where does the script get this info if this setting is left blank?
+# A: It pulls the base URL from the request.
+
+# This isn't a bad idea, after all the URL must be correct otherwise the
+# visitor would never have reached the site at all.
+
+# Q: Why would I ever want to specify the base URL here then?
+# A: There may be more than one way to access your site. For example, you
+# may have more than one script alias setup, all of which
+# resolve to your site:
+
+# http://sample.net/cgi-bin/ode.cgi
+# http://sample.net/weblog
+# http://sample.net/home
+# http://sample.net/ode_site
+
+# The base URL you set here will always be preferred over the base URL
+# contained in the request.
+
+
+# Default value:
+# ''
+
+# Recommended value:
+# n/a
+
+# Example: 
+# $base_url = 'http://sample.net/cgi-bin/ode.cgi';
+# ----------
+
+
+$base_url = '';
+
+
+# + ----------------------------------------------------------------------
+
+
+# ----------
+# SETTING 04. Document root URL
+# ----------
+# Whereas $base_url is the URI pointing to _THE LOCATION OF
+# THE SCRIPT_ itself
+
+# For example
+
+# http://sample.net/cgi-bin/odi.cgi
+
+
+# $document_root_url (THIS SETTING) points to the root of
+# _THE CONTENT DIRECTORY_.
+
+
+# The key difference is that it does not reference the script.
+
+# In fact, the purpose is to give us a URI that bypasses
+# the script, which is necessary whenever Ode
+# or some addin needs to access something directly.
+
+# A good example of this is the need to access resources associated with
+# themes.
+
+# Almost every theme is going to include a linked stylesheet, because
+# this is how design for the web is supposed to be handled
+# (with content wrapped in HTML markup and presentation
+# defined separately with CSS rules that reference the the structural
+# markup in the HTML file).
+
+# We want to be able to provide a URI to these resources  so
+# they won't need to be manually written
+# into the themes, which would require that we change them every time the
+# theme is moved or renamed.
+
+# Let's say that we have an ode site at
+
+# sample.net/weblog
+
+# and the following is part of the category structure of the site
+
+# /dir1/dir2/dir3/
+
+# Furthermore, we have dated theme titled 'html-2010_0415' in a themes
+# directory at dir3, like so
+
+# '/dir1/dir2/dir3/themes/html-2010_0415'
+
+# Now let's assume there is a stylesheet titled 'whatever.css' included as
+# part of the theme at
+
+# '/dir1/dir2/dir3/themes/html-2010_0415/whatever.css'.
+
+# We need to be able to create a suitable URI to access that stylesheet
+# in the head section of the page theme file.
+
+# We can't use $base_url for this purpose, because that URI
+# will always include the path to the script.
+# More to the point, it won't (in fact can't) actually point to the stylesheet
+# as we need it to do.
+
+# If $base_url is:
+
+# http://sample.net/weblog
+
+# /weblog must redirect to the script, which may be tucked away in a special 
+#'cgi-bin' directory or someplace else.
+
+# Let's say /weblog redirects to /cgi-bin/ode.cgi.
+
+# If we tried to use $base_url to link to the stylesheet,
+# we would end up with something like:
+
+# http://sample.net/cgi-bin/ode.cgi/dir1/dir2/dir3/ \
+# themes/html-2010_0415/whatever.css
+
+# which is not the location of the stylesheet.
+
+# In fact, that URL would result in a call to the script, which would
+# interpret it as a request for:
+
+# a post file titled 'whaetever',
+# using a theme titled 'css',
+# in the category 'dir1/dir2/dir3/themes/html-2010_0415',
+
+# which isn't what we want at all.
+
+# Take a moment to think about this. Whenever we call Ode with a request
+# that uses a theme containing this reference ($base_url),
+# the script is actually called twice. Once when we explicitly request it,
+# and again when the server attempts to access the stylesheet
+# on loading the requested page.
+
+# To make a long story short, we need a URL that will allow us to
+# reliably access resources under the Ode's document root,
+# while bypassing the script, and that's what this setting provides.
+
+# The value of $document_root_url should be the URI
+# you would type into the address bar of a web browser to load a static page
+# located at your site's document root.
+
+# It isthe URI that corresponds the path specified by the
+# document_root config setting.
+
+# Note that like $base_url the value for this setting should not end
+# with a trailing path delimiter.
+
+
+# !YOU MUST CHANGE THE DEFAULT VALUE FOR THIS SETTING!
+
+
+# Default value:
+# ''
+
+# Recommended value:
+# n/a
+
+# Example:
+# $document_root_url = 'http://sample.net/ode_site';
+# ----------
+
+
+$document_root_url = '';
+
+
+# + ----------------------------------------------------------------------
+
+
+# ----------
+# SETTING 05. Site title
+# ----------
+# Provide a title for this site.
+
+# The site title is what it sounds like it is, it's whatever name
+# you choose to give your site.
+
+# This is not used in any "official" way (like a domain name is).
+
+# The site title is intended to be used in theme files.
+
+# For example, you may choose to use a site title as part of
+# the page title in themes. This is the default
+# when a visitor requests the the root address of your site,
+# for example: http://sample.net/cgi-bin/ode.cgi
+
+# (The baked-in error theme uses the site title as part of the page title.)
+
+# You're free to use any string you want, though
+# you may want to avoid characters that might present a problem
+# for standards compliant HTML, your visitors,
+# and whatever platform they might be using to access your site.
+
+# For example, some applications have trouble with character entity
+# references in page titles.
+
+
+# default value:
+# "My brand new Ode site"
+
+# Recommended value:
+# n/a
+
+# Example:
+# $site_title = "My brand new Ode site";
+# ----------
+
+
+$site_title = "My brand new Ode site";
+
+
+# + ----------------------------------------------------------------------
+
+
+# ----------
+# SETTING 06. Site title - short
+# ----------
+# Provide a shortened version of the title for this site.
+
+# This value is used whenever using the primary site title might result
+# in excessively long page titles, for example
+# with date restricted requests, which include info about the
+# interpreted date of the req as well as the site title
+# (category requests too, which can grow to be quite long considering
+# nested categories).
+
+# This value is also used for requests that specify individual posts
+# (permalinks), because the post title
+# is included in the page title as well, and that tends
+# to result in long page titles. 
+
+# If you prefer to use the primary site title in every case, you might
+# repeat the value of $site_title here,
+# or alternatively set the value to $site_title.
+
+
+# default value:
+# "My Ode site"
+
+# Recommended value:
+# n/a
+
+# Examples:
+# $site_title_sort = "My Ode site"; - Unique shorter title
+# $site_title = "My brand new Ode site"; - Value copied from $site_title
+# $site_title_short = "$site_title"; - Value refers to $site_title
+# ----------
+
+
+$site_title_short = "My Ode site";
+
+
+# + ----------------------------------------------------------------------
+
+
+# ----------
+# SETTING 07. Site description
+# ----------
+# Provide a short description for this site. (Think of it as a tagline.)
+
+# This value can be used in themes,
+# and is typically included as part of the themes distributed with the
+# project.
+
+# (If theme designers do their job properly, then leaving the
+# site_description blank should not cause any noticeable problems in themes
+# that do include the value.)
+
+
+# Default value:
+# "It's hard to think of a clever site description."
+
+# Recommended value:
+# n/a
+
+# Example:
+# $site_description = "";
+# $site_description = "It's hard to think of a clever site description.";
+# ----------
+
+
+$site_description = "It's hard to think of a clever site description.";
+
+
+# + ----------------------------------------------------------------------
+
+
+# ----------
+# SETTING 08. Addins state directory
+# ----------
+# Absolute path to the addin state directory.
+
+# Addins that store state information (such as indexette) or require a config
+# file of their own should save that data to one or more files
+# in some subdirectory under the state directory.
+
+# (Note to developers: The name you choose for your addin's
+# state directory should be easily
+# recognizable as related to your addin.)
+
+# The value here should be a string representing the absolute path to the
+# addin state container directory (i.e. the directory where all of the addin 
+# state folders are kept).
+
+# It probably makes sense for this to be a subdirectory of the addin
+# directory, unless you have a reason to do something else.
+
+# Note that this string _should_ include a trailing path delimiter.
+
+
+# Default value:
+# "${addin_dir}state/"
+
+# Recommended value:
+# "${addin_dir}state/"
+
+# Example:
+# $addin_dir = "${addin_dir}state/";
+# ----------
+
+
+$addin_state_dir = "${addin_dir}state/";
+
+
+# + ----------------------------------------------------------------------
+
+
+# ----------
+# SETTING 09. Default theme
+# ----------
+# The default theme is the name of the theme used whenever a particular
+# theme is not specified as part of the requested URL.
+
+# Ode allows you to create any number of themes, and have all of them
+# active at the same time.
+
+# What's more, themes can be used to customize the look and layout of the
+# site for any category, or you can have a set of themes
+# shared by all categories. You can even do both.
+
+# Finally, Ode supports dated theme archives, which allow you to preserve
+# old revisions of themes as you make changes, such that
+# visitors can request a previous style by date. Does that make sense?
+
+
+# IMPORTANT: Whenever dated themes are being used,
+# i.e. the site-look-date mechanism is enabled,
+# the current version of the named theme is used
+# automatically.
+
+# (_Do not_ include a date as part of the the value of the
+# default_theme).
+
+
+# Default value:
+# 'html'
+
+# Recommended value:
+# 'html'
+
+# Example:
+# $default_theme = 'html';
+# ----------
+
+
+$default_theme = 'html';
+
+
+# + ----------------------------------------------------------------------
+
+
+# ----------
+# SETTING 10. Use site-look-date mechanism (Boolean)
+# ----------
+# With the site-look-date mechanism, Ode supports a feature
+# referred to as 'dated themes', which allows the site maintainer to preserve
+# an archived copy of the current version
+# whenever a theme is updated.
+
+# All of these dated archives are active.
+
+# By default the most recent version of the theme is always used.
+# However, a visitor can request a previous version
+# of the theme at any time.
+
+# Combined with content date restrictions, it's possible to put together a
+# request that recreates the site as it existed
+# at any point in time - not just the content of the site,
+# but the look of the site as well.
+
+
+# This option is interpreted as a Boolean.
+
+# 1 - (true): When true, the script recognizes the site_look_date parameter
+# and uses dated themes.
+
+# 0 - (false): When false, the site_look_date parameter is
+# ignored, and the script recognizes only non-dated themes (The dated themes
+# feature is disabled).
+
+
+# Default value:
+# 1
+
+# Recommended value:
+# 1
+
+# Example:
+# $use_site_look_date = 0;
+# ----------
+
+
+$use_site_look_date = 1;
+
+
+# + ----------------------------------------------------------------------
+
+
+# ----------
+# SETTING 11. Post file extension
+# ----------
+# The file extension used with post files.
+
+# Files under the document root ending with the specified
+# post file extension are treated as posts.
+
+# All other files are ignored.
+
+# For example if the post file extension is 'txt' (the default), then
+# 'some_post.txt' is considered a post.
+
+
+# Note I don't recommend using 'html' or 'htm' as the post file extension
+# because it's confusing.
+
+# For one thing, posts are not themselves valid html files, they
+# are the content of the site which is combined with a theme to produce a
+# page that is valid html.
+
+
+# Default value:
+# 'txt'
+
+# Recommended value:
+# 'txt'
+
+# Example:
+# $post_file_ext = 'txt';
+# ----------
+
+
+$post_file_ext = 'txt';
+
+
+# + ----------------------------------------------------------------------
+
+
+# ----------
+# SETTING 12. Number of posts per page
+# ----------
+# The default number of posts included on any single page.
+
+# Given a request for the root of a site with 1000 posts, as many as the
+# total number of posts may be included on the page
+# returned to the client. 1000 posts is probably too many to include
+# on a single page.
+
+# If the value of this setting is 10, then only this number of posts
+# will be displayed on the page
+# along with a link to display the next 10.
+
+
+# This value can be overridden on a per request basis
+# with the 'num_posts' query string parameter.
+
+
+# Default value:
+# 10
+
+# Recommended value:
+# n/a
+
+# Example:
+# $num_posts = 10;
+# ----------
+
+
+$num_posts = 10;
+
+
+# + ----------------------------------------------------------------------
+
+
+# ----------
+# SETTING 13. Use local time (Bool)
+# ----------
+# For those of you who want to skip the rest of this lengthy discussion,
+# I'll cut to the chase.
+
+# $use_local_time is interpreted as a Boolean,
+# the value of which should be:
+
+# 1 - (true): When true, the script will use the local time zone as defined
+# by the config setting $local_time_zone to interpret all
+# dates, including both post dates and date related requests, i.e.
+# path-based date restrictions and date related parameters.
+
+# (See description of the $local_time_zone setting for more information.)
+
+# 0 - (false): When false, the script assumes that all dates refer to
+# UTC.
+
+
+# Though you probably don't think about it a lot, time is a complex
+# (i.e. hard, not easily understood) topic.
+
+# Even this dictionary definition of time suggests as much:
+
+# time (noun)
+
+# The indefinite continued progress of existence and events
+# in the past, present, and future regarded as a whole.
+# ...
+# Time or an amount of time as reckoned by a conventional standard.
+# ...
+
+# How is this complex? (Maybe muddled is a better word.)
+
+# First, notice that the definition of time
+# includes a reference to time - 'indefinite' means lasting for an unknown
+# amount of time.
+
+# Also note that definition uses the phrase 'a conventional standard',
+# suggesting that there is more than one.
+
+# If that relatively 'straightforward' definition isn't
+# confounding enough, consider this quote from the wikipedia entry for time
+# (http://en.wikipedia.org/wiki/Time 2010/0217 3:01pm EST)
+
+# --------------------
+# Time has been a major subject of religion, philosophy, and science,
+# but defining it in a non-controversial manner
+# applicable to all fields of study has consistently
+# eluded the greatest scholars.
+
+# An operational definition of time, wherein one says that observing
+# a certain number of repetitions of one or another standard
+# cyclical event (such as the passage of a free-swinging pendulum)
+# constitutes one standard unit such as the second, is
+# highly useful in the conduct of both advanced experiments and everyday
+# affairs of life.
+
+# The operational definition leaves aside the question
+# whether there is something called time, apart from the counting activity
+# just mentioned, that flows and that can be measured.
+
+# Investigations of a single continuum called spacetime bring questions about
+# space into questions about time
+
+# Among prominent philosophers, there are two distinct viewpoints on time.
+
+# One view is that time is part of the fundamental
+# structure of the universe, a dimension in which events
+# occur in sequence. Time travel, in this view, becomes a possibility
+# as other "times" persist like frames of a film strip,
+# spread out across the time line.
+
+# The opposing view is that time does not refer to any kind of "container"
+# that events and objects "move through",
+# nor to any entity that "flows", but that it is
+# instead part of a fundamental intellectual structure
+# (together with space and number) within which humans sequence and compare
+# events.
+
+# This second view, ..., holds that time is
+# neither an event nor a thing,
+# and thus is not itself measurable nor can it be travelled
+# --------------------
+
+# Simply stated, time is complex because the answer to the question,
+# 'what time is it?' varies based on the specific date and
+# your geographic location.
+
+# Furthermore, though time is intended to regularize the collective
+# human experience, our working concept of time (e.g. 'now' corresponds to
+# a named instance of time, e.g. something like
+# February 17, 2010 3:08 PM Eastern Standard Time)
+# is largely arbitrary, and, like any other arbitrary thing,
+# we cannot seem to agree on any single answer.
+
+# What does this have to do with Ode? As it pertains to the
+# $use_local_time setting we need to understand at least some of the
+# complexities of time zones and UTC (Coordinated Universal Time).
+
+
+# Why use UTC? I'm sure there are quite a few answers to this question.
+# I'll limit myself to 2.
+
+# 1. This is something of a compromise for you and your readers.
+# From your perspective as the site maintainer and author, it is not your
+# local time zone and, if you are comfortable thinking in terms
+# of your local time zone, it take some amount of mental effort to
+# do the conversion. That is to say, every time you see a date you must
+# apply the offset from UTC appropriate for your local time zone.
+
+# Memorizing the offset from UTC for your local time zone is not difficult
+# to do, but it may not be what you want.
+
+# Your visitors must do exactly the same thing.
+# They must see a time expressed in UTC and apply the offset appropriate
+# for their local time zone.
+
+# It is no more difficult, and also no easier, for them than it is for you.
+# All they need to know is their offset.
+
+# If on the other hand you use your local time zone, then they must
+# know both the offset for their time zone and the offset for yours in order
+# to convert from the time displayed to their local time.
+# Considering that there are literally hundreds of zone names, this is
+# quite a bit more challenging for your visitors
+# and just a little easier for you.
+
+# 2. Using the local time zone may not work for you!
+
+# The feature depends on the availability of the zoneinfo database
+# (also called the tz database or Olson database)
+# and the perl functions tzset() and tzname() from Perl's POSIX module
+# to lookup the proper offset values for the time zone
+# specified with the $local_time_zone value.
+
+# This database is used for time conversions (and other processing) on
+# many platforms.
+
+# If it does not work for your system you should
+# avoid using local time zones, and skip the associated code,
+# by setting the value of $use_local_time to 0 here.
+
+# (See the description of the $local_time_zone setting for more info
+# about the decision to use these zoneinfo names.)
+
+
+# Default value:
+# 0
+
+# Recommended value:
+# n/a
+
+# Example:
+# $use_local_time = 1;
+# ----------
+
+
+$use_local_time = 0;
+
+
+# + ----------------------------------------------------------------------
+
+
+# ----------
+# SETTING 14. Local time zone
+# ----------
+# You would like the dates associated with your posts to be displayed
+# with times corresponding to your local time zone. It seems like a pretty
+# straightforward issue. However, it's
+# more difficult than you might first realize.
+
+# The key issue is this: How does the script know what your timezone is?
+# It's easy to get at the local time zone of the server,
+# but it's also possible that you and your server may not be in the same
+# place.
+
+# Virtually all mainstream operating systems (anything you're likely 
+# to be using for a production server) allow an
+# administrator to set a value for the local time zone.
+
+# We can assume that this setting is in place when the script runs.
+
+# That being the case, if we use Perl's localtime and timelocal functions,
+# times (e.g. post dates) will always be converted to
+# values appropriate for the local time zone.
+
+# However, time will always be interpreted relative to
+# the time zone of the server, which may be
+# different from your time zone (or the person writing the posts).
+
+# Because we are primarily concerned with post dates,
+# it seems appropriate that dates reflect the location of the
+# author rather than the server.
+
+# I imagine that the most common arrangement will be a single author
+# running an instance of Ode through some sort of
+# 3rd party hosting provider. In this case it may be more likely
+# than not that the site maintainer and the server
+# do not share a common time zone.
+
+# So the script can determine the time zone of the server, because this
+# info is available from the operating system,
+# but it cannot be expected to know the time zone of the author
+# unless we explicitly provide the information.
+
+# What's the best way to do this?
+
+# UTC is consistent everywhere, so maybe we can just provide an offset
+# from UTC. I live in the northeastern US and my offset would be
+# -0500 (minus 5 hours from UTC).
+
+# The problem with this strategy is that these offsets are not consistent
+# even for a single location.
+# Much of the United States observes daylight savings time
+# (DST or 'summer time').
+
+# This means that the offset now (Jan) is different than what it will be in
+# July, when it will be -0400.
+
+# DST is not restricted to the United States. What's more,
+# DST is not consistent from location to location. The offset is typically
+# one hour but this is not always the case.
+
+# Finally the start and end dates vary by BOTH location and year.
+# This means that from year to year the start and end dates may change for
+# a given place.
+
+# Taking all of this together, if we wanted to supply an offset we would
+# need to provide:
+
+# A standard offset
+# A DST offset
+# A DST start date
+# A DST end date
+
+# These values would need to be tweaked every year.
+
+# That's less than ideal and seems very likely to be both annoying and
+# problematic.
+
+# The zoneinfo database gives us an alternative.
+
+# From the wikipedia entry for Zoneinfo
+# (http://en.wikipedia.org/wiki/Zoneinfo 2010/0217 4:29 pm EST)
+
+# ----------
+# The zoneinfo database, also called the tz database, is a collaborative
+# compilation of information about the world's time zones,
+# primarily intended for use with computer programs and operating systems.
+# It is sometimes referred to as the Olson database after
+# the founding contributor Arthur David Olson.
+# Paul Eggert is editor and maintainer of the tz database.
+
+# Its most recognizable feature is the uniform naming convention designed by
+# Paul Eggert for time zones, such as “America/New_York” and “Europe/Paris”.
+
+# The database attempts to record historical time zones and
+# all civil changes since 1970, the Unix time epoch. It also includes
+# transitions such as daylight saving time, and
+# even records leap seconds.
+# ----------
+
+# By taking advantage of the zoneinfo database we can specify a timezone
+# with a name such as 'America/New_York' once, and that alone
+# is enough for the script to do the rest.
+
+# Sounds great - what's the catch? It's possible that the zoneinfo database
+# will not work for you.
+
+# The feature depends on the availability of the zoneinfo database
+# (also called the tz database or Olson database)
+# and the perl functions tzset() and tzname() from Perl's POSIX module
+# to lookup the proper offset values for the time zone
+# specified with the $local_time_zone value.
+
+# This database is used for time conversions (and other processing) on
+# many platforms.
+
+# If it does not work for your system you should
+# avoid using local time zones, and skip the associated code,
+# by setting the value of $use_local_time to 0.
+# (When $use_local_time is 0 the value of $local_time_zone is ignored
+# and UTC is used instead.)
+
+# You are free to choose any timezone you like, but the
+# string provided here must be one of the recognized values specified
+# as part of the tz database
+
+# You can find a list of these strings at the wikipedia entry for
+# zoneinfo time zones:
+
+# (http://en.wikipedia.org/wiki/List_of_zoneinfo_time_zones
+# 2010/0217 4:37 pm EST)
+
+
+# More information about these names from the wikipedia entry for Zoneinfo
+# (http://en.wikipedia.org/wiki/Zoneinfo 2010/0217 4:41 pm EST)
+
+# From the wikipedia entry
+# + ----------
+# | The time zones in the database are given uniform names,
+# | such as “America/New_York”, in an attempt
+# | to make them easier to understand by humans and to
+# | remove ambiguity.
+# |
+# | These names are all of the form Area/Location, where Area is
+# | the name of a continent or ocean, and
+# | Location is the name of a specific location within that region,
+# | usually cities or small islands.
+# |
+# | The set of areas currently includes: Africa, America, Antarctica, Arctic,
+# | Asia, Atlantic, Australia, Europe, Indian, and Pacific.
+# | 
+# | Additionally a special area of Etc is used for some administrative zones,
+# | particularly for “Etc/UTC” which
+# | represents Coordinated Universal Time.
+# |
+# | Country names are not used in this scheme,
+# | primarily because they would not be robust due to frequent political
+# | and boundary changes. The names of large cities
+# | tend to be more permanent.
+# |
+# | Additionally there is a desire to keep locations geographically compact
+# | so that any future time zone changes
+# | do not split locations into different time zones.
+# | 
+# | A choice was also made to use English names or equivalents, and to
+# | omit punctuation and common suffixes.
+# | 
+# | The underscore character is used in place of spaces.
+# | 
+# | Usually the most populous city in a region is chosen to
+# | represent the entire time zone,
+# | although other cities may be selected if they are more widely known or
+# | result in a less ambiguous name.
+# | 
+# | In the event that the name of a city changes,
+# | the convention is to create an alias in future editions
+# | so that both the old and new names refer to
+# | the same database entry.
+# | 
+# | In a few rare cases the Location is itself represented as
+# | a compound name, for example the time zone
+# | 'America/Indiana/Indianapolis'.
+# |
+# | The only three-level names currently include those under
+# | 'America/Argentina/...', 'America/Kentucky/...', 'America/Indiana/...',
+# | and 'America/North_Dakota/...'.
+# + ----------
+
+# It really is a complicated topic. The approach taken here may change.
+# For now, I think this is a pretty good solution.
+# (For what it's worth, Wordpress required users to manually tweak an offset
+# value to version 2.8.)
+
+# Suggestions about this or any other aspect of the script are welcome.
+
+# For more info about this topic see:
+
+# http://en.wikipedia.org/wiki/Zoneinfo
+# http://en.wikipedia.org/wiki/List_of_zoneinfo_time_zones
+# http://en.wikipedia.org/wiki/Daylight_saving_time
+# http://en.wikipedia.org/wiki/Daylight_saving_time_around_the_world
+# http://en.wikipedia.org/wiki/Utc
+
+
+# Default value:
+# 'Etc/UTC'
+
+# Recommended value:
+# n/a
+
+# Example:
+# $local_time_zone = 'Etc/UTC';
+# $local_time_zone = 'America/New_York';
+# ----------
+
+
+$local_time_zone = 'Etc/UTC';
+
+
+# + ----------------------------------------------------------------------
+
+
+# ----------
+# SETTING 15. Advertised time zone
+# SETTING 16. Advertised time zone dst
+# ----------
+# Advertised time zone and advertised time zone dst are human readable
+# strings representing the local time zone.
+
+# This is an overly simplistic (lazy) solution to an annoying problem,
+# and may be reworked in some future version.
+
+# What annoying problem? Time zones are actually more complicated
+# than you probably realize and there isn't a single
+# good value to use, by which I mean that
+# the value you probably should use isn't the one
+# you want to use (what's familiar).
+
+# For example, where I live I'm used to seeing 'EST' for eastern standard
+# time and 'EDT' meaning eastern daylight time.
+
+# These are commonly used but they are not standard.
+
+# If I use the value from the $local_time_zone setting above, then I'll
+# be forced to use something like 'America/New_York',
+# which is closer to a standard than the more commonly used representations
+# but it's not what I want.
+
+# (See the discussion of the preceding $use_local_time and
+# $local_time_zone settings for more info.)
+
+
+# Rather than automatically pulling the string that represents the
+# current time zone from the system or
+# some other setting (e.g. $local_time_zone)
+# the script requires that you manually specify the advertised time zone
+# with this setting.
+
+# You can use absolutely any value you want. This is no more than a label.
+# Of course you should probably use something
+# that is recognizable to both you and your visitors.
+
+
+# $advertised_time_zone_dst is also provided.
+
+# If your part of the world recognizes daylight savings time, then
+# in addition to including the string that should represent
+# the standad (i.e. non-dst time zone), specify a string for the dst
+# alternative as the value of $advertised_time_zone_dst.
+
+# If your area does not use daylight savings time you can either:
+
+# 1. enter the standard value again,
+# 2. leave $advertised_time_zone_dst empty. 
+
+# IMPORTANT: The script will take care of determining which of these
+# two alternatives is appropriate. These are just labels and are NOT USED 
+# in any time conversion calculations.
+
+
+# Default values:
+# $advertised_time_zone:
+# 'UTC'
+# $advertised_time_zone_dst:
+# 'UTC'
+
+# Recommended values:
+# $advertised_time_zone:
+# n/a
+# $advertised_time_zone_dst:
+# n/a
+
+# Examples:
+# $advertised_time_zone = 'EST';
+# $advertised_time_zone_dst = 'EDT';
+# ----------
+
+
+$advertised_time_zone = 'UTC';
+$advertised_time_zone_dst = 'UTC';
+
+
+# + ----------------------------------------------------------------------
+
+
+# ----------
+# SETTING 17. Page title category list separator
+# ----------
+# Among other important uses, the page title is
+# the value that typically appears in a web browser's title bar,
+# it's frequently the default value for bookmarks,
+# and is an important value for search engines, which use
+# the title both to represent the page in search results and also use
+# the value as part of the page rank evaluation
+# (i.e. what pages are returned for which search requests
+# and in what order).
+
+# Simply put, page titles are important.
+
+# That raises the question, what should the page titles be?
+
+# A page title should be sufficient to identify
+# a specific page on a site.
+
+# It is generally considered poor form to
+# assign all pages on the site the same title (the name of the site for
+# example).
+
+# Also, a page title should include enough context to be meaningful.
+
+# A title like 'About Us' for example does not include enough context to
+# be useful. Looking at this title in a list of bookmarks, it
+# would not be apparent who the 'Us' in the title represents.
+
+# There is more information about titles included among
+# the W3C's 'Tips for WebMasters' pages.
+
+# http://www.w3.org/QA/Tips/good-titles
+
+
+# What else do we need to know about page titles?
+
+# They can be a challenge for any dynamically generated site,
+# because we cannot craft each page title individually.
+# Instead, the script must piece together
+# meaningful page titles that fit a pattern that can be
+# duplicated for each page.
+
+# In the case of a category request,
+# there is no post file and so no post title to use in the page title.
+
+# Instead we'll use the hierarchical list of categories.
+
+# So for example, given the request:
+
+# http://sample.net/cgi-bin/ode.cgi/technology/apple/macosx/
+
+# The list of categories is:
+
+# technology, apple, macosx.
+
+
+# The question is, how do we want to represent this in the page
+# title?
+
+# We could use commas but that reads like a simple list and
+# we want to get the idea across that
+# there is a hierarchical relationship here.
+# i.e. 'macosx' is a subcategory of 'apple', which in turn is
+# contained within 'technology'.
+
+# The two best options I can think of are:
+
+# >
+# /
+
+# > - Frequently used to represent nested relationships
+#     especially with nested menus.
+
+# Because '>' is used as a tag delimiter in HTML (and XML)
+# it should be replaced by a character reference
+# when it is included as part of the content of the page.
+
+# The title element does support the use of these
+# entity references and so if we choose to use the '>' character
+# we should use some sort of reference instead.
+# We have a couple of choices.
+
+# '>' is one of a small set of characters that has a corresponding
+# named reference, '&gt;'.
+
+# Alternatively we could choose to use a numeric character reference
+# which, though more abstract (difficult to remember
+# and recognize on sight), is more standard in the sense
+# that we can use such a numeric reference, a hexadecimal reference
+# more specifically, to refer to any character,
+# not just the few for which named references exist.
+# What's more, these numeric references always refer to Unicode
+# code points, regardless of the page's encoding.
+
+# From the wikipedia entry for: 'Character encodings in HTML'
+
+# http://en.wikipedia.org/wiki/Character_encodings_in_HTML
+# (2009_1109 5:58pm EST)
+
+# --------------------
+# Numeric character references can be in decimal format, &#DD;,
+# where DD is a variable-width string of decimal digits.
+# Similarly there is a hexadecimal format, &#xHHHH;,
+# where HHHH is a variable-width string of hexadecimal digits,
+# though many consider it good practice to never use fewer than four
+# hex digits, and never use an odd number of hex digits
+# (due to the correspondence of two hex digits to one byte).
+# Unlike named entities, hexadecimal character references are
+# case-insensitive in HTML.
+# --------------------
+
+# The hexedemical character reference for '>' is:
+# '&#x003E'.
+
+# / - Seems to naturally imply the hierarchical
+#     relationship we want to represent (at least to me).
+#     After all, this is the normal path delimiter
+#     on Unix-like systems.
+
+# I've included examples for using both '/' and '>'
+# (i.e. the hexadecimal representation of '>')
+# you can use either of these, or any other separator you might prefer.
+
+# The default value is: ' &#x003E; '.
+
+
+# It should be noted that '/' would be a more compact representation.
+
+# Compare:
+
+# 'technology > apple > macosx'
+# 'technology/apple/macosx'
+
+
+# Default value:
+# ' &#x003E; '
+
+# Recommended value:
+# n/a
+
+# Example:
+# $page_title_category_separator = ' > ';
+# $page_title_category_separator = ' &#x003E; ';
+# ----------
+
+
+$page_title_category_separator = ' &#x003E; ';
+
+
+# + ----------------------------------------------------------------------
+
+
+# ----------
+# SETTING 18. Label for breadcrumb trail root
+# ----------
+
+# Before we talk about the label for the breadcrumb trail root,
+# let's make sure we are all familiar
+# with the concept of a breadcrumb trail.
+
+# What is a breadcrumb trail?
+
+# It is a navigation device, commonly used with websites,
+# especially sites with a hierarchical content scheme
+# (like Ode's nested categories), which provides a clickable list of links
+# to each category along a requested path.
+
+# An example will probably help.
+
+# Given the request:
+
+# 'http://sample.net/cgi-bin/ode.cgi/dir1/dir2/dir3/some_post.html'
+
+# The corresponding breadcrumb trail would be an ordered
+# listing of the categories leading to 'some_post'.
+
+# Something like:
+
+# 'dir1 > dir2 > dir3'
+
+# Where each of 'dir1', 'dir2', and 'dir3' would be a clickable link
+# to the named directory. So for example, the link
+# associated with 'dir1' would be:
+
+# 'http://sample.net/cgi-bin/ode.cgi/dir1/'
+
+
+# --------------------
+# | From Wikipedia
+# --------------------
+# | en.wikipedia.org/wiki/Breadcrumb_(navigation)
+# | 2010/0402 2:45 pm EDT
+# --------------------
+# | Breadcrumbs or breadcrumb trail is a navigation aid used
+# | in user interfaces.
+# |
+# | It gives users a way to keep track of their locations within
+# | programs or documents. The term comes from the trail of breadcrumbs
+# | left by Hansel and Gretel in the popular fairytale.
+# |
+# | Breadcrumbs typically appear horizontally across the top of a web
+# | page, usually below title bars or headers. They provide
+# | links back to each previous page the user navigated through to get
+# | to the current page or—in hierarchical site
+# | structures—the parent pages of the current one.
+# | Breadcrumbs provide a trail for the user to follow back to the
+# | starting or entry point.
+# |
+# | A greater-than sign (>) often serves as hierarchy
+# | separator, although designers may use other glyphs, as well as
+# | various graphical treatments.
+# |
+# | Typical breadcrumbs look like this:
+# |
+# | Home page > Section page > Subsection page
+# --------------------
+
+
+# Ode provides two different breadcrumb trail mechanisms:
+
+# $post_breadcrumb_trail
+# $req_breadcrumb_trail
+
+# 1. $post_breadcrumb_trail provides a list of links to categories
+# along the _path leading to a post_.
+
+# 2. $req_breadcrumb_trail is a list of links to categories
+# along _the requested path_.
+
+# This is the more traditional (i.e. common) implementation.
+
+# Revisiting the example above:
+
+# Given the request:
+
+# 'http://sample.net/cgi-bin/ode.cgi/dir1/dir2/dir3/some_post.html'
+
+# The breadcrumb trail would be an ordered listing of the categories
+# leading to 'some_post'.
+
+# Something like:
+
+# 'dir1 > dir2 > dir3'
+
+# This example corresponds to $req_breadcrumb_trail.
+
+# OK, hopefully we all understand what a breadcrumb trail is at this point.
+# (If you don't, ask.)
+
+
+# Now we can talk about $label_for_breadcrumb_trail_root.
+
+# Notice that something is missing in the example above, namely the root.
+
+# 'dir1' is not the top level of the content hierarchy. It's
+# a subfolder at the document root.
+
+# We want to represent the root as part of
+# the breadcrumb trail, so that visitors can jump to the very top of the site
+# (i.e. the front-page).
+
+# So, what we actually want is something like:
+
+# 'home > dir1 > dir2 > dir3'
+
+# This setting, $label_for_breadcrumb_trail_root, is
+# the label used to represent the site root in breadcrumb trails
+# generated by the script.
+
+# This same label is used for BOTH post and request trails.
+
+
+# Default value:
+# home
+
+# Recommended value:
+# n/a
+
+# Examples:
+#  $label_for_breadcrumb_trail_root = 'home';
+#  $label_for_breadcrumb_trail_root = 'TOP';
+#  $label_for_breadcrumb_trail_root = 'Root';
+# ----------
+
+
+$label_for_breadcrumb_trail_root = 'home';
+
+
+# + ----------------------------------------------------------------------
+
+
+# ----------
+# SETTING 19. Breadcrumb trail category list separator
+# ----------
+
+# So we know that a breadcrumb trail is a clickable list of links
+# to each category along some path.
+
+# ( Note: If you don't know what a breadcrumb trail is, see the description
+# included in the comments preceding
+# the setting $label_for_breadcrumb_trail_root. )
+
+# Ode provides two different breadcrumb trail mechanisms:
+
+# $post_breadcrumb_trail
+# $req_breadcrumb_trail
+
+# 1. $post_breadcrumb_trail provides a list of links to categories
+# along the _path leading to a post_.
+
+# 2. $req_breadcrumb_trail is a list of links to categories
+# along _the requested path_.
+
+# Revisiting an example used in the comments for the
+# setting $label_for_breadcrumb_trail_root
+
+# Given the request:
+
+# 'http://sample.net/cgi-bin/ode.cgi/dir1/dir2/dir3/some_post.html'
+
+# The corresponding breadcrumb trail would be an ordered
+# listing of the categories leading to 'some_post'.
+
+# Something like:
+
+# 'dir1 > dir2 > dir3'
+
+# The question is, how do we want to represent this list? More specifically
+# what do we want use as a list separator.
+
+# Some frequently used options include:
+
+# >, /, :
+
+
+# --------------------
+# | From Wikipedia
+# --------------------
+# | en.wikipedia.org/wiki/Breadcrumb_(navigation)
+# | 2010/0402 2:45 pm EDT
+# --------------------
+# | A greater-than sign (>) often serves as hierarchy
+# | separator, although designers may use other glyphs, as well as
+# | various graphical treatments.
+# --------------------
+
+# Note about character entity references:
+
+# Because '>' is used as a tag delimiter in HTML (and XML)
+# it should be replaced by a character reference
+# when it is included as part of the content of the page.
+
+# '>' is one of a small set of characters that has a corresponding
+# named reference, '&gt;'.
+
+# Alternatively we could choose to use a numeric character reference
+# which, though more abstract (difficult to remember
+# and recognize on sight), is more standard in the sense
+# that we can use such a numeric reference
+# to refer to any character, not just the few for which named references
+# exist.
+
+# What's more, these numeric references always refer to Unicode
+# code points, regardless of the page's encoding.
+
+# From the wikipedia entry for: 'Character encodings in HTML'
+
+# --------------------
+# | http://en.wikipedia.org/wiki/Character_encodings_in_HTML
+# | (2009_1109 5:58pm EST)
+# --------------------
+# | Numeric character references can be in decimal format, &#DD;,
+# | where DD is a variable-width string of decimal digits.
+# | Similarly there is a hexadecimal format, &#xHHHH;,
+# | where HHHH is a variable-width string of hexadecimal digits,
+# | though many consider it good practice to never use fewer than four
+# | hex digits, and never use an odd number of hex digits
+# | (due to the correspondence of two hex digits to one byte).
+# | Unlike named entities, hexadecimal character references are
+# | case-insensitive in HTML.
+# --------------------
+
+# The hexedemical character reference for '>' is:
+# '&#x003E'.
+
+# Note that '>' is not the only special character
+# that should be replaced by an entity reference when used in the content of
+# a webpage.
+
+# The W3C provides a list of character entity references for HTML4 at:
+
+# http://www.w3.org/TR/html4/sgml/entities.html
+
+# Be aware that this is not especially easy to read. Wikipedia provides
+# a more understandable list at:
+
+# http://en.wikipedia.org/wiki/ \
+# List_of_XML_and_HTML_character_entity_references
+# (2010/0402 4:17 pm EDT)
+
+# The default value is: ' &#x003E; '.
+
+# It should be noted that '/' would be a more compact representation.
+
+# Compare:
+
+# 'technology > apple > macosx'
+# 'technology/apple/macosx'
+
+
+# Default value:
+# ' &#x003E; '
+
+# Recommended value:
+# n/a
+
+# Example:
+# $breadcrumb_trail_category_separator = ' > ';
+# $breadcrumb_trail_category_separator = ' &#x003E; ';
+# $breadcrumb_trail_category_separator = '/';
+# ----------
+
+
+$breadcrumb_trail_category_separator = ' &#x003E; ';
+
+
+# + ----------------------------------------------------------------------
+
+
+# ----------
+# SETTING 20. Compare paths and posts to exempt (Boolean)
+# ----------
+# Ode includes a basic exemption mechanism which allows site maintainers
+# to manually exclude directory entries that would otherwise.
+
+# Determines whether the exemption mechanism is enabled or disabled.
+
+# The option is interpreted as a Boolean.
+
+# 1 - (true): The exemption mechanism is on (enabled).
+
+#             A list of exemption 'rules', which are
+#             patterns, read in from an exemption file (one per line)
+#             at exempt_filename.
+
+#             Each of these rules is compared to the full path of every
+#             directory entry under consideration and,
+#             if there is a match, the directory entry is ignored.
+
+# 0 - (false): The exemption mechanism is off (disabled).
+
+
+# Default value:
+# 0
+
+# Recommended value:
+# n/a
+
+# Example:
+# $compare_paths_and_posts_to_exempt = 0;
+# ----------
+
+
+$compare_paths_and_posts_to_exempt = 0;
+
+
+# + ----------------------------------------------------------------------
+
+
+# ----------
+# SETTING 21. Exemption file
+# ----------
+
+# Ode supports simple but fairly effective 'exemption' mechanism
+# that allows you to instuct the script to ignore
+# individual posts, entire categories, etc.
+
+# The exemption file named here is a list of rules, one per line.
+# These rules are compared to the full path to each
+# prospective post file before (every rule is compared to each post file).
+# If any rule matches some portion of the path to the post,
+# that file will never be considered a post (i.e. it is exempt).
+
+# You probably won't need to do this often. After all, you decide what to
+# put under ode's document root. (My exemption file is empty.)
+
+# It's handy in a pinch.
+
+
+# Note that files in theme directories are never considered posts.
+
+# (Theme directories are always skipped thogh they do live under the site
+# document root along with the content.)
+
+
+# Specify the name of the file containing the list of rules for the exemption
+# mechanism.
+
+# Note that this value should be the name of the exemption file ONLY.
+
+# As for the location, the file _must_ reside at the root of the config 
+# directory, alongside this configuration file.
+
+# Note: The location of the config directory is specified in
+# the source file itself (ode.cgi).
+
+
+# Default value:
+# 'ode_exempt'
+
+# Recommended value:
+# 'ode_exempt'
+
+# Example:
+# $exempt_filename = 'ode_exempt';
+# ----------
+
+
+$exempt_filename = 'ode_exempt';
+
+
+# + ----------------------------------------------------------------------
+
+
+# ----------
+# SETTING 22. Warning threshold
+# ----------
+# The script supports a simple warnings and response suppression
+# mechanism allowing the site maintainer to control the verbosity of warnings
+# and responses, while encouraging developers to include
+# warnings and responses whenever it might be helpful,
+# without fear of flooding the logs or filling the page with
+# unwanted information.
+
+# Note: warnings are output to the logs, and responses appear on the page
+# returned to the client.
+
+# During execution, the script creates various warnings and response messages
+# and assigns each a level.
+
+# These levels are compared to the threshold value set here.
+
+# Whenever the threshold value exceeds the warning or response level
+# the warning or response is generated.
+
+# When the level is greater than the threshold value,
+# it's suppressed.
+
+# Any threshold value less than the lowest recognized value
+# is interpreted to mean the lowest value.
+
+# Values greater than the highest recognized threshold value
+# are interpreted to mean the highest value.
+
+# Think of this value as a measure of how verbose you want the script
+# to be.
+
+# Higher values will generate more warnings and responses, and of course
+# lower values will result in fewer.
+
+# At the lowest value you should expect the script to be silent.
+# At the highest value you should expect the script
+# to print relatively unimportant, purely informational messages
+# (along with all other messages).
+
+# Recognized values are:
+# 1, 2, 3, 4
+
+# You might interpret the default scale as something like:
+
+# 1 - silent
+# 2 - critical messages only
+# 3 - noncritical messages indicating that some action is required
+# 4 - informational messages (no action required)
+
+
+# (Note: There is an equivalent WARNING_THRESHOLD constant declared
+# at the top of the script itself.
+
+# The value of that constant is used in place of the value here
+# ONLY before the statement that includes
+# the config file during the execution of the script.
+
+# You will probably want to keep the value of that constant in sync
+# with the value set here.
+
+# If so, you will need to update the value of the constant in the script file
+# anytime you change this value.
+
+# The default values of the two are the same.
+
+# This really isn't anything to worry about. There is at most a single
+# warning message before the config file is included.
+# If you'd rather not edit the script, that perfectly ok.)
+
+
+# Default value:
+# 3
+
+# Recommended value:
+# 3
+
+# Example:
+# $warning_threshold = 3;
+# ----------
+
+
+$warning_threshold = 3;
+
+
+# + ----------------------------------------------------------------------
+
+
+# ----------
+# SETTING 23. Depth of traversal for content
+# ----------
+# Ode always starts looking for content
+# at the path specified by the request, and travels down the
+# directory hierarchy to level $depth.
+
+# 0 = Infinite depth (look in all subdirectories),
+# 1 = The requested path only (do not include posts from subdirectories),
+# n = Include posts in subdirectories to depth n.
+
+
+# For example given the request:
+
+# htp://sample.net/cgi-bin/ode.cgi/technology/apple/
+
+# With the value set to 0, the script would look for posts in all
+# subdirectories of .../apple,
+# subdirectories of those subdirectories, and so on.
+
+# Make sure you understand that it will never display posts above the
+# requested path. Given the example above,
+# the script will not display any posts contained in '.../technology/'
+# which are not contained in '.../technology/apple/'
+
+
+# Default value:
+# 0
+
+# Recommended value:
+# 0
+
+# Example:
+# $depth = 0;
+# ----------
+
+
+$depth = 0;
+
+
+# + ----------------------------------------------------------------------
+
+
+# ----------
+# SETTING 24. Primary language
+# ----------
+# Specify the primary language of the site using the appropriate
+# ISO 639 language code.
+
+
+# Default value:
+# 'en'
+
+# Recommended value:
+# n/a
+
+# Example:
+# $site_language = 'en';
+# ----------
+
+
+$site_language = 'en';
+
+
+# + ----------------------------------------------------------------------
+
+
+# ----------
+# SETTING 25. Show future posts (Boolean)
+# ----------
+# By default, 'Future posts' are ignored, which is to say that
+# posts with modification times later than now are ignored, i.e. not
+# included on any page.
+
+# This feature allows postdated entries to be withheld until a specified date
+# and time.
+
+# This option is interpreted as a Boolean, the value of which should be:
+
+# 1 - (true): When true, future posts should be displayed.
+
+# 0 - (false): When false, future posts should be ignored until
+#             the specified post date. This is the default behavior
+#             described above.
+
+
+# Default value:
+# 0
+
+# Recommended value:
+# 0
+
+# Example:
+# $show_future_posts = 0;
+# ----------
+
+
+$show_future_posts = 0;
+
+
+# + ----------------------------------------------------------------------
+
+
+# ----------
+# SETTING 26. Respect case of request (Boolean)
+# ----------
+# Determines whether the program should use case-sensitive or case-insensitive
+# matching when comparing the requested path to the path of each post.
+
+
+# For example, if the value of this variable is true, a post at
+# /Technology/SOFTWARE/dEvelopment/MS_Rearch/boku.txt
+# _WILL NOT_ be returned in response to a request for
+# http://sample.net/weblog/technology/software/development/ms_research/
+
+# On the other hand, boku.txt _WILL_ be returned if the value of this variable
+# is false (the default).
+
+# Only set this to be true if you're sure that's what you want.
+# Visitors will never remember the case of the path to your posts.
+# Also, you may be tempted to change this sort of thing (e.g. capitalization
+# of category names) which will confuse search engines and
+# visitors who arrive at your site from the results of a search request
+# or a bookmark only to find that the post they were looking
+# for is missing (because it is hidden by a case mismatch).
+
+# If you think you may want to change this to true, but you aren't sure,
+# leave it set to false.  
+
+
+# The option is interpreted as a Boolean.
+
+# 1 - (true): The program uses case-sensitive matching when comparing the
+#             requested path to the path of each post.
+
+# 0 - (false): The program uses case-insensitive matching when comparing the
+#             requested path to the path of each post.
+
+
+# Default value:
+# 0
+
+# Recommended value:
+# 0
+
+# Example:
+# $respect_case_of_request = 0;
+# ----------
+
+
+$respect_case_of_request = 0;
+
+
+# + ----------------------------------------------------------------------
+
+
+# ----------
+# SETTING 27. Show tags (Boolean)
+# ----------
+# Specify whether or not tags should included on the page returned to the
+# browser with post content.
+
+# Tags are bits of information and instruction
+# inserted into a post by addins, 
+# to be used by that addin on some future invocation (or some other addin).
+
+# For example, the 'indexette' addin,
+# which is distributed with Ode,
+# uses a tag to record the post date of a file.
+
+# Indexette's tag looks like:
+
+# tag : index-date : 2008 01 115 13:15:59
+
+# Because these tags are not strictly post content,
+# but meta information related to the operation of the program,
+# they should not normally be displayed in the browser.
+
+# Note: This value may be updated automatically by ode or the installed
+# addins.
+
+# The option is interpreted as a Boolean.
+
+# 1 - (true): Tags are retained and will appear as part of the content
+#             returned to the client.
+
+# 0 - (false): Tags are filtered from the post content before the post
+#              is displayed.
+
+
+# (Note: This setting controls whether or not tags are displayed,
+# they are never actually stripped
+# from the post file based on this setting.)
+
+
+# Default value:
+# 0
+
+# Recommended value:
+# 0
+
+# Example:
+# $show_tags = 0;
+# ----------
+
+
+$show_tags = 0;
+
+
+# + ----------------------------------------------------------------------
+
+
+# ----------
+# SETTING 28. page._ theme file delimiter: head/posts
+# SETTING 29. page._ theme file delimiter: posts/foot
+# ----------
+# The values of these two settings are strings that dictate where
+# the script splits the page._ file
+# into the head, posts, and foot components of the theme.
+
+# The first, $page_delimiter_head_posts, should be inserted into the
+# page._ file between the head and posts sections,
+# the second, $page_delimiter_posts_foot, should be placed between
+# the posts and foot sections.
+
+# (Note: Include the _value_ of these variables, not the variable name,
+# in the page._ file.)
+
+# Because of how the script goes about building the page
+# that is returned in response to the visitor request,
+# this is an important setting.
+
+# Make sure you understand what these values are and how to use them.
+
+# More info about themes.
+
+# There are 5 theme components among the 3 theme files
+# including:
+
+# 1) date,
+# 2) content_type,
+# 3) head,
+# 4) posts,
+# 5) foot
+
+# The script will read the contents of each of the theme files
+# in the process of building the page that will be returned to the client.
+
+# The single page._ file, which includes the three components:
+
+# 1) head,
+# 2) posts,
+# 3) foot,
+# 
+# is primarily responsible for determining
+# the structure of the resulting
+# page, and together with any associated CSS files,
+# sets the look and layout of the site.
+
+# This single theme file can be opened in an HTML editor and treated
+# like any other .html file.
+
+# The script divides this page into the three separate components
+# listed above.
+
+# The head component, which includes everything in the page._ preceding
+# the head/posts delimiter, is interpolated
+# and added to the string that represents the page.
+
+# Next, and _this is key_, the posts component, is repeated once
+# for every post that will be included on the page.
+# The posts component is everything that falls between the two delimiters.
+
+# This means that the posts component
+# should only include that portion of the page that
+# represents the post itself.
+
+# For example consider the following simplified markup
+# which describes
+# a basic two column page._ theme file.
+
+# html
+#   head
+#   body
+#     div id="wrapper"
+#       div id="two_column_container"
+#         div id="posts_container"
+
+#           **HEAD^ / vPOSTS DELIMITER
+#           div class="individual_post"
+#             $ode::post_title
+#             $ode::post_body
+#           /div
+#           **POSTS^ / vFOOT DELIMITER
+
+#         /div
+#         div id="sidebar"
+#           div class="sidebar_block"
+#             ...
+#           /div
+#         /div
+#       /div
+#     /div
+#   /body
+# /html
+
+# Notice that delimiters surround just that portion of the page that
+# describes an individual post.
+# This section of the theme file is repeated for every
+# post. Each time the variables:
+
+# $ode::post_title
+# $ode::post_body
+
+# contain values specific to a single post.
+
+# Placing the delimiters in the wrong place in the page._ theme file
+# (or forgetting either one or both)
+# will lead to problems with the generated page.
+
+
+# Default values:
+
+# '<!-- Ode: ^ head/posts v -->'
+# '<!-- Ode: ^ posts/foot v -->'
+
+# Examples:
+
+# $page_delimiter_head_posts = <!-- Ode: ^ head/posts v -->
+# $page_delimiter_posts_foot = <!-- Ode: ^ posts/foot v -->
+# ----------
+
+
+$page_delimiter_head_posts = '<!-- Ode: ^ head/posts v -->';
+$page_delimiter_posts_foot = '<!-- Ode: ^ posts/foot v -->';
+
+
+# + ----------------------------------------------------------------------
+
+
+# ----------
+# SETTING 30. Use path-based date restrictions (Bool) 
+# ----------
+# Ode supports a feature called 'path-based date restrictions'
+# which, as the name suggests, allows a visitor to request
+# only those entries with a post date matching the date information
+# included as part of the path included with the URL.
+
+# By default this feature is enabled and path-based date restrictions
+# work as described.
+
+# The feature can be disabled by setting the value of this Boolean setting
+# to false.
+
+
+# If true (the default), the feature is enabled and components of the
+# path which appear to be dates
+# will be interpreted as date restrictions,
+# not elements of the filesystem path.
+
+# For example 
+
+# http://sample.net/cgi-bin/ode.cgi/dir1/dir2/dir3/2008/01/
+
+# If $use_path_date_restrictions is true,
+
+# '2008/01'
+
+# is interpreted as a date, limiting posts returned to
+# those with dates occuring in January 2008.
+
+# Taking this together with the filesystem path info:
+
+# 'dir1/dir2/dir3'
+
+# This is a request for all posts in the dir3 subcategory with post
+# dates occurring in January 2008.
+
+
+# When the value is false, all of the behaviors related to date-based
+# path restrictions are essentially ignored (skipped),
+# with the result that components of the path
+# which appear to be dates are treated like any other element of the path.
+
+# This means that they are taken to represent elements of
+# the filesystem path.
+
+# Considering the same example used above, this time assuming
+# $use_path_date_restrictions is false:
+
+# http://sample.net/cgi-bin/ode.cgi/dir1/dir2/dir3/2008/01/
+
+# This time the behavior responsible for interpreting '2008/01' as
+# a date restriction is not evaluated,
+# i.e. the execution of the script bypasses the relevant code.
+
+# As a result these components are treated like any other element of the
+# path.
+
+# In this case, the script interprets the URL as
+# a request for all posts in the '01' subcategory, of '2008',
+# itself contained in 'dir3', and so on.
+
+
+# Note that there is another date restriction mechanism which is related to
+# the query string parameters:
+
+# start_date, end_date, and date_pattern
+
+# Because of these parameters, making the decision
+# not to use the path date restriction feature, does not eliminate
+# the ability to narrow down
+# the collection of posts returned by post date.
+
+
+# Default value:
+# 1
+
+# Recommended value:
+# n/a
+
+# Example:
+# $use_path_date_restrictions = 1;
+
+# ----------
+
+
+$use_path_date_restrictions = 1;
+
+
+# + ----------------------------------------------------------------------
+
+
+# + ------------------------------------------------------
+# | ADVANCED SETTINGS - Be Careful with These
+# + ------------------------------------------------------
+
+
+# + ----------------------------------------------------------------------
+
+
+# ----------
+# SETTING ADV01. File and folder permissions
+# ----------
+# It may be necessary for Ode, either the program itself or
+# some installed addin, to create files and folders.
+
+# Specify the default permissions here.
+
+# The user account associated with the web server
+# must have read access to the files under the document root and
+# read and execute permissions for folders.
+
+# Generally, the web server user account should not need write access to
+# files or folders.
+
+# However, if some installed addin must be able to edit files
+# (e.g. the Editedit addin, which allows
+# posts to be edited in a browser form), this sort of thing DOES require
+# write access.
+
+# The server must be able to write to files (to edit them) and directories
+# (to create new files and subdirectories).
+
+# What about security?
+
+# Read access permissions are perfectly fine. After all, the only reason for
+# putting files and folders under the document root in the first
+# place is to allow others to access them.
+
+# Write permissions are something you should think more carefully about.
+
+# At the very least, you're putting your content at risk (be sure that you're
+# making frequent backups). More troubling is the idea that
+# if there are other problems with the security of your server,
+# some exploitable flaw in the script, or both, then you may be risking
+# more than just your website's content.
+
+# It _should be_ fine to allow write access to files and folders under the
+# site's document root, but I cannot make any guarantees.
+
+
+# IMPORTANT: You should never grant write access
+# for the user account associated with the web server to the script file,
+# or any of the installed addins.
+# There is no benefit, and doing so is potentially dangerous.
+
+
+# These permissions must be specified in octal notation
+
+# Octal notation consists of a three- or four-digit base-8 values.
+
+# + -----
+# | From Wikipedia (2009_12):
+# + -----
+# | Each numeral represents a different component of
+# | the permission set:
+# |
+# | (1) user class, (2) group class, and (3) 'others' class
+# | respectively.
+# | 
+# | Each of these digits is the sum of its component bits
+# | As a result, specific bits
+# | add to the sum as it is represented by a numeral:
+# | 
+# | The read bit adds 4 to its total,
+# | The write bit adds 2 to its total, and
+# | The execute bit adds 1 to its total.
+# |
+# | 7 - (r)ead, (w)rite and e(x)ecute
+# | 6 - (r)ead and (w)rite but not e(x)ecute
+# | 5 - (r)ead and e(x)ecute but not write
+# | 4 - (r)ead only
+# | 2 - (w)rite only
+# | 1 - e(x)ecute only
+# + -----
+
+# Considering only 'traditional Unix-like system permissions',
+# files and folders created by the script are always
+# owned by the web server user (which is typically named something like 'www',
+# or less commonly nowadays 'nobody').
+
+# (Don't worry about the owner, assuming your server is properly configured
+# the owner and group IDs will be fine.)
+
+# The default permissions are unlikely to be ideal for your installation,
+# but should avoid putting data at risk.
+
+# These defaults assign everyone read only permissions to files, and
+# read and execute permissions to directories.
+
+# Most likely this means that it will not be possible to create new posts.
+# (Creating a new file requires write permission for
+# the parent directory, i.e. the directory that will contain the new file).
+
+# It also means that it will not be possible to edit files.
+# (Editing a file requires write permission for the file itself.)
+
+# Keep in mind that these permissions affect ONLY files and directories
+# _created by the script_ and installed addins.
+
+# I should point out that the script itself is effectively read-only;
+# _the script (working alone) does not attempt to write anything_.
+# So these permission settings have absolutely no affect, except in
+# combination with some installed addin.
+
+# Permissions for files and directories created outside of the script
+# are determined by the host operating system and
+# whatever tool(s) you're using (SFTP client, text editor, etc.)
+
+# If you prefer that files and directories created by the script are
+# writable you may want to consider the following permissions set:
+
+# File read, write permissions for everyone (user, group, and others)
+
+# $file_permissions = 0666;
+
+# Folder read, write, execute permissions for everyone (user, group, and
+# others)
+
+# $folder_permissions = 0777;
+
+# Fair warning: Keeping permissions for files and folders
+# created by the script and outside of the script
+# in sync may prove to be a little difficult, due to the issue of ownership.
+
+# As I've already suggested, with traditional permissions, the owner of
+# a file or directory is the user account which created the
+# file. As far as Ode is concerned, this means the web server will be
+# the owner of any files created by the script, and it's likely
+# that the web server will not be the owner of files and folders created
+# independent of the script.
+
+# Let's say that you were to set file permissions to: 0640
+
+# users  = read/write,
+# group  = read only,
+# others = no access
+
+# Furthermore let's say that the user account you use to create and modify
+# posts independent of the script is not the account associated
+# with the web server (which is both very likely and recommended).
+# Furthermore, let's assume that your user account and the account associated
+# with the server are not members of the same group
+# (also both likely and recommended).
+
+# With the above permissions:
+
+# The script will be able to read and write its own files
+# (created by the web server) however you will have no access to the files
+# outside of the script from your user account,
+# and as a result you will not be able to edit the files in a text editor.
+
+# On the other hand, you will be able to read and write files you create 
+# independent of the script, but the web server (and Ode) will
+# not be able to read the files. As a result, the files will not appear
+# as part of your site. (This may cause other problems as well.)
+
+# There is no perfect solution to this problem using only
+# 'traditional Unix-like system permissions'.
+
+# In fact, this is just the sort of issue that filesystem ACLs were
+# designed to address. If your system does support ACLs there are quite a few
+# different ways to deal with this.
+
+# For example assigning specific user accounts
+# permission to add, delete and modify files and folders contained in your
+# site's document root, and then specifying that those rights
+# should be inherited by files and folders contained within the
+# document root (inheritance will affect new filesystem items too.)
+# 
+# A discussion of ACLs is beyond the scope of
+# this description. However it is certainly a relevant topic for discussion
+# elsewhere.
+
+# A couple of additional notes:
+
+# 1. I mentioned above that with traditional permissions,
+# the owner of a file is the user account which created the file,
+# but I didn't say anything about the associated group.
+
+# FYI, there are primarily two alternatives for default group,
+# but the behavior differs from platform to platform.
+
+# Typically the group is either:
+
+# 1. the group of the user who created the file or folder, OR
+# 2. the group of the containing folder.
+
+# The latter applies to BSD Unix based operating systems,
+# including Mac OS X, but other operating systems implement the former.
+
+# Let's say that I'm working on Mac OS X using a non administrative
+# account, short name 'norm'. Because norm is a Standard account
+# it will, by default, be a member of the 'staff' group.
+
+# OK, now let's say that the ownership info for the 'ode_site' directory is:
+
+# user = admin
+# group = admin
+
+# If we say that the permissions of this directory are
+# 0777 then norm can create a new file
+# under the 'ode_site' directory because everyone has write permissions.
+
+# What will the permissions on that file be?
+
+# user = norm (because norm created the file)
+# group = admin (because admin is the group of the parent directory).
+
+# It isn't difficult but it can be confusing (so if this is new to you,
+# be especially careful until you wrap your head around
+# the behavior of your system).
+
+# You may have heard of the setuid and setgid flags related to permissions.
+# As it relates to _directories only_ the setgid permission
+# on a parent directory causes new files and subdirectories created
+# within it to inherit the group of the parent, rather than the primary
+# group of the user who created the file.
+
+# (You may recognize that this is the default behavior already described
+# for Mac OS X and BSD Unix based operating systems.)
+
+# The setuid permission set on a directory is ignored on (most)
+# UNIX and Linux systems.
+
+# Important: In general use of setuid and setgid is considered a bad idea
+# (from a security perspective) because they may allow commands
+# to run with elevated permissions and because it's all too easy to be
+# unaware that these flags are set.
+
+# In general stick to standard 'user, group, others' permissions
+# as described above, or use access controls.
+
+# 2. Isn't it dangerous to assign write permissions to everyone?
+
+# Yes, and no. The short answer is yes. The slightly longer answer is that
+# if you are already assigning write permissions to the user associated
+# with the web server (which is pretty insecure, though widely done),
+# and assuming there are no general security issues related to the config
+# of your server, I would argue that assigning write permissions
+# to everyone (ONLY for files and folders under your site's document root)
+# is not any less secure.
+
+# Ideally, you should familiarize yourself with security best practices 
+# related to permissions for your operating system, and
+# your server (as well as any other software you use as part of your
+# workflow).
+
+# Additionally, you should carefully consider
+# guidance provided by your hosting provider (if applicable to your
+# situation).
+
+
+# For more information about permissions and ACLs refer to:
+# ACLs entry at wikipedia.org
+# http://en.wikipedia.org/wiki/Access_control_lists
+
+# File systems permissions entry at wikipedia.org
+# http://en.wikipedia.org/wiki/File_system_permissions
+
+
+# Default values:
+
+# $file_permissions: 0444 (read only for everyone)
+# $folder_permissions: 0555 (read and execute for everyone)
+
+# Recommended values:
+
+# $file_permissions: 0666 (read only for everyone)
+# $folder_permissions: 0777 (read and execute for everyone)
+
+# Example: 
+# $file_permissions   = 0444;
+# $folder_permissions = 0555;
+# ----------
+
+
+$file_permissions   = 0444;
+$folder_permissions = 0555;
+
+
+# + ----------------------------------------------------------------------
+
+
+# -------------
+# SETTING ADV02. Set umask (Boolean)
+# -------------
+# Various addins may require the script to create files.
+
+# For example the Editedit addin, which allows users to create posts using
+# a browser based form, requires that the script create the
+# requested post file, and perhaps one or more categories leading to the
+# new post.
+
+# Creating files and directories means dealing with permissions.
+
+# Permissions are affected by the current permissions mask (umask),
+# the value of which may serve to limit
+# the assignable permissions available to the script.
+
+# This option is interpreted as a Boolean:
+
+# 1 - (true): Attempt to modify/override the permissions mask value so that
+#             the addin can create files and folders with any valid
+#             permissions regardless of
+#             whatever the value of the mask might have been previously.
+#             Assigning $set_umask a true value
+#             instructs the addin to ignore the permissions mask.
+
+# 0 - (false): The addin does not set the permissions mask for files and
+#              folders. This means that permissions for any directory
+#              entries created by the addin are bound by the existing mask
+#              value.
+
+
+# I won't pretend that this isn't confusing.
+
+# For those of you who aren't very familiar with file and folder permissions,
+# it is perfectly reasonable if you have trouble understanding
+# this topic.
+
+
+# Let me try to explain.
+
+# As I describe when discussing file and folder permissions in the
+# comments preceeding the variables $file_permissions and
+# $folder_permissions (below),
+
+# ...Traditional Unix permissions are divided into three classes:
+
+# 1) the owner
+# 2) group
+# 3) and other (everyone else)
+
+# The owner is typically the user who created the directory entry.
+
+# The group is just what it sounds like it might be, a set of users
+# with a shared level of access to the entry that is different
+# (or at least capable of being different) from the permissions assigned to
+# the owner, and to everyone else.
+
+# Each file created is assigned to a group as well as an owner.
+
+# Other is every other entity that could possibly access the file.
+# You can think of other as meaning 'the whole world'.
+
+# Each of these groups is assigned a set of permsissions.
+# Where a 'set' is any combination of read, write and execute permissions.
+
+
+# A permissions mask effectively disables the allowable permissions for
+# one or more of these groups.
+
+# To borrow from my discussion of permissions again,
+# there are three basic permissions related to files and folders:
+
+# 1. read
+# 2. write
+# 3. execute
+
+# Each of these corresponds to an single octal value:
+
+# 1. read,    4
+# 2. write,   2
+# 3. execute, 1
+
+# These numerical values when added together sum to a unique value
+# for any combination of read, write, and execute permissions.
+
+# 1             - execute only
+# 2             - write only
+# 3 (1 + 2)     - execute and write but not read
+# 4             - read only
+# 5 (1 + 4)     - execute and read but not write
+# 6 (2 + 4)     - write and read but not execute
+# 7 (1 + 2 + 4) - execute, write and read
+
+
+# As discussed above, there are 3 classes of user
+
+# 1. the (u)ser
+# 2. the (g)roup
+# 3. (o)ther - the world or everyone who has access to the system and is not 
+# the user or a member of the group.
+
+# Each of these classes is assigned some combination of permissions.
+# So referring to the numerical permissions listed above, each class can be
+# assigned a numerical (octal) permissions setting 1 - 7
+# For example
+
+# To assign all classes of user read, write and execute permissions the
+# octal value would be:
+# 777
+
+# To assign
+# the user full permissions,
+# the group read and write (but not execute),
+# and every else read only permssions,
+# the octal value would be
+# 764
+
+# The mask overrides these,
+# specifying permissions which are disabled
+# (i.e. cannot be assigned) for user, group, or other.
+
+# For example. Let's say the mask in effect for our process is
+# 022
+
+# We set the permissions on a particular folder to 777.
+
+# The resulting permissions are what?
+# Hint: The answer isn't 777.
+
+# The mask specifies that we cannot set the write permission
+# for group or other. That leaves
+# read, write, and execute permissions for the owner;
+# read, and execute permissions for the group;
+# read, and execute permissions for everyone else (other).
+
+# So the resulting permissions would actually look like:
+# 755 (not 777)
+
+# The conventional wisdom is that
+# developers should leave the mask alone and specify very
+# liberal permissions for files and folders
+# created as part of the operation of their programs.
+
+# + -----
+# | From the documentation:
+# + -----
+# | Here's some advice: supply a creation mode of
+# | 0666 for regular files (in sysopen)
+# | and one of 0777 for directories (in mkdir) and executable files.
+# |
+# | This gives users the freedom of choice:
+# | if they want protected files, they might choose process umasks of 022 ,
+# | 027 , or even the particularly antisocial mask of 077 .
+# | Programs should rarely if ever make policy decisions
+# | better left to the user.
+# |
+# | The exception to this is when writing files that should be kept private:
+# | mail files, web browser cookies, .rhosts files, and so on.
+# + -----
+
+# Refer to the Perl documentation for more information about
+# umask
+# http://perldoc.perl.org/functions/umask.html
+
+
+# As I've said, that's the conventional wisdom.
+# I would argue that Editedit is something of a special case calling for
+# more liberal permissions than usual.
+# Why?
+
+# The webserver must be able to read and write your post files
+# or you will not be able to edit them.
+
+# If you must allow the webserver to read and write posts,
+# there isn't much sense in assigning greater restriction to any of the user,
+# group, or other.
+
+# Letting the webserver modify posts is about as insecure a situation
+# as you can have.
+
+# Adding restrictions will just be annoying to you, and will not improve the
+# security outlook.
+
+# Annoy how?
+
+# When you create new posts with the Editedit addin,
+# the webserver, i.e. the user account associated with the web server,
+# is likely to be assigned the role of owner
+# for all created files and folders.
+# (After all the webserver created the file.)
+
+# If you were to restrict access to group or others,
+# you may have trouble editing the post with a text editor when
+# connected to the server under your user account.
+
+# On the other hand, files created with a text editor while you are connected
+# to the server under your user account will be owned by you.
+# If you restrict access for others in this case,
+# you will not be able to edit the posts with the Editedit addin.
+
+# So I recommend setting the umask and permissions such that:
+
+# folders are
+# readable, writable, and executable
+# by all 3 classes of user;
+
+# files are
+# readable, and writable
+# by all 3 classes of user.
+
+# As a final note about file permissions:
+
+# You should be careful not to assign execute permissions to files!
+
+# Your posts should be nothing more than text files. As such, there should be
+# nothing executable about them.
+
+# You _absolutely do not want to allow_ your webserver to create files
+# which are set to be executable!!
+
+# (Two exclamations used for emphasis, please make note and act accordingly.)
+
+
+# Lastly note that different operating systems also support various
+# extended permissions and access controls.
+
+# I'm not dealing with those here. Why?
+
+# Because they may differ widely from one platform to the next.
+
+# Also note that it's possible that the web server may run under your user
+# account.
+
+# Using Apache's suexec feature for example.
+
+# This works well for Ode, and nicely avoids the issues discussed above.
+# If the webserver runs under your user account
+# for your installation, and this is a popular arrangement which is
+# preferred by many hosting providers,
+# then leave the value of this setting to false and forget I mentioned it.
+
+
+# Default value:
+# 0
+
+# Recommended value:
+# 0
+
+# Example:
+# $set_umask = 0;
+
+# -------------
+
+
+$set_umask = 0;
+
+
+# + ----------------------------------------------------------------------
+
+
+# -------------
+# SETTING ADV03. umask value
+# -------------
+
+# If $set_umask is true, this setting specifies the umask value to be
+# used for files and folders created by the script.
+
+# This must be given in octal notation.
+
+# For more information see the discussion preceeding the $set_umask
+# setting (above).
+
+# All of these values must be preceded by a leading 0,
+# which is indication to perl that you are providing it with an octal value.
+
+# correct: 0022  (incorrect: 022)
+
+
+# Furthermore, notice that these are numerical values not strings
+
+# correct: 0022  (incorrect: '0022')
+
+
+# Default value:
+# 0000
+
+# Recommended value:
+# 0000
+
+# Example:
+
+# $umask = 0000;
+
+# -------------
+
+
+$umask = 0000;
+
+
+# + ----------------------------------------------------------------------
+
+# END CONFIGURATION SECTION --------------------------------------------------
+
+1;

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>$config::site_title</title>
+        <link>$config::url</link>
+        <description>$config::site_description</description>
+        <language>$config::site_language</language>
+        <docs>http://blogs.law.harvard.edu/tech/rss</docs>
+        <generator><!-- name="generator" content="ode/$ode::version" --></generator>
+        <managingEditor>Your_email_address@your_domin (Your name)</managingEditor>
+        <webMaster>Your_email_address@your_domin (Your name)</webMaster>
+
+<!-- Ode: ^ head/posts v -->
+
+        <item>
+            <title>$title</title>
+            <description><![CDATA[ $body ]]></description>
+        </item>
+
+<!-- Ode: ^ posts/foot v -->
+
+    </channel>
+</rss>

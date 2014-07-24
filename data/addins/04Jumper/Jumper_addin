@@ -1,0 +1,1131 @@
+# ----------
+# Jumper addin
+# ----------
+
+# Author: Rob Reed
+# Contact: rob at ode-is-simple.com
+
+# Jumper addin page: news.ode-is-simple.com/addins/jumper/
+
+# Project: Ode (pronounced oh-dee)
+# Website: ode-is-simple.com/
+# Weblog:  news.ode-is-simple.com/weblog
+# Forum:   ode-is-simple.com/vanilla2_forum/
+
+# License
+# ----------
+
+# Creative Commons Attribution-Share Alike 3.0 United States
+
+# For more information refer to:
+# http://creativecommons.org/licenses/by-sa/3.0/us/
+
+# Note: Be aware that continued use of this license is something that
+# I am still considering.
+
+# Future versions may be released under some other license.
+
+# I do expect that any future license will be for the most part compatible
+# with this one.
+
+
+# Version Information
+# ----------
+
+# Version: 1.0.0
+# build: 2010_0409_00_00_01
+
+# About this version: -
+
+
+# Changes in this revision and things to be done:
+
+# NA - (Look here changes in future revisions.)
+
+# -----
+
+# Previous Version: NA
+
+# Previous build: -
+
+# About previous version: -
+
+
+# ----------
+# Message
+# ----------
+
+# Welcome to the Jumper addin for Ode
+
+
+# ----------
+# Description
+# ----------
+
+# When you first read the description of what Jumper does, you may
+# not think you need it. Having said that, I would
+# encourage everyone to give it some serious consideration.
+# I'd guess that most people will benefit from installing the addin and
+# using it at least occasionally.
+
+# Why?
+
+# Well, let's start with a description and then come back to this
+# question.
+
+# Keep in mind that there are three (3) broad request types:
+
+# 1. root - 'sample.net/cgi-bin/ode.cgi'
+# 2. category - 'sample.net/cgi-bin/ode.cgi/books/perl/'
+# 3. post - 'sample.net/cgi-bin/ode.cgi/books/perl/learning_perl'
+
+# Every request is one of these three basic types.
+
+# For root and category type requests, Jumper truncates the body of a post
+# where it encounters a specified TOKEN (referred to as
+# the 'jump trigger'), causing the script to display only the content
+# which preceded the TOKEN, along with a link to a page
+# containing full contents of the post.
+
+# First you insert a token (i.e. a special string) at any point in the
+# body of a post.
+
+# The addin takes one of two different actions depending on the type of 
+# request.
+
+# For root and category requests Jumper truncates the post
+# at the point of the token, replacing everything that follows with a
+# link to a page containing the complete post.
+
+# For post type requests (like the link generated
+# by the Jumper addin at the end of the truncated post on root and category 
+# requests), the addin displays the full post.
+
+# For example
+
+# Let's say that I have a post file titled 'some_post' in a category
+# titled 'some_category' at the root of my Ode site.
+
+# '.../some_category/some_post.txt'
+
+# Now let's say that the contents of 'some_post' are as follows:
+
+
+# START OF POST
+# I'm the first line of some_post, which makes me the title.
+
+# I'm the first line of the body.
+# I'm the 2nd line.
+# TOKEN
+# I'm the 3rd line.
+# I'm the 4th line.
+# END OF POST
+
+
+# What will the post look like on the page returned in response to a request?
+
+# For root and category type requests, for example:
+
+# http://sample.net/cgi-bin/ode.cgi/
+# http://sample.net/cgi-bin/ode.cgi/some_category/
+
+# The post will look like:
+
+# START OF POST
+# I'm the first line of some_post, which makes me the title.
+
+# I'm the first line of the body.
+# I'm the 2nd line.
+# -LINK TO PERMALINK-
+# END OF POST
+
+# But for post type requests, for example:
+
+# http://sample.net/cgi-bin/ode.cgi/some_category/some_post
+
+# The post will look like:
+
+# START OF POST
+# I'm the first line of some_post, which makes me the title.
+
+# I'm the first line of the body.
+# I'm the 2nd line.
+# I'm the 3rd line.
+# I'm the 4th line.
+# END OF POST
+
+# So, back to the question, 'Why is this useful?'
+
+# I can think of two very good reasons for using Jumper. (Note: I'm not 
+# suggesting that these are the only two reasons.)
+
+
+# 1. Analytics
+
+# It's often useful, for any number of reasons
+# (including simple curiosity), to look at who is visiting your site,
+# where they came from,
+# what they find interesting, etc.
+
+# "Web analytics is the measurement, collection,
+# analysis and reporting of internet data for purposes of understanding and
+# optimizing web usage."
+
+# Definition from the Wikipedia entry for Web Analytics at
+# http://en.wikipedia.org/wiki/Web_analytics (2010_0411 2:10 pm EDT)
+
+
+# Weblogs, and dynamic sites more generally, present several
+# challenges related to analytics. (I'll discuss just the one which is
+# relevant here.)
+
+# With a typical weblog, every post initially appears
+# at the top of the home page, category pages, and possibly other
+# pages containing multiple posts.
+
+# Though each post may have a dedicated permalink page,
+# frequent visitors, or anyone coming to the site to read a popular post
+# soon after it is published, is likely to encounter
+# the post on the home page.
+
+# From an analytics perspective, the problem is that we don't know
+# what specifically visitors are interested in if the majority of them are
+# reading the content on the home page.
+
+# (We just know that they've visited the site.)
+
+# If I have 20 posts showing up on the home page of my site and 1000 visitors,
+# looking only at the home page,
+# I can't know which of those posts what number of the visitors
+# actually read.
+
+# With Jumper in use, only part of each post is visible on the home page.
+
+# Visitors must actually navigate to the page at
+# the permalink for a post to read the whole thing, which they will do
+# if they're interested, and probably not otherwise.
+
+# The request for the permalink page is recorded in the site logs
+# (or noted by a 3rd party analytics service,
+# such as Google Analytics). With this information, it's easy to see exactly
+# what content visitors are reading (and what they're not).
+
+
+# 2. Performance
+
+# If the first reason seems a little self-serving,
+# at the expense of your visitors, the second is clearly for their
+# benefit.
+
+# Ideally, people visiting your site want
+# pages that load quickly
+# and are of reasonable length, so that they can be navigated efficiently.
+
+# One mechanism we can use to limit the length of pages is the num_posts
+# setting (specified in Ode's config file).
+# This option controls the number of posts displayed
+# on any one page by default, and in that sense can be used to limit
+# the length of pages.
+
+# (Note that the num_posts setting can be overridden on a per request basis
+# with the num_posts parameter.)
+
+# A page with 10 posts would seem to be ten times shorter
+# than a page with 100 posts. Therefore, we might expect it to load faster
+# and be less difficult to navigate.
+
+# But this is only true if every post is the same length.
+
+# A page of 10 posts is the same size as one of 100 posts if on average the
+# posts are 10 times longer.
+
+# With the Jumper addin, we can control the length of our posts
+# as displayed on category pages. When used in combinination with num_posts,
+# we can control the length of these pages.
+
+# Regardless of the size of individual posts, every page consisting of
+# some x number of posts will be roughly the same size
+# if we use jumper to truncate them at approx the same point.
+
+# This translates to consistent load times for pages and improved navigation.
+
+# There's another issue to consider, namely media.
+
+# The web is a rich media space. We can display
+# images and video, in addition to plain text. We can also have complex
+# behaviors using Javascript.
+
+# Though this greatly enhances the utility and appeal of the web,
+# it can also get pretty resource intensive.
+
+# For example, we might include a single optimized image in a post
+# and add 90 KB to the size of a page.
+# Alternatively, we might embed an entire gallery of images
+# and add tens of MB.
+
+# Is 10 MB too much? It depends on the audience (e.g. their bandwidth,
+# patience, and level of interest), the capabilities of the server,
+# and many other factors.
+
+# The short answer is no, not necessarily.
+
+# But now imagine a photographer with a weblog who regularly posts
+# these sorts of galleries.
+
+# If we have 10 posts on a category page, each of which
+# includes a 10MB gallery, then that's 100 MB
+# (in addition to the size of other elements), and almost certainly too
+# much for a single page.
+
+# We want the galleries to load individually,
+# on pages corresponding to the permalink for each post,
+# but we don't want the galleries to display
+# on category pages.
+
+# We can do this by using the Jumper addin to truncate these posts
+# right before the gallery. 
+
+
+# So, using this addin has the potential to benefit
+# both you and your visitors, and that's why I suggest that you might want
+# to consider installing it.
+
+# It's a simple drag and drop install,
+# like the majority of Ode's addins, and there's nothing that you need to
+# configure (assuming you're happy with the defaults).
+
+# For complete details about the options, look over the configuration
+# section just below.
+
+
+# ----------
+# Usage
+# ----------
+
+# To use the Jumper addin
+
+# Add one of the jump triggers specified in the configuration section
+# below to one or more of your posts.
+
+
+# ----------
+# Tags
+# ----------
+
+# The addin includes support for a single tag,
+
+# 'alt-jump-trigger'.
+
+
+# The format of the full tag is:
+
+# tag : jumper : alt-jump-trigger : tag value
+
+
+# Note that this is consist with the standard tag naming convention:
+
+# tag prefix literal : tag source : tag name : tag value
+
+
+# You can use the tag to define a unique jump trigger for individual posts.
+
+# For example, if I wanted to use the string [[JUMP]]
+# as a trigger for a post, and that is not one of the configured triggers,
+# I could add the following tag:
+
+# tag : jumper : alt-jump-trigger : [[JUMP]]
+
+
+# !Remember that tags belong between the title and body of a post!
+
+
+# ----------
+# Parameters
+# ----------
+
+# The addin recognizes a single parameter:
+
+# 'include_jump_separator'
+
+
+# When the parameter is included as part of the query string
+# with a request that targets an individual post page, the addin will place a
+# separator at the point where the jump_trigger appears in the post
+# (replacing the trigger).
+
+# Without the parameter, the jump_trigger will be removed but the separator
+# will not be used.
+
+# You should never need to type this parameter manually.
+# It is included by default as part of the link generated by the addin
+# for posts which include a jump_trigger.
+
+# This means that when the visitor clicks the link and arrives
+# at the page displaying the complete post,
+# the separator will appear providing a cue as to where they should pick up
+# reading.
+
+
+
+package Jumper_addin;
+
+use strict;
+use warnings;
+
+
+
+my (@jump_triggers, $jump_link_text, $landing_page_separator, $jump_text_replacement_from, $jump_text_replacement_to, );
+
+
+# CONFIGURATION SECTION -----------------------------------------------------
+
+
+# Jump triggers
+# -------------
+
+# @jump_triggers is an array containing _a list_ of TOKENs, any one of which
+# can be inserted into the body at the point that
+# the addin should truncate the post for category and root type requests,
+# (i.e. it's what 'triggers' the addin).
+
+# Why a list of possible triggers?
+
+# Ideally you should probably only use a single well chosen trigger for every
+# one of your posts. But, this may not be realistic.
+# You may start off using one trigger and then later run into some sort of
+# conflict, or decide to make a change for some other reason.
+# For example, you might someday merge posts from separate sites that
+# had used different jump triggers.
+
+# By allowing multiple triggers we can accomodate
+# these sorts of changes without having to go back and edit all of the posts
+# with conflicting values.
+
+# This isn't intended to be a license to create dozens of different triggers. # It's more of a safeguard. As I've said,
+# I suggest you stick with a single trigger if at all possible.
+
+# (If you're using more than 3 or so, you might want to reconsider your 
+# strategy.)
+
+
+# Returning to the example above, if we have a post file with the
+# following contents:
+
+# START OF POST
+# I'm the first line of some_post, which makes me the title.
+
+# I'm the first line of the body.
+# I'm the 2nd line.
+# TOKEN
+# I'm the 3rd line.
+# I'm the 4th line.
+# END OF POST
+
+# We now see that instead of TOKEN we should be using one of the elements in
+# the list at @jump_triggers
+
+# IMPORTANT
+
+# You want to insert _the value_ specified here into your post file
+# NOT the variable name.
+
+# For example:
+
+# ...
+# I'm the 2nd line.
+# <!-- Jumper:jump -->
+# I'm the 3rd line.
+# ...
+
+
+# These triggers can be any arbitrary strings, however I'm going to
+# make a couple of suggestions.
+
+# Before I do, realize that you want to
+# be sure to use a string that is highly unlikely to occur as part of the
+# body of the post otherwise.
+
+# The reason for this should be obvious.
+
+# Suggestions
+
+# 1. Ideally, triggers should be HTML comments.
+
+
+# About HTML comments
+
+# These start with a declaration <! and close with >.
+# Immediately after the declaration and before the close, a comment includes
+# a pair of dashes '--'.
+
+# The comment itself can be any arbitrary string but cannot
+# contain '--' or '>' internally.
+
+# Valid comments:
+# <!-- this is a valid comment -->
+# <!---->
+
+# Invalid comments
+# <!- this is not a valid comment -->
+# <!-- this -- is not a valid comment -->
+
+
+# Why use an HTML comment?
+
+# Because if you ever decide to disable or uninstall the addin, you will
+# likely still have these triggers scattered throughout
+# your posts.
+
+# If your trigger is an HTML comment, it will be ignored by an HTML
+# aware user-agent.
+
+# Otherwise you may end up with these little bits of instruction showing
+# through to the rendered page.
+
+# 2. Include the name of the addin as part of the value of $jump_trigger.
+
+# Why?
+
+# Because you want to be sure that the token is unique.
+# Keep in mind that there may eventually be hundreds of different addins
+# and you may have any number of these active at any one time.
+# If you use a generic term, it's possible that
+# the trigger may conflict with a similar token provided by
+# some other addin, in which case the results would be unpredictable.
+
+# The default follows both of these recommendations.
+
+# Again, you are free to change the value.
+
+# Note that values should be enclosed in single quotes and comma-separated
+# as in the example below.
+# 
+# Default values:
+# '<!-- Jumper:jump -->'
+
+# Example:
+# @jump_triggers = (
+# '<!-- Jumper:jump -->',
+# '<!-- Jumper:j -->',
+# );
+
+
+@jump_triggers = (
+
+'<!-- Jumper:jump -->',
+
+);
+
+
+# Jump link text
+# -------------
+
+# As the name suggests, the value of $jump_link_text is
+# the label the addin assigns for the link
+# to a page containing the complete post, which is inserted
+# where the post is truncated.
+
+# It is the _label_ and not the full link.
+
+# Continuing with the example from the addin description, given a post with
+# the following contents,...
+
+# START OF POST
+# I'm the first line of some_post, which makes me the title.
+
+# I'm the first line of the body.
+# I'm the 2nd line.
+# <!-- Jumper:jump -->
+# I'm the 3rd line.
+# I'm the 4th line.
+# END OF POST
+
+# (Note the presence of the default jump trigger.)
+
+# ...the post as displayed on category pages
+# (and at the site root), using the default value for $jump_link_text,
+# will be something like:
+
+# START OF POST
+# I'm the first line of some_post, which makes me the title.
+
+# I'm the first line of the body.
+# I'm the 2nd line.
+# _Read the rest of this post_
+# END OF POST
+
+# Where 'Read the rest of this post' is a link to an individual post page.
+
+
+# Default value:
+# 'Read the rest of this post'
+
+# Example:
+# $jump_link_text = 'Read the rest of this post';
+
+
+$jump_link_text = 'Read the rest of this post';
+
+
+# Landing page separator
+# ------------------
+
+# The value of $landing_page_separator is a string
+# which is inserted in the post displayed on a page containing the complete
+# post, at the point where it is truncated on category pages
+# (including requests for the site root).
+
+# The separator is visible whenever the 'include_jump_separator' parameter is
+# part of the query string for a post type request.
+
+# By default, this parameter is included in the link generated
+# by the Jumper addin at the end of truncated posts.
+
+# This means that when a visitor clicks on a jump link to arrive at the
+# page for the corresponding post, the separator will
+# be inserted, providing a cue indicating where they should pick up
+# reading the post.
+
+
+# Default value:
+# '<hr />'
+
+# Example:
+# $landing_page_separator = '<hr />';
+
+
+$landing_page_separator = '<hr />';
+
+
+# END, CONFIGURATION SECTION -----------------------------------------------
+
+
+
+# You should not need to make ANY modifications below this point.
+
+
+
+# Jumper includes two of Ode's interface routines:
+
+# inventory_ping_response()
+# access_title_tags_and_body_early()
+
+
+# inventory_ping_response()
+
+# !The only routine that must be defined for each addin is 
+# inventory_ping_response!
+
+# The script checks each addin for
+# this routine, which is expected to return a
+# Boolean true or false value.
+
+
+# The return value is interpreted as follows:
+
+# 1 - the addin is active.
+
+# When the inventory_ping_response() routine
+# for a given addin is true,
+# all of the rest of the addin's subroutines are run.
+
+
+# 0 - the addin is inactive.
+
+# All of the addin's other routines are ignored.
+
+
+# How does this work?
+
+# Before we can call on any addin routines, the script needs to find them.
+# (It needs to take stock of the installed addins
+# and determine which of the addin interfaces are implemented
+# by each.)
+
+# ode.cgi includes a routine called inventory_addins()
+# for this purpose.
+
+
+# As the name suggests, inventory_addins takes stock of the installed addins.
+
+
+# This involves:
+
+# 1. Finding the available addins.
+
+# 2. Determining whether each is active or inactive.
+
+# This determination is based on the return value from the addin's
+# inventory_ping_response routine.
+
+# In effect Ode's &inventory_addin routine
+# 'pings' each of the installed addins and a reponse comes back
+# from &inventory_ping_response.
+
+# 3. Interrogating each of the active addins to discover which of
+# the other addin routine types are implemented.
+
+# 4. Grouping these routines into a number of hashes such that
+# there is a hash corresponding to each of the addin routine types,
+# and an entry in the hash for each of the addins
+# which include a subroutine definition of that type.
+
+# At the proper point in execution,
+# these hashes are consulted
+# and all of the routines of each type are run.
+
+# As you can see, Jumper's very simple inventory_ping_response() routine
+# always returns 1, and so
+# the addin, if installed, is always active.
+
+sub inventory_ping_response
+{
+    return 1;
+}
+
+
+# As you've just seen, inventory_ping_response() is an administrative
+# routine.
+
+# Its job is to report back to Ode whether the addin should run or not for
+# this request. In the case of Jumper, the answer is always 'yes'.
+# The point I want to make here is that inventory_ping_response() isn't
+# involved with the intended behavior of the addin.
+
+# That means everything Jumper does, must be done somewhere else.
+
+# The only other defined routine is access_title_tags_and_body_early(),
+# and so this is where all of the action is.
+
+
+# The interface allows addins with a routine of this type to access
+# the uninterpolated
+
+# title
+# tags
+# body
+
+# for the current post.
+
+# Note that the access_title_tags_and_body_early interface is part of
+# the generate_page routine and is run against each
+# post that will be included on the page that is returned to the user agent
+# as a result of the request.
+
+# If there are 1000 posts on the site, but only 10 satisfy the request,
+# and the value of num_posts specifies that
+# only 5 of these should be included on the current page,
+# then the access_title_tags_and_body_early routines are only run
+# against those 5 posts (Not all 1000, and
+# not even the 10 matching posts).
+
+# Each of these routines (among all of the installed addins) is called in
+# addins_sort(ed) order.
+
+
+# ----------
+# Subroutine Parameters
+# ----------
+
+# 1. $title_ref_s      - A reference to the title for the current post.
+
+# 2. $tags_ref_s       - A reference to a string representing the block of 
+#                        tags for the current post.
+
+# 3. $body_ref_s       - A reference to the body of the current post.
+
+# 4. $fp_to_post_s     - A string representing the complete file system path
+#                        to the current post file.
+
+# 5. $cur_post_mtime_s - The date of the current post, i.e. the mtime value 
+#                        that is stored in the select hash
+#                        as the value at the key representing the current
+#                        post.
+
+# 6. $order_executed_s - An integer value representing the position
+#                        this addin is run in the ordered sequence of addins
+#                        of this type. 
+
+#                        As each addin routine of any one type is called
+#                        in addin_sort-ed order, the 'order executed'
+#                        value is ticked up one integer.
+
+#                        This value is passed as the last argument of
+#                        every addin routine.
+
+
+sub access_title_tags_and_body_early
+{
+	my ( $title_ref_s, $tags_ref_s, $body_ref_s, $fp_to_post_s,
+	     $cur_post_mtime_s, $order_executed_s, $post_tags_s, 
+	     $alt_jump_trigger_tag_s, $alt_jump_trigger_tag_value_s,
+	     $content_above_trigger_s, $content_below_trigger_s,
+	     @jump_triggers_s, $jump_link_s,
+	);
+
+    # Refer to the description of these parameters just above.
+
+	( $title_ref_s, $tags_ref_s, $body_ref_s, $fp_to_post_s,
+	     $cur_post_mtime_s, $order_executed_s ) = @_;
+
+
+    # I've already discussed what the Jumper addin does. (See the
+    # description at the start of this file.)
+    
+    # I won't repeat that information here. Instead I'll jump right in and
+    # talk about how it works.
+
+
+    # 1. First we need to determine the jump_triggers that apply to this post.
+
+    # This includes all of the triggers
+    # defined in the config section of the addin, and the value of the
+    # optional 'alt-jump-trigger' tag.
+
+    # So, we look among the string of tags at $tags_ref_s and if we
+    # find the alt-jump-trigger tag, add it to the list
+    # of recognized triggers.
+
+    # 2. Next, we look for one of the triggers in the body of the post.
+
+    # If none of the triggers are found, the post doesn't include a 'jump'
+    # and the addin does nothing.
+
+    # If we do find one of the triggers...
+
+    # The routine splits the body of the post into three parts:
+
+    # The 1st part consists of everything
+    # preceding the trigger.
+
+    # The 2nd is the trigger itself.
+
+    # The 3rd part is everything that comes after the trigger.
+
+
+    # Finally, the routine modifies these parts and reconstructs
+    # the body of the post.
+    
+    # Precisely how this is done, depends on the type of the request,
+    # and the presence or absence of
+    # the 'include_jump_separator' parameter.
+
+
+    # Case 1: If this is a category type request (regardless of the
+    # the presence or absence of the parameter.)
+
+    # The routine combines the first part of the body with
+    # a link to a page containing the complete post,
+    # which is inserted at the place where the trigger was originally.
+
+    # So we have:
+
+    # Part1Link
+
+    # (The 3rd part -the portion following the trigger- is dropped.)
+
+
+    # Case 2 and 3: If this is a post type request
+
+    # The routine checks for the presence of the 'include_jump_separator'
+    # parameter as part of the request URI.
+
+    # Case 2: If the parameter is included:
+
+    # We know that we should insert the $landing_page_separator (set in the
+    # config section at the top of this file)
+    # between the 1st and 3rd sections of the body.
+
+    # The entire post is represented and we have replaced the trigger
+    # with the separator.
+
+    # Case 3: If the parameter is not included:
+
+    # The addin simply combines the 1st and 3rd parts, which gives us the
+    # original post without the trigger.
+
+    # Keep in mind that Ode calls the routine once
+    # for each post selected to be included on the page that is the result of
+    # the current request.
+
+
+    # @jump_triggers is the name of the configuration setting above.
+
+    # We create the new variable @jump_triggers_s and assign it a copy of
+    # the list at @jump_triggers.
+    
+    # Why?
+
+    # Because each post may contain its own unique trigger specified with
+    # the 'alt-jump-trigger' tag.
+
+    # We need to add this new string,
+    # if there is one, to the list BUT we do not want it to carry
+    # over to the next post.
+
+    # Because the scope of @jump_triggers_s is restricted to this subroutine
+    # (the _s suffix is a reminder of that by the way),
+    # each time the routine is called, @jump_triggers_s starts out
+    # empty.
+
+    # The value of @jump_triggers is copied to it again, but any
+    # alt-jump-trigger tag value is forgotten.
+
+    # @jump_triggers is defined outside of any subroutine and so its
+    # value carries over from one call to the next.
+
+    # If we added the alt-jump-trigger directly to this variable
+    # the value would presist and apply to every subsequent post as well,
+    # which isn't what we want.
+
+    @jump_triggers_s = @jump_triggers;
+
+
+    # $tags_ref_s is a reference, I prefer to work with the value directly
+    # and this isn't a big string, so I dereference
+    # the variable, store the value at $post_tags_s, and use this
+    # variable going forward.
+
+    $post_tags_s = $$tags_ref_s;
+
+
+
+    # We attempt to match Jumper's alt-jump-trigger
+    # in the string which represents this post's collection of tags
+    # at $post_tags_s
+
+    # If we find it, the match succeeds and we save the entire tag to
+    # $alt_jump_trigger_tag_s.
+
+    # Otherwise, there is no 'alt-jump-trigger' tag and we skip the whole if
+    # block.
+
+    if ( ($alt_jump_trigger_tag_s) = $post_tags_s =~
+        m!^(\s*tag\s*:\s*jumper\s*:\s*alt-jump-trigger\s*:\s*.+)$!m )
+    {
+
+        # When we find the correct tag, we capture its value
+        # at $alt_jump_trigger_tag_value_s. ...
+
+        # (Note that the match is very explicit (as was the match above).
+        # We know exactly what these tags should look like
+        # so we have the luxury of being explicit.)
+
+        if ( ($alt_jump_trigger_tag_value_s) = $alt_jump_trigger_tag_s =~ m!^[^:]*:[^:]*:[^:]*:\s*(.+)\s*.*$!m )
+        {
+
+            # ... and push it onto the list at @jump_triggers_s.
+
+            push(@jump_triggers_s, $alt_jump_trigger_tag_value_s);
+        }
+
+        # If we matched the tag but could not match the value, then there is
+        # something wrong with the tag.
+
+        # We report the error and don't try to add
+        # the (possibly malformed) value to the list of triggers.
+
+        else
+        {
+            { # Naked block
+
+                my ($warn_level_l, $resp_level_l,);
+
+                $warn_level_l = $ode::min_error_level +1;
+                $resp_level_l = $ode::max_error_level -1;
+
+                &ode::handle_warning_and_response (
+                    "Jumper_addin : access_title_tags_and_body_early",
+
+                    "'alt-jump-trigger' tag found, " .
+                        "but could not determine it's value.\n" .
+                    "Tag may be malformed.\n" .
+                    "Check format of tag and try again.\n" .
+                    "Defaulting to jump text value set " .
+                        "in the config section of the Jumper addin.\n" .
+                    "Continuing...\n",
+
+                    "Jumper addin: Problem reading 'alt-jump-trigger' " . 
+                        "tag. See error log for details.\n",
+
+                    $warn_level_l, $resp_level_l
+                );
+
+            } # End, Naked block
+
+        } # End, else
+
+    } # End, if ( ($alt_jump_trigger_tag_s) = $post_tags_s =~
+
+
+    # Before we continue, we do a little sanity check and make sure
+    # that there is at least 1 trigger in the list.
+    # If there isn't we report it as an error. There should be
+    # at lest one trigger defined in the config section.
+    
+    # ( Emptying the list of triggers is not the best way to 'disable'
+    # the addin. )
+
+    if(scalar @jump_triggers_s == 0)
+    {
+        { # Naked block
+
+            my ($warn_level_l, $resp_level_l,);
+
+            $warn_level_l = $ode::min_error_level +1;
+            $resp_level_l = $ode::max_error_level -1;
+
+            &ode::handle_warning_and_response (
+                "Jumper_addin : access_title_tags_and_body_early",
+
+                "'Jumper' addin installed but " .
+                    "'jump_trigger' is not defined.\n" .
+                "Setting is not defined in the addin config section, \n" .
+                "'alt-jump-trigger' tag was found with empty value, or both.\n" .
+                "Check Jumper addin config, and look for empty tag " .
+                    "in current post:\n" .
+                "'$fp_to_post_s'\n" .
+                "Continuing...\n",
+
+                "Jumper addin: Empty 'jump_trigger' setting. " .
+                    "Addin will have not effect. " . 
+                    "Check error log for details.\n",
+
+                $warn_level_l, $resp_level_l
+            );
+
+        } # End, Naked block
+
+
+        # Without a list of triggers to compare against the post,
+        # there is nothing we can do and
+        # so we return from the routine immediately.
+
+        return 1;
+
+    } # End, if(scalar @jump_triggers_s == 0)
+
+
+    # At this point we know that there is at least one trigger in the
+    # list at @jump_triggers_s.
+
+    # We loop through each trigger in turn. Foreach $trigger...
+
+    foreach my $trigger (@jump_triggers_s)
+    {
+
+        # ... we attempt to find it in the body of the current post.
+
+        # If we don't match, the if block is skipped,
+        # and the loop repeats with the next trigger in the list.
+
+        # Note that as the pattern is written, the routine will identify
+        # the first trigger in the post.
+        # The others will be treated as content, like the rest of the
+        # body.
+
+        # You should not have more than 1 trigger in a single post.
+
+    	if ( ($content_above_trigger_s, $content_below_trigger_s) = $$body_ref_s =~ m!^(.*)$trigger(.*)$!is ) 
+    	{
+
+            # We've found a trigger.
+
+            # To determine what to do next we need to know if this is a
+            # post or category type request.
+
+    		if ($ode::request_type eq 'post')
+    		{
+
+                # If it's a post type request,
+                # we check to see if the include_jump_separator parameter
+                # was specified as part of the query string
+                # with the request.
+
+                if( exists($ode::req_query_string_components_final{include_jump_separator} ) )
+                {
+
+                    # If the parameter is included,
+                    # we make the body...
+
+                    # ...everything preceding the trigger,
+                    # followed by the separator,
+                    # and then finally everything that followed
+                    # the trigger.
+
+                    # We've effectively replaced the trigger
+                    # with the separator.
+
+                    $$body_ref_s = "$content_above_trigger_s$landing_page_separator$content_below_trigger_s";
+
+                }
+                else
+                {
+                    # If the parameter is not included with the request,
+                    # we make the body...
+
+                    # ...everything preceding the trigger,
+                    # followed immediately by everything that followed
+                    # the trigger.
+
+                    # This removes the trigger from the body.
+
+                    $$body_ref_s = "$content_above_trigger_s$content_below_trigger_s";
+                }
+
+    		} # End, if ($ode::request_type eq 'post')
+
+    		else
+    		{
+                # If this is not a post type request (i.e. if it is
+                # a category or root request)
+                # then we want to truncate the post and add a link to
+                # a page that will contain the full post.
+
+                # Whereas $jump_link_text defined in the config section
+                # is only the label the addin uses for
+                # the link to the page containing the complete post,
+                # $jump_link_s, defined here, is _the full link_.
+
+                # (Notice that the variable $jump_link_text is used
+                # as the link text in
+                # the value for $jump_link_s.
+                
+                # Notice also that the link includes
+                # Jumper's  'include_jump_separator' parameter.)
+
+                # As already discussed, with this parameter included,
+                # the $landing_page_separator
+                # will be visible on the post page at the point
+                # where the trigger had appeared.
+
+                $jump_link_s = "<p><a href=\"$ode::req_base_url$ode::path$ode::filename.$ode::req_theme?include_jump_separator=y#$ode::filename\">$jump_link_text</a></p>";
+
+
+                # We make the body...
+
+                # ...everything preceding the trigger,
+                # followed by the link.
+
+                # We've effectively replaced the trigger with the link,
+                # and truncated the post by
+                # dropping everything following the trigger.
+
+                $$body_ref_s = "$content_above_trigger_s$jump_link_s";
+
+    		} # End, else
+
+            # As soon as we match any one of the triggers,
+            # the addin has done its job and we exit from the loop.
+
+            last;
+
+    	} # End, if ($$body_ref_s =~ m/^(.*)$jump_text(.*)/is)
+
+    } # End, foreach my $trigger (@jump_triggers_s)
+
+    1;
+
+} # End, sub access_title_tags_and_body_early
+
+1;

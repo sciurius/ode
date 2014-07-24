@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- Page structure
+[ head
+head ]
+[ body
+    [ #wrapper
+        [ #wrapper_header
+            #wrapper_header_text
+        #wrapper_header ]
+        [ #page
+            [ #page_header
+                #page_header_text
+            page_header ]
+            [ #posts_container
+                #ode_response
+                [ #posts_container_header
+                #posts_container_header ]
+                [ #posts_container_banner
+                #posts_container_banner ]
+                .date
+                [ .individual_post
+                    .post_title
+                    .post_body
+                    [ .post_footer
+                        post date
+                        permalink
+                        path
+                        post breadcrumb trail
+                    .post_footer ]
+                .individual_post ]
+            #posts_container ]
+            [ #page_footer
+            #page_footer ]
+        #page ]
+        [ #wrapper_footer
+        #wrapper_footer ]
+    #wrapper ]
+body ]
+-->
+
+<head>
+    <meta
+        http-equiv="Content-Type"
+        content="text/html; charset=UTF-8"
+    />
+
+    <!-- Page title -->
+    <title>
+        $ode::page_title
+    </title>
+
+    <!-- RSS 2.0 feed -->
+    <link
+        rel="alternate"
+        type="application/rss+xml"
+        title="RSS 2.0 feed for $ode::page_title"
+        href="$req_base_url${req_path_wo_file}index.rss2"
+    />
+
+    <!-- Stylesheets -->
+    <link
+        rel="stylesheet"
+        type="text/css"
+        href="text_page.css"
+    />
+
+    <!-- empty, see external stylesheet referenced above
+        <style type="text/css"></style>
+    -->
+
+</head>
+<body>
+
+<!-- wrapper v -->
+
+    <div id="wrapper">
+
+<!-- wrapper_header v -->
+
+        <div id="wrapper_header">
+            <div id="wrapper_header_text"><h1>$config::site_title</h1></div>
+        </div>
+
+<!-- wrapper_header END ^ -->
+<!-- page v -->
+
+        <div id="page">
+
+<!-- page_header v -->
+
+            <div id="page_header">
+                <div id="page_header_text"><h2>$config::site_description</h2></div>
+            </div>
+
+<!-- page_header END ^ -->
+<!-- posts_container v -->
+
+            <div id="posts_container">
+
+                $ode::response_string
+
+<!-- posts_container_header v -->
+
+                <div id="posts_container_header">$req_breadcrumb_trail</div>
+
+<!-- posts_container_header END ^ -->
+<!-- posts_container_banner v -->
+
+                <div id="posts_container_banner">
+                    <h1>This is a test banner</h1>
+                    <p>and this is some paragraph text like you might expect to see in a banner
+                </div>
+
+<!-- posts_container_banner END ^ -->
+
+<!-- Ode: ^ head/posts v -->
+
+<!-- individual_post v -->
+
+                <div class="individual_post">
+
+<!-- post_title v -->
+
+                    <div class="post_title">
+                        <h2><a name="$filename" /><a href="#$filename">$title</a></h2>
+                    </div>
+
+<!-- post_title END ^ -->
+<!-- post_body v -->
+
+                    <div class="post_body">$body</div>
+
+<!-- post_body END ^ -->
+<!-- post_footer v -->
+
+                    <div class="post_footer">
+                        <p>Posted: $month_name $month_day, $year $hour_12:$min$am_pm $post_advertised_time_zone</p>
+                        <p><a href="$req_base_url$path$filename">permalink</a></p>
+                        <p>Category: <a href="$req_base_url$path">$path</a></p>
+                        <p>Breadcrumb trail to post: $post_breadcrumb_trail</p>
+                    </div>
+
+<!-- post_footer END ^ -->
+
+                </div>
+
+<!-- individual_post END ^ -->
+
+<!-- Ode: ^ posts/foot v -->
+
+            </div>
+
+<!-- posts_container END ^ -->
+<!-- page_footer v -->
+
+            <div id="page_footer">
+                <p>$ode::previous_and_next_post_string</p>
+            </div>
+
+<!-- page_footer END ^ -->
+
+        </div>
+
+<!-- page END ^ -->
+<!-- wrapper_footer v -->
+
+        <div id="wrapper_footer"><p>&nbsp;</p></div>
+
+<!-- wrapper_footer END ^ -->
+
+    </div>
+
+<!-- wrapper END ^ -->
+
+</body>
+</html>

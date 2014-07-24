@@ -1,0 +1,25 @@
+Important
+
+You may want to wait until I get the documentation online before you really start to settle in (so that you have a better idea about what you're settling into).
+
+In addition to the single two column theme included with the initial release I will be posting simple one and three column designs shortly.
+
+#### Interested in writing your own addins?
+
+You may want to wait until I get a chance to post the associated documentation (alternatively you could dig through the annotated version of the source.)
+
+#### Thinking about migrating an existing site to Ode?
+
+You will probably want to wait until I release the Indexette addin.
+
+As you may already know, Ode uses the filesystem as a content database. Posts (i.e. the content of the site) are discrete text files that exist under the site's document root. On its own, Ode traverses the filesystem examining the post files to find which are suitable for a given request. It builds a page to return to the client by combining the content of these posts with a theme, which dictates the look and layout of the site.  
+
+This arrangement works quite well, however there are a couple of inherent issues. One of which is the fragility of post dates.
+
+On its own, Ode uses the modification dates of the corresponding files as post dates. This is a simple solution and may work well enough if you are meticulous about how you work with your post files so that these modification dates don't change unexpectedly. If that sounds like it might be troublesome, I assure you it can be.
+
+The modification time is updated automatically every time the content of a file is modified. So if you create a post, and then a day later notice a typo and correct it, the modification date will change to the time you corrected the typo, and the post date will change as well. The modification time may also be changed when a file is copied (This behavior varies from platform to platform and may depend on a number of different factors).
+
+Indexette preserves the original modification time of the file (which is essentially the creation date of the post), storing this crucial info within the post itself as a tag. The addin changes the behavior of the script so that the tag value is used as the post date, breaking the dependence on the file modification dates.
+
+Everyone is encouraged to use Indexette, or something like it.

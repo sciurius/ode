@@ -1,0 +1,486 @@
+/*  FILE DESCRIPTION:
+
+    Part of ode theme: text_page 1.0.1 , 2010-0420 11:49 am
+    Distributed with Ode 1.2.1 package
+
+    Author: Rob Reed
+    Contact: rob at ode-is-simple.com
+
+    Project: Ode (pronounced oh-dee)
+    Website: ode-is-simple.com/
+    Weblog:  news.ode-is-simple.com/weblog
+    Forum:   ode-is-simple.com/vanilla2_forum/
+
+    This theme can be found at:
+    news.ode-is-simple.com/weblog/ode_themes/text_page/
+
+
+    License
+    ----------
+
+    Creative Commons Attribution-Share Alike 3.0 United States
+
+    For more information refer to:
+    http://creativecommons.org/licenses/by-sa/3.0/us/
+
+    Note: Be aware that continued use of this license is something that
+    I am still considering.
+
+    Future versions may be released under some other license.
+
+    I do expect that any future license will be for the most part compatible
+    this one.
+
+
+    Changes introduced with this version of the theme
+    ----------
+    Keep in mind that these changes are not necessarily limited to the
+    stylesheet. They may include changes to the page._
+    file or other aspects of the theme as well.
+
+
+    1. Removed $found_theme_url prefix from relative links
+    to resources associated with the theme.
+
+    Starting with this version (1.2.1) the script no longer requires
+    that $found_theme_url be included in theme files.
+    This change was made because HTML editors, design, and development
+    apps will not recognize this Ode-specific variable
+    and as a result links to resources,
+    including images and stylesheets, break.
+
+    2. Added additional style rules to preformatted text (pre) which allows
+    text to wrap in preformatted blocks.
+
+    I've only tested this in a limited way. It may not work under all
+    circumstances, and it's possible that some of the rules
+    aren't required. But, it's a big improvement over the old behavior.
+
+    (Before now preformatted text would never wrap.)
+
+*/
+
+/*  STYLE MAP
+
+[ body
+    [ #wrapper
+        [ #wrapper_header
+            #wrapper_header_text
+        #wrapper_header ]
+        [ #page
+            [ #page_header
+                #page_header_text
+            page_header ]
+            [ #posts_container
+                #ode_response
+                [ #posts_container_header
+                #posts_container_header ]
+                [ #posts_container_banner
+                #posts_container_banner ]
+                .date
+                [ .individual_post
+                    .post_title
+                    .post_body
+                    [ .post_footer
+                        post date
+                        permalink
+                        path
+                        post breadcrumb trail
+                    .post_footer ]
+                .individual_post ]
+            #posts_container ]
+            [ #page_footer
+            #page_footer ]
+        #page ]
+        [ #wrapper_footer
+        #wrapper_footer ]
+    #wrapper ]
+body ]
+
+*/
+
+
+/*  ORDER OF STYLE RULES
+
+    display
+    position
+    top, right, bottom, left, 
+    margin
+    margin-top, margin-right, margin-bottom, margin-left
+    height
+    width
+    border
+    border-top, border-right, border-bottom, border-left
+    border-color, border-width, border-style
+    background
+    background-color, background-image, background-repeat
+    padding
+    float
+    clear
+    line-height
+    text-align
+    vertical-align
+    font-family
+    font-size
+    font-style
+    font-weight
+    color
+    text-decoration
+    list-style
+    list-style-type, list-style-position
+    whitespace
+    overflow
+*/
+
+
+
+/* @group LAYOUT/STRUCTURAL STYLES */
+
+body {
+    margin: 0;
+    background-color: #efefef; /* light grey */
+    padding: 0;
+    text-align: center;
+    /* centered to fix centered layout
+       auto left/right margins of wrapper
+       in some browsers (IE 6)
+       text left aligned again in #wrapper */
+
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 12px;
+}
+
+#wrapper {
+    margin: 35px auto 15px auto;
+    width: 90%;
+    text-align: left;
+    color: #444; /* dark grey, nearly black */
+
+} /* specifies an area inside the browser window
+     which contains all content.
+     Everything else can be considered empty space */
+
+#wrapper_header {
+    height: 90px;
+    background-color: #FFE17A;
+    border: 1px solid #beb7ae;  
+    padding: 0 0 0 10px;
+}
+
+#wrapper_header_text {
+    margin: 0;
+    padding: 0;
+}
+
+#page {
+    margin: 0;
+    background-color: #fff; /* white */
+    padding: 5px 10px;
+}
+
+#page_header { ; }
+
+#page_header_text { ; }
+
+#posts_container {
+    margin: 10px 0 0 0;
+    background-color: #fff; /* white */
+
+} /* contains post dates, individual_post(s)
+     and nothing else */
+
+#ode_response {
+    margin: 10px 0;
+    border-top: 1px solid #ffc2ca; /* strongish pink*/
+    border-bottom: 1px solid #ffc2ca; /* strongish pink*/
+    background-color: #ffedef; /* dull light pink */
+    padding: 10px;
+    color: #838383; /* med grey */
+}
+
+#posts_container_header {
+    margin: 0 0 20px 0;
+}
+
+#posts_container_banner {
+    margin: 20px 0;
+    border-top: 1px solid #99cc66; /* strong green */
+    border-bottom: 1px solid #99cc66; /* strong green */
+    background-color: #cbe7be; /* weak green */
+    padding: 5px 10px;
+    line-height: 1.5em;
+    color: #444; /* dark grey, nearly black */
+}
+
+
+.individual_post {
+    margin: 0 0 50px 0;
+
+} /* specifies one individual post,
+     as opposed to #posts_container,
+     which holds all individual_post(s) */
+
+#posts_container .date {
+    margin: 0 0 30px 0;
+    border-top: 1px dotted #cfcfcf;  /* light grey */
+    border-bottom: 1px dotted #cfcfcf;  /* light grey */
+    padding: 5px 0;
+}
+
+.post_title { ; }
+
+.post_body { 
+    margin: 0 0 30px 0;
+}
+
+.post_footer { ; }
+
+#page_footer { ; }
+
+#wrapper_footer {
+    margin: 0;
+    padding: 10px 0;
+    text-align: center;
+}
+
+/* @end */
+
+
+/* @group FORMATTING BITS */
+
+
+/* @group HEADER STYLES */
+
+h {
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+    color: #555; /* dark grey */
+}
+
+h1 {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#wrapper_header_text h1 {
+    margin: 60px 0 0 0 ;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+#posts_container_banner h1 {
+    font-size: 16px;
+    font-weight: normal;
+}
+
+h2 {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#page_header h2 {
+    margin: 0 0 15px 0;
+    font-size: 13px;
+    font-weight: normal;
+}
+
+.post_title h2 {
+    margin: 0 0 20px 0;
+    font-weight: normal;
+} /* These post titles are anchor links in
+     by default in the theme so may
+     appear to be different than what is described here */
+
+h3 {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+h4 {
+    font-size: 14px;
+    font-weight: normal;
+}
+
+h5 {
+    font-size: 12px;
+    font-weight: normal;
+}
+
+h6 {
+    font-size: 10px;
+    font-weight: normal;
+}
+
+/* @end */
+
+
+/* @group PARAGRAPH STYLES */
+#posts_container_banner p {
+    font-size: 14px;
+}
+
+.post_footer p {
+    margin: .5em 0;
+}
+
+#page_footer p {
+    margin: 0 0 10px 0;
+}
+
+/* @end */
+
+
+/* @group LINK STYLES */
+
+a { text-decoration: none; }
+
+a:link {
+    border-bottom: 1px solid #c6c6c6; /* light grey */
+    color: #4870a3; /* med dull blue */
+}
+
+a:visited {
+    border-bottom: none; /* light grey */
+    color: #4870a3; /* med dull blue */
+}
+
+a:hover {
+    border-bottom: 1px solid #c6c6c6; /* light grey */  
+    color: #008000; /* strong green */
+}
+
+.post_title a:link {
+    border-bottom: none;
+    color: #0062a9; /* med bright blue */
+}
+
+.post_title a:visited {
+    border-bottom: none;
+    color: #0062a9; /* med bright blue */
+}
+
+.post_title a:hover {
+    border-bottom: 1px solid #c6c6c6; /* light grey */
+    color: #008000; /* strong green */
+}
+
+/* @end */
+
+/* @group IMG STYLES */
+
+img {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+.post_body img {
+    display: block;
+    margin: 10px auto;
+    border: 1px solid #444; /* dark grey, nearly black */
+}
+
+/* @end */
+
+
+/* @group LIST STYLES */
+
+.post_body ol {
+    margin: 0 0 0 32px;
+    padding: 0;
+    list-style-type: decimal;
+    list-style-position: outside;
+}
+
+.post_body ul {
+    margin: 0 0 0 32px;
+    padding: 0;
+    list-style-position: outside;
+}
+
+.post_body li { ; }
+
+/* @end */
+
+/* @group MISC */
+
+pre {
+    border-top: 1px solid #c6c6c6; /* light grey-purple */
+    border-bottom: 1px solid #c6c6c6; /* light grey-purple */
+    background-color: #e8e8e8; /* lighter grey-purple */
+    padding: 5px;
+    text-decoration: none;
+    font-family: Monaco, Courier, "Courier New", mono;
+
+    white-space: pre-wrap;       /* css-3 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+
+    /* I picked up these white-space rules
+       from myy.helia.fi/~karte/pre-wrap-css3-mozilla-opera-ie.html
+       (via vafer.org/blog/).
+
+       They do seem to help the situation with text wrapping in
+       preformatted blocks.
+
+       Some of these may be unnecessary and I'm not sure
+       it resolves the situation completely (I've done only the most
+       limited of testing at this point).
+
+       This may change in some future version of the theme.
+       robreed 2010-0415 5:21 pm
+    */
+}
+
+code { ; }
+
+blockquote {
+    margin: 20px 10px;
+    border-left: 3px solid #cbcccb; /* med grey */
+    padding: 0 10px;
+    line-height: 1.5em;
+    text-align: left;
+    color: #444; /* dark grey, nearly black */
+}
+
+.strike {
+    text-decoration: line-through;
+}
+
+.hl_p {
+    background-color: #fabbc3; /* light pink
+                                works well behind black text */
+    padding: 3px;
+}   /*  the 'hl' in the name is an abreviation
+        for 'highlight' */
+
+.hl_g {
+    background-color: #abdba1; /* light bright green
+                                works well behind black text */
+    padding: 3px;
+}   /*  the 'hl' in the name is an abreviation
+        for 'highlight' */
+
+.hl_b {
+    background-color: #9dd7fb; /* light bright blue
+                                works well behind black text */
+    padding: 3px;
+}   /*  the 'hl' in the name is an abreviation
+        for 'highlight' */
+
+.hl_y {
+    background-color: #ebfa89; /* med yellow
+                                works well behind black text */
+    padding: 3px;
+}   /*  the 'hl' in the name is an abreviation
+        for 'highlight' */
+
+/* border: 1px solid #CCC; */ /* med grey */
+/* Visual layout guide */
+
+
+/* @end */
+
+/* @end */
