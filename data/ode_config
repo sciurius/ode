@@ -281,7 +281,7 @@ our (
 # ----------
 
 
-$document_root = '';
+$document_root = '/home/jv/wrk/ode/ode';
 
 
 # + ----------------------------------------------------------------------
@@ -329,7 +329,7 @@ $document_root = '';
 # ----------
 
 
-$addin_dir = '';
+$addin_dir = $document_root . '/data/addins/';
 
 
 # + ----------------------------------------------------------------------
@@ -393,7 +393,7 @@ $addin_dir = '';
 # ----------
 
 
-$base_url = '';
+$base_url = 'http://phoenix.squirrel.nl/ode/ode-jv.cgi';
 
 
 # + ----------------------------------------------------------------------
@@ -521,7 +521,7 @@ $base_url = '';
 # ----------
 
 
-$document_root_url = '';
+$document_root_url = 'http://phoenix.squirrel.nl/ode';
 
 
 # + ----------------------------------------------------------------------
@@ -566,7 +566,7 @@ $document_root_url = '';
 # ----------
 
 
-$site_title = "My brand new Ode site";
+$site_title = "Kort door de bocht";
 
 
 # + ----------------------------------------------------------------------
@@ -607,7 +607,7 @@ $site_title = "My brand new Ode site";
 # ----------
 
 
-$site_title_short = "My Ode site";
+$site_title_short = "KorteBocht";
 
 
 # + ----------------------------------------------------------------------
@@ -639,7 +639,8 @@ $site_title_short = "My Ode site";
 # ----------
 
 
-$site_description = "It's hard to think of a clever site description.";
+$site_description = "Ongenuanceerde uitspraken, citaten en wat dies
+meer zij.";
 
 
 # + ----------------------------------------------------------------------
@@ -723,7 +724,7 @@ $addin_state_dir = "${addin_dir}state/";
 # ----------
 
 
-$default_theme = 'html';
+$default_theme = 'html_nl_NL';
 
 
 # + ----------------------------------------------------------------------
@@ -770,7 +771,7 @@ $default_theme = 'html';
 # ----------
 
 
-$use_site_look_date = 1;
+$use_site_look_date = 0;
 
 
 # + ----------------------------------------------------------------------
@@ -1010,7 +1011,7 @@ $num_posts = 10;
 # ----------
 
 
-$use_local_time = 0;
+$use_local_time = 1;
 
 
 # + ----------------------------------------------------------------------
@@ -1231,7 +1232,7 @@ $use_local_time = 0;
 # ----------
 
 
-$local_time_zone = 'Etc/UTC';
+$local_time_zone = 'Europe/Amsterdam';
 
 
 # + ----------------------------------------------------------------------
@@ -1313,8 +1314,8 @@ $local_time_zone = 'Etc/UTC';
 # ----------
 
 
-$advertised_time_zone = 'UTC';
-$advertised_time_zone_dst = 'UTC';
+$advertised_time_zone = 'MET';
+$advertised_time_zone_dst = 'MET';
 
 
 # + ----------------------------------------------------------------------
@@ -1605,8 +1606,8 @@ $page_title_category_separator = ' &#x003E; ';
 #  $label_for_breadcrumb_trail_root = 'Root';
 # ----------
 
-
-$label_for_breadcrumb_trail_root = 'home';
+####TODO: I18N
+$label_for_breadcrumb_trail_root = "Startpagina";
 
 
 # + ----------------------------------------------------------------------
@@ -1995,7 +1996,7 @@ $depth = 0;
 # ----------
 
 
-$site_language = 'en';
+$site_language = 'nl';
 
 
 # + ----------------------------------------------------------------------

@@ -397,7 +397,7 @@ sub _T { $_[0] };
 # Example:
 # $config_dir_f = '/Library/WebServer/Data/ode/';
 
-$config_dir_f = '';
+$config_dir_f = '/home/jv/wrk/ode/ode/data/';
 
 
 # $config_filename_f
