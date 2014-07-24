@@ -92,8 +92,8 @@ body ]
             <img src="images/mascot_header.png"
             width="325px"
             height="131px"
-            alt="Title photo"
-            title="Atlantic Cod - Project Ode mascot"
+            alt="[Kabeljouw]"
+            title="Atlantische Kabeljouw - Projekt Ode mascotte"
             />
         </div>
 
@@ -116,7 +116,7 @@ body ]
 
 <!-- site_description END-->
 <!-- content_area_message -->
-
+<!--
                 <div id="content_area_message">
 
                     <h1>Message</h1>
@@ -130,7 +130,7 @@ You can change the message or customize the style by editing the theme.
                     </div>
 
                 </div>
-
+-->
 <!-- content_area_message END -->
 <!-- ode_response -->
 
@@ -145,7 +145,7 @@ You can change the message or customize the style by editing the theme.
 <!-- content_area_banner -->
 
                 <div id="content_area_banner">
-                    <h1>Posts</h1>
+                    <h1>Artikelen</h1>
                 </div>
 
 <!-- content_area_banner END -->
@@ -177,15 +177,15 @@ You can change the message or customize the style by editing the theme.
 <!-- post_footer -->
 
                         <div class="post_footer">
-                            <p>Posted: $month_name $month_day, $year $hour_12:$min$am_pm $post_advertised_time_zone</p>
-                            <p><a href="$req_base_url$path$filename">permalink</a></p>
+                            <p>Toegevoegd: $month_day_nz $month_name $year $hour:$min</p>
+                            <p><a href="$req_base_url$path$filename">Vaste link</a></p>
 
-                            <p>Category: <a href="$req_base_url$path">$path</a></p>
+                            <p>Categorie: <a href="$req_base_url$path">$path</a></p>
 
 <!-- post_breadcrumb_trail -->
 
                             <div class="post_breadcrumb_trail">
-                                <p>Breadcrumb trail to post: $post_breadcrumb_trail</p>
+                                <p>Spoor: $post_breadcrumb_trail</p>
                             </div>
 
 <!-- post_breadcrumb_trail END -->
@@ -253,13 +253,12 @@ You can change the message or customize the style by editing the theme.
 
                 <!-- SIDEBAR BLOCK -->
                 <div class="block">
-                    <h1>I support the open web</h1>
-                    <p>Powered by</p>
+                    <h1>Deze website is gebouwd met</h1>
                     <a href="http://ode-is-simple.com">
                         <img src="http://ode-is-simple.com/shared_resources/theme_resources/images/ode_mascot110x50.png"
                             width="110px"
                             height="50px"
-                            alt="Ode mascot (Atlantic Cod)"
+                            alt="Ode mascotte (De atlantische kabeljouw)"
                             title="ode (o-dee) at ode-is-simple.com"
                         />
                     </a>

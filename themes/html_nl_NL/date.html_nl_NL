@@ -1,4 +1,4 @@
 <!-- BEGIN, date._ theme -->
-<div class="date">$wkday_name, $month_day $month_name $year</div>
+<div class="date">$wkday_name $month_day_nz $month_name $year</div>
 <!-- END, date._ theme -->
 
