@@ -8,4 +8,7 @@ This is my personal version of Ode, enhanced to support
 internationalisation (to a certain extent) with Dutch (nl_NL)
 translations added.
 
+The custom branch in this repository contains many additional
+enancements and additions, some of which you may like. Or maybe not.
+
 I share with you. You share with me?
