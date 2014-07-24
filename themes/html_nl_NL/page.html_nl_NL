@@ -143,11 +143,11 @@ You can change the message or customize the style by editing the theme.
 
 <!-- req_breadcrumb_trail END -->
 <!-- content_area_banner -->
-
+<!--
                 <div id="content_area_banner">
                     <h1>Artikelen</h1>
                 </div>
-
+-->
 <!-- content_area_banner END -->
 <!-- posts_container -->
 
@@ -183,11 +183,11 @@ You can change the message or customize the style by editing the theme.
                             <p>Categorie: <a href="$req_base_url$path">$path</a></p>
 
 <!-- post_breadcrumb_trail -->
-
+<!--
                             <div class="post_breadcrumb_trail">
                                 <p>Spoor: $post_breadcrumb_trail</p>
                             </div>
-
+-->
 <!-- post_breadcrumb_trail END -->
 
                         </div>
@@ -221,33 +221,18 @@ You can change the message or customize the style by editing the theme.
 
                 <!-- SIDEBAR BLOCK -->
                 <div class="block">
-                    <h1>Welcome to the sidebar</h1>
-                    <h2>The sidebar consists of blocks (like this one).</h2>
-                    <p>This is a simple two column theme called 'logic'.</p>
-                    <p>You have the main content area over there on the left, and the sidebar here on the right.</p>
-                    <p>The sidebar is composed 'sidebar blocks', like this one (and the one below).</p>
-                    <div class="footer5">&nbsp;</div>
-                </div><!-- block END -->
-                <div class="spacer">&nbsp;</div>
-                <!-- SIDEBAR BLOCK END -->
+                    <h1>Archief</h1>
+		<h2>Per jaar en maand</h2>
 
-                <!-- SIDEBAR BLOCK -->
-                <div class="block">
-                    <h1>This is a sidebar block</h1>
-                    <p>You can create as many sidebar blocks as you like. Just copy this one and change the text.</p>
-                    <p>Each sidebar block includes a header, body, and footer.</p>
+<ul>
+<li><a href="$req_base_url/2014/">2014</a></li>
+<li>&nbsp;&nbsp;<a href="$req_base_url/2014/07/">Juli 2014</a></li>
+</ul>
+                    <a
+                href="$req_base_url/index.archive_nl_NL?first_post=1&num_posts=all">Alle
+                artikelen</a>
                     <div class="footer5">&nbsp;</div>
-                </div><!-- block END -->
-                <div class="spacer">&nbsp;</div>
-                <!-- SIDEBAR BLOCK END -->
-
-                <!-- SIDEBAR BLOCK -->
-                <div class="block">
-                    <h1>Another sidebar block</h1>
-                    <p>It's so simple, I couldn't resist adding another.</p>
-                    <p>Delete these example blocks by editing the page theme file (or keep them and change the content).</p>
-                    <div class="footer5">&nbsp;</div>
-                </div><!-- block END -->
+                </div>
                 <div class="spacer">&nbsp;</div>
                 <!-- SIDEBAR BLOCK END -->
 
