@@ -11,7 +11,7 @@ char *argv[];
 char *envp[];
 {
   char *p = strrchr( argv[0], '/' );
-  strcpy( p+1, "ode_bin.cgi" );
+  strcpy( p+1, "ode.cgi" );
   setreuid( geteuid(), geteuid() );
   setregid( getegid(), getegid() );
 
