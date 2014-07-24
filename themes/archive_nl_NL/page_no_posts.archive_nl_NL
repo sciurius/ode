@@ -1,0 +1,270 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- Page structure
+head ]
+[ body
+    [ wrapper
+        site header
+        content header
+        [ two column container
+            [ content area container
+                site description
+                ode response (status messages from the script and addins)
+                request breadcrumb trail
+                content area message
+                content area banner
+                [ posts container
+                    [ individual post
+                        post title
+                        post body
+                        [ post footer
+                            post breadcrumb trail
+                        post footer ]
+                    individual post ]
+                posts container ]
+                content area footer
+            content area container ]
+            [ sidebar
+                [ sidebar block
+                    block header
+                    block content
+                    block footer
+                sidebar block]
+                spacer
+            sidebar ]
+        two column container ]
+    wrapper ]
+body ]
+-->
+
+<head>
+    <meta
+        http-equiv="Content-Type"
+        content="text/html; charset=UTF-8"
+    />
+
+    <!-- Page title -->
+    <title>
+        $ode::page_title
+    </title>
+
+    <!-- RSS 2.0 feed -->
+    <link
+        rel="alternate"
+        type="application/rss+xml"
+        title="RSS 2.0 feed for $ode::page_title"
+        href="$req_base_url${req_path_wo_file}index.rss2"
+    />
+
+    <!-- Stylesheets -->
+    <link
+        rel="stylesheet"
+        type="text/css"
+        href="logic.css"
+    />
+
+    <!-- empty, see external stylesheet referenced above
+        <style type="text/css"></style>
+    -->
+
+    <!-- Scripts -->
+
+</head>
+<body>
+
+<!-- wrapper -->
+
+    <div id="wrapper">
+
+<!-- site_header -->
+
+        <div id="site_header">
+            <span id="site_header_text">
+                $config::site_title
+            </span>
+        </div>
+
+<!-- site_header END -->
+<!-- content_header -->
+
+        <div id="content_header">
+            <img src="images/mascot_header.png"
+            width="325px"
+            height="131px"
+            alt="Title photo"
+            title="Atlantic Cod - Project Ode mascot"
+            />
+        </div>
+
+<!-- content_header END -->
+<!-- two_column_container -->
+
+        <div id="two_column_container">
+
+<!-- content_area_container -->
+
+            <div id="content_area_container">
+
+<!-- site_description -->
+
+                <div id="site_description">
+                    <span id="site_description_text">
+                        $config::site_description
+                    </span>
+                </div>
+
+<!-- site_description END-->
+<!-- content_area_message -->
+
+                <div id="content_area_message">
+
+                    <h1>Message</h1>
+                    
+                    <div id="content_area_message_text">
+<p>Hi. Welcome to your new Ode site.</p>
+<p>This is the 'content area message' of the default theme, 'logic'.
+You can change the message or customize the style by editing the theme.
+(You can also get rid of the message entirely.)</p>
+<p>Look for the content_area_message div in the page theme file.</p>
+                    </div>
+
+                </div>
+
+<!-- content_area_message END -->
+<!-- ode_response -->
+
+                $ode::response_string
+
+<!-- ode_response END-->
+<!-- req_breadcrumb_trail -->
+
+                <div id="req_breadcrumb_trail">$req_breadcrumb_trail</div>
+
+<!-- req_breadcrumb_trail END -->
+<!-- content_area_banner -->
+
+                <div id="content_area_banner">
+                    <h1>Posts</h1>
+                </div>
+
+<!-- content_area_banner END -->
+<!-- posts_container -->
+
+                <div id="posts_container">
+
+<!-- Ode: ^ head/posts v -->
+<!-- individual_post -->
+
+                    <div class="individual_post">
+
+<!-- post_title -->
+
+                        <div class="post_title">
+                            <p>
+                                <a name="$filename" /><a href="#$filename">$title</a>
+                            </p>
+                        </div>
+
+<!-- post_title END -->
+<!-- post_body-->
+
+                        <div class="post_body">
+                            $body
+                        </div>
+
+<!-- post_body END-->
+<!-- post_footer -->
+
+                        <div class="post_footer">&nbsp;</div>
+
+<!-- post_footer END -->
+
+                    </div>
+
+<!-- individual_post END -->
+<!-- Ode: ^ posts/foot v -->
+
+                </div>
+
+<!-- posts_container END -->
+<!-- content_area_footer -->
+
+                <div id="content_area_footer">
+                    <p>
+                        $ode::previous_and_next_post_string 
+                    </p>
+                </div>
+
+<!-- content_area_footer END -->
+
+            </div>
+
+<!-- content_area_container END -->
+<!-- sidebar -->
+
+            <div id="sidebar">
+
+                <!-- SIDEBAR BLOCK -->
+                <div class="block">
+                    <h1>Welcome to the sidebar</h1>
+                    <h2>The sidebar consists of blocks (like this one).</h2>
+                    <p>This is a simple two column theme called 'logic'.</p>
+                    <p>You have the main content area over there on the left, and the sidebar here on the right.</p>
+                    <p>The sidebar is composed 'sidebar blocks', like this one (and the one below).</p>
+                    <div class="footer5">&nbsp;</div>
+                </div><!-- block END -->
+                <div class="spacer">&nbsp;</div>
+                <!-- SIDEBAR BLOCK END -->
+
+                <!-- SIDEBAR BLOCK -->
+                <div class="block">
+                    <h1>This is a sidebar block</h1>
+                    <p>You can create as many sidebar blocks as you like. Just copy this one and change the text.</p>
+                    <p>Each sidebar block includes a header, body, and footer.</p>
+                    <div class="footer5">&nbsp;</div>
+                </div><!-- block END -->
+                <div class="spacer">&nbsp;</div>
+                <!-- SIDEBAR BLOCK END -->
+
+                <!-- SIDEBAR BLOCK -->
+                <div class="block">
+                    <h1>Another sidebar block</h1>
+                    <p>It's so simple, I couldn't resist adding another.</p>
+                    <p>Delete these example blocks by editing the page theme file (or keep them and change the content).</p>
+                    <div class="footer5">&nbsp;</div>
+                </div><!-- block END -->
+                <div class="spacer">&nbsp;</div>
+                <!-- SIDEBAR BLOCK END -->
+
+                <!-- SIDEBAR BLOCK -->
+                <div class="block">
+                    <h1>I support the open web</h1>
+                    <p>Powered by</p>
+                    <a href="http://ode-is-simple.com">
+                        <img src="http://ode-is-simple.com/shared_resources/theme_resources/images/ode_mascot110x50.png"
+                            width="110px"
+                            height="50px"
+                            alt="Ode mascot (Atlantic Cod)"
+                            title="ode (o-dee) at ode-is-simple.com"
+                        />
+                    </a>
+                    <div class="footer5">&nbsp;</div>
+                </div>
+                <div class="spacer">&nbsp;</div>
+                <!-- SIDEBAR BLOCK END -->
+
+            </div>
+
+<!-- sidebar END -->
+
+        </div>
+
+<!-- two_column_container END -->
+
+    </div>
+
+<!-- wrapper END -->
+
+</body>
+</html>

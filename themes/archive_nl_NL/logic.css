@@ -1,0 +1,831 @@
+/*	FILE DESCRIPTION:
+
+	Part of ode theme: logic 1.2.1 , 2010/0427
+	Distributed with Ode 1.2.1 package
+
+    Author: Rob Reed
+    Contact: rob at ode-is-simple.com
+
+    Project: Ode (pronounced oh-dee)
+    Website: ode-is-simple.com/
+    Weblog:  news.ode-is-simple.com/weblog
+    Forum:   ode-is-simple.com/vanilla2_forum/
+
+
+    License
+    ----------
+
+    Creative Commons Attribution-Share Alike 3.0 United States
+
+    For more information refer to:
+    http://creativecommons.org/licenses/by-sa/3.0/us/
+
+    Note: Be aware that continued use of this license is something that
+    I am still considering.
+
+    Future versions may be released under some other license.
+
+    I do expect that any future license will be for the most part compatible
+    this one.
+
+
+    Changes introduced with this version of the theme
+    ----------
+    Keep in mind that these changes are not necessarily limited to the
+    stylesheet. They may include changes to the page._
+    file or other aspects of the theme as well.
+
+
+    1. Removed $found_theme_url prefix from relative links
+    to resources associated with the theme.
+
+    Starting with this version (1.2.1) the script no longer requires
+    that $found_theme_url be included in theme files.
+    This change was made because HTML editors, design, and development
+    apps will not recognize this Ode-specific variable
+    and as a result links to resources,
+    including images and stylesheets, break.
+
+    2. Added additional style rules to preformatted text (pre) which allows
+    text to wrap in preformatted blocks.
+
+    I've only tested this in a limited way. It may not work under all
+    circumstances, and it's possible that some of the rules
+    aren't required. But, it's a big improvement over the old behavior.
+
+    (Before now preformatted text would never wrap.)
+
+*/
+
+
+/*	STYLE MAP
+
+	Misc formatting bits	
+
+	+ body
+	|	+ #wrapper
+	|	|	+ #site_header
+	|	|	|	+ #site_header_text
+	|	|	+ #content_header
+	|	|	+ #two_column_container
+	|	|	|	+ #content_area_container
+	|	|	|	|	+ #site_description
+	|	|	|	|	|	+ #site_description_text
+	|	|	|	|	+ #ode_response
+	|	|	|	|	+ #req_breadcrumb_trail
+	|	|	|	|	+ #content_area_message
+	|	|	|	|	+ #content_area_banner
+	|	|	|	|	+ #posts_container
+	|	|	|	|	|	+ .date
+	|	|	|	|	|	+ .individual_post
+	|	|	|	|	|	|	+ .post_title
+	|	|	|	|	|	|	+ .post_body
+	|	|	|	|	|	|	+ .post_footer
+	|	|	|	|	|	|	|	+ .post_breadcrumb_trail
+	|	|	|	|	+ #content_area_footer
+	|	|	|	+ #sidebar
+	|	|	|	|	+ #sidebar .block
+	|	|	|	|	+ #sidebar .footer
+	|	|	|	|	+ #sidebar .spacer
+ */
+
+
+/*	ORDER OF STYLE RULES
+
+	display
+	position
+	top, right, bottom, left, 
+	margin
+	margin-top, margin-right, margin-bottom, margin-left
+	height
+	width
+	border
+	border-top, border-right, border-bottom, border-left
+	border-color, border-width, border-style
+	background
+	background-color, background-image, background-repeat
+	padding
+	float
+	clear
+	line-height
+	text-align
+	vertical-align
+	font-family
+	font-size
+	font-style
+	font-weight
+	color
+	text-decoration
+	list-style
+	list-style-type, list-style-position
+	overflow
+*/
+
+/* Changes
+	
+
+*/
+
+/* @group FORMATTING BITS */
+
+
+/* @group LINK STYLES */
+
+a { text-decoration: none; }
+
+a:link {
+	border-bottom: 1px solid #c6c6c6; /* light grey */
+	color: #4870a3; /* med dull blue */
+}
+
+a:visited {
+	border-bottom: none; /* light grey */
+	color: #4870a3; /* med dull blue */
+}
+
+a:hover {
+	border-bottom: 1px solid #c6c6c6; /* light grey */	
+	color: #008000; /* strong green */
+}
+
+.feedback a:hover {
+	border-bottom: none;
+	color: inherit;
+}
+
+.post_title a:link {
+	border-bottom: none;
+	color: #0062a9; /* med bright blue */
+}
+
+.post_title a:visited {
+	border-bottom: none;
+	color: #0062a9; /* med bright blue */
+}
+
+.post_title a:hover {
+	border-bottom: 1px solid #c6c6c6; /* light grey */
+	color: #008000; /* strong green */
+}
+
+/* @end */
+
+
+/* @group HEADER STYLES */
+
+h {
+	font-family: Verdana, sans-serif;
+	color: #555; /* dark grey */
+}
+
+h1 {
+	font-size: 18px;
+	font-weight: normal;
+}
+
+#content_area_message h1 {
+	margin-top: 0;
+	font-weight: normal;
+}
+
+#content_area_banner h1 {
+	margin: 0;
+	padding: 0;
+	font-size:	14px;
+	font-weight: normal;
+}	/* #content_area_banner specifies the area
+	   immediately beneath the site description area,
+	   which includes the word "Posts" and
+	   the small feed image in the theme */
+
+.post_body h1 {
+	margin: 20px 0 10px 0;
+}
+
+#sidebar h1 {
+	margin: 0 0 5px 0;
+	border-bottom: 1px solid #ccc;
+	font-size: 14px;
+	font-weight: normal;
+}
+
+h2 {
+	font-size: 16px;
+	font-weight: normal;
+}
+
+.post_body h2 {
+	margin: 20px 0 10px 0;
+}
+
+#sidebar h2 {
+	margin: 0 0 12px 0;
+	/* Bumping this up to 14px - 12/7/12 - sr */
+	/*	font-size: 12px; */
+	font-size: 14px;
+	font-style: italic;
+	font-weight: normal;
+}
+
+h3 {
+	font-size: 16px;
+	font-style: italic;
+	font-weight: normal;
+}
+
+.post_body h3 {
+	margin: 20px 0 10px 0;
+}
+
+#sidebar h3 {
+	margin:  0 0 5px 0;
+	/* Bumping this up to 14px - 12/7/12 - sr */
+	/*	font-size: 12px; */
+	font-size: 14px;
+	font-weight: normal;
+}
+
+
+h4 {
+	font-size: 14px;
+	font-weight: normal;
+}
+
+.post_body h4 {
+	margin: 20px 0 10px 0;
+}
+
+.tangent h4 {
+	margin-top: 10px;
+	font-size: 14px;
+	font-weight: normal;
+}
+
+h5 {
+	font-size: 14px;
+	font-style: italic;
+	font-weight: normal;
+}
+
+.post_body h5 {
+	margin: 20px 0 10px 0;
+}
+
+h6 {
+	font-size: 12px;
+}
+
+.post_body h6 {
+	margin: 20px 0 10px 0;
+}
+
+
+/* @end */
+
+
+/* @group IMG STYLES */
+
+img {
+/* Adding elements for responsive display of images - 2013_0917 */
+/*	border: none;
+	margin: 0;
+	padding: 0;
+	width: auto;
+	height: auto;
+	max-width: 98%; */
+	border: none;
+	height: auto;
+	max-width: 100%;	
+}
+
+#content_header img {
+	border: none;
+/* bottom margin for header image to accommodate responsive design -- 2013_0917 */
+	/* margin: 10px 0 0 0; */
+	margin: 10px 0 10px 0;
+	padding: 0;
+}
+
+#content_area_banner img {
+	margin-top: 4px;
+}	/* #content_area_banner specifies the area
+	   immediately beneath the site description area,
+	   which includes the word "Posts". */
+
+.post_body img {
+	display: block;
+ 	margin: 10px auto;
+	/* border: 1px solid #444; */
+}
+
+.post_body img.left {
+	margin: 10px 0 10px 0;
+}
+
+.post_body img.float_left {
+	float: left;
+	margin: 0 10px 0 0;
+}
+
+.post_body p img.float_right {
+	float: right;
+	margin: 0 0 0 10px;
+}
+
+#sidebar .block img {
+	display: block;
+ 	margin: 10px auto;
+ 	border: 1px solid #cbcccb;
+}
+
+/* @end */
+
+/* @group MISC STYLES */
+
+#content_area_message .critical {
+	color: #cf1a17; /* med-dark red */
+	font-weight: bold;
+	
+}
+
+.post_title p {
+	margin: 0;
+	padding: 0;
+}
+
+.post_body ul p {
+	margin: 5px 0;
+	padding: 0;
+}
+
+.post_body ol p {
+	margin: 5px 0;
+	padding: 0;
+}
+
+.post_body iframe {
+	display: block;
+ 	margin: 10px auto;
+	/* border: 1px solid #444; */	
+}
+
+.post_body object {
+	display: block;
+ 	margin: 10px auto;
+	/* border: 1px solid #444; */	
+}
+
+.post_body pre {
+    border-top: 1px solid #c6c6c6; /* light grey-purple */
+    border-bottom: 1px solid #c6c6c6; /* light grey-purple */
+    background-color: #e8e8e8; /* lighter grey-purple */
+    padding: 5px;
+    text-decoration: none;
+    font-family: Monaco, Courier, "Courier New", mono;
+
+    white-space: pre-wrap;       /* css-3 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+
+    /* I picked up these white-space rules
+       from myy.helia.fi/~karte/pre-wrap-css3-mozilla-opera-ie.html
+       (via vafer.org/blog/).
+
+       They do seem to help the situation with text wrapping in
+       preformatted blocks.
+
+       Some of these may be unnecessary and I'm not sure
+       it resolves the situation completely (I've done only the most
+       limited of testing at this point).
+
+       This may change in some future version of the theme.
+       robreed 2010-0415 5:21 pm
+    */
+}
+
+.post_body code { 
+	/*	font-family: Monaco, "Courier New", Courier, mono; */
+	font-family: "Droid sans mono", Monaco, "Courier New", mono;
+}
+
+.post_body blockquote {
+	margin: 20px 10px;
+	border-left: 3px solid #cbcccb; /* strong green */
+	padding: 0 10px;
+	line-height: 1.5em;
+	text-align: left;
+	color: #444; /* dark grey, nearly black */
+}
+
+/* .post_body blockquote {
+	margin: 20px 0;
+	border-top: 1px solid #99cc66; */ /* strong green */
+	/* border-bottom: 1px solid #99cc66; */ /* strong green */
+	/* background-color: #ebf7d1; */ /* very weak green */
+	/* padding: 5px 10px;
+	line-height: 1.5em;
+	text-align: left;
+	color: #444; */ /* dark grey, nearly black
+} */
+
+.post_body .tangent {
+	margin: 20px 10px;
+	border: 1px solid #cbcccb;
+	padding: 0 5px 0 5px;
+}
+
+.post_body .tangent .note {
+	font-style: italic;
+}
+
+.post_body .2px_border {
+	border: 2px solid #303030; /* med dark grey */
+}
+
+# sidebar .block p { ; }
+
+.text-align_left {
+	text-align: left;
+}
+
+.text-align_center {
+	text-align: center;
+}
+
+.text-align_right {
+	text-align: right;
+}
+
+.strike_that {
+	text-decoration: line-through;
+}	/* it's probably easier
+	   to just use <strike></strike> */
+
+.hl_pink {
+	background-color: #fabbc3; /* light pink
+								works well behind black text */
+	padding: 3px;
+}	/*  the 'hl' in the name is an abreviation
+		for 'highlight' */
+
+.hl_green {
+	background-color: #abdba1; /* light bright green
+								works well behind black text */
+	padding: 3px;
+}	/*  the 'hl' in the name is an abreviation
+		for 'highlight' */
+
+.hl_blue {
+	background-color: #9dd7fb; /* light bright blue
+								works well behind black text */
+	padding: 3px;
+}	/*  the 'hl' in the name is an abreviation
+		for 'highlight' */
+
+.hl_yellow {
+	background-color: #ebfa89; /* med yellow
+								works well behind black text */
+	padding: 3px;
+}	/*  the 'hl' in the name is an abreviation
+		for 'highlight' */
+
+.italicize_me {
+	font-style: italic;
+}	/* it's probably easier
+	   to just use <em></em> */
+
+/* @end */
+
+/* @group LIST STYLES */
+
+#content_area_banner ul {
+	margin: 0;
+	padding: 0;
+	text-align: left;
+	font-size: 10px;
+	color: #76797c; /* dark-med grey */
+	list-style-type: none;
+}	/* #content_area_banner specifies the area
+	   immediately beneath the site description area,
+	   which includes the word "Posts". */
+
+#content_area_banner li {
+ 	display: inline;
+}	/* #content_area_banner specifies the area
+	   immediately beneath the site description area,
+	   which includes the word "Posts". */
+
+/* Adding line-height 2012_1005 sr */
+.post_body ul {
+	margin: 0 0 0 20px;
+	padding: 0;
+	list-style-type: disc;
+	list-style-position: outside;
+	line-height: 150%;
+}
+
+.post_body ol {
+	margin: 0 0 0 24px;
+	padding: 0;
+	list-style-type: decimal;
+	list-style-position: outside;
+}
+
+.post_body li { ; }
+
+#sidebar ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#sidebar .block li {
+	margin: 10px 0;
+	padding: 0 0 0 14px;
+}
+
+/* @end */
+
+/* @end */
+
+
+/* @group LAYOUT/STRUCTURAL STYLES */
+
+body {
+	margin: 0;
+	background-color: #efefef; /* light grey */
+	padding: 0;
+	text-align: center;
+	/* centered to fix centered layout
+	   auto left/right margins of wrapper
+	   in some browsers (IE 6)
+	   text left aligned again in #wrapper */
+
+	/* Giving Carme a rest for the time being */	
+	/* font-family: Carme, Verdana, sans-serif; */
+	font-family: "Helvetica Neue", Arial, Verdana, sans-serif;
+	/* Bumping this up to 14px - 12/7/12 - sr */
+	font-size: 13px;
+	/* font-size: 14px; */
+}
+
+
+#wrapper {
+	margin:  25px auto 15px auto;
+	width: 782px;
+	border: 1px solid #beb7ae; /*light grey-yellow */
+	background-color: #fff; /* white */
+	
+	padding: 5px;
+	text-align: left;
+	color: #444;
+}	/* specifies an area inside the browser window
+	   which contains all content.
+	   Everything else can be considered empty space */
+
+#site_header {
+	/* height: auto for responsive design 2013_0917 */
+	/* height: 22px; */
+	height: auto;
+	/* Adjusting padding */
+	/* padding: 5px 0; */
+	padding: 10px 0 10px 0;
+	overflow: hidden;
+}
+
+/*#site_header_text {
+	padding: 0 0 0 2px;
+	vertical-align: middle;
+}
+*/
+#site_header_text {
+	/* Bumping up to 24px - 12/27/12 - sr */
+	/* font-size: 18px; */
+	font-size: 24px;
+	padding: 0 0 0 2px;
+	vertical-align: middle;
+}
+
+#site_header_text a:link {
+	border-bottom: none;
+}
+/* added by sr 7/26/11 to remove underline from a:link site header */ 
+ 
+/* Adding responsive styles to #content_header -- sr 2013_0914 */
+
+#content_header {
+	padding: 0;
+	height: auto; /* formerly 150px */
+	max-width: 782px; /* formerly width: 782px */
+	background-color: #444; /* dark grey, nearly black */
+	margin: 0;
+	text-align: center; 
+}	/*	specifies the space reserved for the content header.
+		The default is a 321px x 151px image
+		of the Ode mascot. */
+
+
+		
+#content_header a:link {
+	border-bottom: none;
+	/*added 7/26/11 by sr so images in content_header can have a:link w/o underline */
+}
+
+#two_column_container {
+	margin: 0 0 0 0;
+	background-image: url("images/background_wrapper.jpg");
+	/* background-color: #e3e9ef; */ /* very light blue */
+	overflow: hidden;
+}	/* Specifies the two (2) columns
+	   which dominate the design of the site */
+
+#content_area_container {
+	width:	515px;
+	/* border-right: 1px solid #d9d9d9; */
+	background-color: #fff;
+	padding: 0 10px 0 0;
+	float:	left;
+}
+
+#site_description {
+	margin: 10px 0 10px 2px;
+	/* height: auto for responsive design, 2013_0917 */
+	/* height: 18px; */
+	height: auto;
+	padding: 0 0 0 0;
+	overflow: hidden;
+}
+
+#site_description_text {
+	;
+}
+
+#content_area_message {
+	margin: 10px 0;
+	border-top: 1px solid #90b557; /* med green */
+	border-bottom: 1px solid #90b557; /* med green */
+    background: #e7f1d7; /* mint light green */
+	padding: 10px;
+	color: #656565; /* med-dark grey */
+}
+
+#content_area_message_text {
+	;
+}
+
+#ode_response {
+	margin: 10px 0;
+	border-top: 1px solid #ffc2ca;
+	border-bottom: 1px solid #ffc2ca;
+	background: #ffedef; /* light red */
+	padding: 5px;
+	color: #838383; /* med grey */
+}
+
+#req_breadcrumb_trail { 
+	margin: 10px 0 10px 2px; 
+}
+
+#content_area_banner {
+	padding: 10px 0;
+}	/* #content_area_banner specifies the area 
+	   immediately beneath the site description area,
+	   which by default includes
+	   the word "Posts". */
+
+#posts_container {
+	background-color: #fff;
+}	/* contains post dates, individual_post(s)
+	   and nothing else */
+
+#posts_container .date {
+	margin: 0 0 30px 0;
+	border-top: 1px dotted #cfcfcf;  /* light grey */
+	border-bottom: 1px dotted #cfcfcf;  /* light grey */
+	padding: 5px 0;
+	text-align: left;
+	display:none;
+}
+
+#posts_container .individual_post {
+	margin: 0 0 60px 0;
+	padding: 0;
+}	/* specifies one individual post,
+	   as opposed to posts_container,
+	   which holds all individual_post(s) */
+
+
+.post_title {
+	margin: 0 0 10px 0;
+/* bumping up 6 px - 1/25/13 */
+/*	font-size:	16px; */
+	font-size:	22px;
+	font-weight: normal;	
+}
+
+.post_body { 
+	padding: 0 10px 0 0; /*formerly padding: 0; */
+	margin: 0;
+	/* adding line-height - 1/25/13 */
+	line-height: 150%
+}
+
+.post_footer {
+	margin: 0 0 0 0;
+	padding-top: 10px;
+	clear: both;
+}
+
+.post_breadcrumb_trail { ; }
+
+#content_area_footer {
+	visibility: visible;
+}
+/*	Specifies the area immediately after
+	the end of the #posts_container.
+*/
+
+#sidebar {
+	height: 100%;
+	width: 256px;
+	float: right;
+}
+
+#sidebar .block {
+	padding: 10px 10px 0 10px;
+	/* adding line-height - 1/25/13 */
+	line-height: 140%
+}
+
+
+#sidebar .block .footer5 {
+	height: 5px;
+}
+
+#sidebar .block .footer10 {
+	height: 10px;
+}
+
+#sidebar .block .footer25 {
+	height: 25px;
+}
+
+#sidebar .spacer {
+	height: 5px;
+}
+
+#sidebar .spacer10 {
+	height: 10px;
+}
+#sidebar .spacer25 {
+	height: 25px;
+}
+
+/* @end */
+
+/* border: 1px solid #CCC; */ /* med grey */
+/* Visual layout guide */
+
+/* Hans Fast's responsive CSS patches
+
+Find them here:
+
+http://surfacemarkup.com/home/blog/site/development/quick-responsive-fixes
+and
+http://surfacemarkup.com/home/blog/site/development/responsive-fixes-mobile-update
+
+This has been added to the header:
+
+<meta name="viewport" content="width=device-width" />
+
+ */
+
+/* @media only screen and (max-width: 800px) { */
+@media only screen and (max-width: 400px) {
+
+    #wrapper, #site_header, #two_column_container, #content_area_container {
+        width: 100%;
+        margin: 0 auto;
+     }
+
+    #sidebar {
+       	float: left;
+}
+
+#two_column_container {
+    background-image: none;
+   }
+
+
+}
+
+@media only screen and (max-width: 400px){
+
+    #site_header h1 {
+        position: static;
+        float: left;
+    }
+
+}

@@ -1,0 +1,513 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<!-- Page structure
+head ]
+[ body
+    [ wrapper
+        site header
+        content header
+        [ two column container
+            [ content area container
+                site description
+                ode response (status messages from the script and addins)
+                request breadcrumb trail
+                content area message
+                content area banner
+                [ posts container
+                    [ individual post
+                        post title
+                        post body
+                        [ post footer
+                            post breadcrumb trail
+                        post footer ]
+                    individual post ]
+                posts container ]
+                content area footer
+            content area container ]
+            [ sidebar
+                [ sidebar block
+                    block header
+                    block content
+                    block footer
+                sidebar block]
+                spacer
+            sidebar ]
+        two column container ]
+    wrapper ]
+body ]
+-->
+
+<head>
+    <meta
+        http-equiv="Content-Type"
+        content="text/html; charset=UTF-8"
+    />
+
+<!-- 'meta name' line added for the Hans Fast's responsive design 
+
+http://surfacemarkup.com/home/blog/site/development/quick-responsive-fixes
+and
+http://surfacemarkup.com/home/blog/site/development/responsive-fixes-mobile-update
+
+-->
+
+<meta name="viewport" content="width=device-width" />
+
+    <!-- Page title -->
+    <title>
+        $ode::page_title
+    </title>
+
+
+    <!-- RSS 2.0 feed -->
+    <link
+        rel="alternate"
+        type="application/rss+xml"
+        title="RSS 2.0 feed for $ode::page_title"
+        href="$req_base_url${req_path_wo_file}index.rss2"
+    />
+
+    <!-- Stylesheets -->
+    <link
+        rel="stylesheet"
+        type="text/css"
+        href="logic.css"
+    />
+
+    <!-- empty, see external stylesheet referenced above
+        <style type="text/css"></style>
+    -->
+
+<!-- Adding Google fonts -- 12/27/12 -->
+<!-- <link href='http://fonts.googleapis.com/css?family=Carme' rel='stylesheet' type='text/css'> -->
+<!-- <link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'> -->
+
+    <!-- Scripts -->
+
+</head>
+<body>
+
+<!-- wrapper -->
+
+    <div id="wrapper">
+
+<!-- site_header -->
+
+        <div id="site_header">
+            <span id="site_header_text">
+                <a href="/blog">$config::site_title</a>
+            </span>
+        </div>
+<!-- added link on 7/26/11 - sr -->
+<!-- site_header END -->
+<!-- content_header -->
+
+        <!-- <div id="content_header">
+            <img src="images/mascot_header.png"
+            width="325px"
+            height="131px"
+            alt="Title photo"
+            title="Atlantic Cod - Project Ode mascot"
+            />
+        </div> -->
+
+       <!--   <div id="content_header">
+            <img src="images/pdp-11_panel_ode.jpg"
+            width="676px"
+            height="131px"
+            alt="Title photo"
+            title="The DEC PDP-11/20"
+            />
+        </div> -->
+
+          <div id="content_header">
+         
+<!--	 <a href="/blog">   
+	 <img src="images/eyes_cropped.jpg"
+            width="518px"
+		height="131px"
+		height="auto"
+            alt="Title photo"
+            title="Eyes"
+            />
+		</a>
+-->
+
+<a href="/blog">   
+	 <img src="images/eyes_cropped.jpg"
+            style="width: 60%; max-width: 518px; height: auto;"
+            alt="Title photo"
+            title="Eyes"
+            />
+		</a>
+        </div>
+
+<!-- content_header END -->
+<!-- two_column_container -->
+
+        <div id="two_column_container">
+
+<!-- content_area_container -->
+
+            <div id="content_area_container">
+
+<!-- site_description -->
+
+                <div id="site_description">
+                    <span id="site_description_text">
+                        $config::site_description
+                    </span>
+                </div>
+
+<!-- site_description END-->
+<!-- content_area_message -->
+
+                <!--<div id="content_area_message">
+
+                    <h1>The content_area hed goes here</h1>
+                    
+                    <div id="content_area_message_text">
+<p>The content_area text goes here. On this site, the content_area is commented out and is not visible on the HTML page. If you are reading it now, you have viewed the page's source.
+                    </div>
+
+                </div>-->
+
+<!-- content_area_message END -->
+
+
+<!-- content_area_banner -->
+<!-- Un-hiding this ... 4/17/14 ... -->
+
+                <div id="content_area_banner">
+                    <h1>Archive &mdash; every post on one page</h1>
+                </div>
+
+<!-- content_area_banner END -->
+<!-- posts_container -->
+
+                <div id="posts_container">
+
+<!-- Ode: ^ head/posts v -->
+<!-- individual_post -->
+
+                    <div class="block">
+
+<!-- post_title -->
+
+                          <div class="post_footer">
+                           
+
+                 
+                 <a name="$filename" /><a href="$req_base_url$path$filename">$title</a> ($month_name $month_day, $year)
+
+
+
+                          
+                        </div>
+
+<!-- post_title END -->
+<!-- post_body-->
+
+                        
+
+<!-- post_body END-->
+<!-- post_footer -->
+
+                       
+
+
+			
+
+                           
+
+                          
+
+                        
+
+<!-- post_breadcrumb_trail END -->
+
+<!-- disqus_addin:post_only start -->
+
+
+                        </div>
+
+
+
+<!-- individual_post END -->
+<!-- Ode: ^ posts/foot v -->
+
+                </div>
+
+<!-- posts_container END -->
+<!-- content_area_footer -->
+
+               
+
+<!-- content_area_footer END -->
+
+            </div>
+
+<!-- content_area_container END -->
+<!-- sidebar -->
+
+            <div id="sidebar">
+
+ <!-- SIDEBAR BLOCK -->
+                
+				<div class="block">
+<h1>This is the archive</h1>
+
+<h2>It is static HTML generated out of Ode with the help of a simple Bash script that uses the <a href="http://curl.haxx.se/">curl</a> and <a href="http://www.cis.upenn.edu/~bcpierce/unison/">Unison</a> utilities. You can also visit <a href="/blog">the blog home</a>. </h2>
+
+<div class="footer5">&nbsp;</div>
+                </div><!-- block END -->
+                <div class="spacer">&nbsp;</div>
+                <!-- SIDEBAR BLOCK END -->
+
+<div class="block">
+
+<h1>Hello, world &mdash; this is my website</h1>
+                    
+                    
+<h2>No databases were harmed in the making of this blog</h2>
+<p>You're seeing this blog, powered by <a href="http://ode-is-simple.com">Ode</a>, through the magic of the <a href="http://www.perl.org/">Perl programming language</a> and the <a href="http://en.wikipedia.org/wiki/Common_Gateway_Interface">Common Gateway Interface</a>. The <a href="http://httpd.apache.org/">Apache web server</a> and <a href="http://en.wikipedia.org/wiki/Linux">Linux operating system</a> have more than a little to do with it.</p>
+<p>Ode does not use a database to store content. Instead, every entry exists on the web server as a "flat" text file.</p>
+<p>Comments are managed via <a href="http://disqus.com">Disqus</a>, integrated through the work of Ode project leader <a href="http://ode.io/weblog/">Rob Reed</a>.
+
+<!--<p>The main font is Carme by <a href="https://plus.google.com/111346125307578341019/about">Rubén Prol</a>, the "code" font is Droid Sans Mono by <a href="https://profiles.google.com/107777320916704234605/about">Steve Matteson</a>, both from <a href="http://www.google.com/webfonts">Google Web Fonts</a>.</p>-->
+
+<p><strong>E-mail:</strong> steven (at) stevenrosenberg dot net.</p>
+
+<div class="footer5">&nbsp;</div>
+                </div><!-- block END -->
+                <div class="spacer">&nbsp;</div>
+                <!-- SIDEBAR BLOCK END -->
+
+             <!-- SIDEBAR BLOCK --> 			
+				<div class="block">
+                    <h1>Who am I</h1>
+                    <h2>and why am I here?</h2>
+                    <p>My name is <strong>Steven Rosenberg</strong>. Most of what I write these days has something to do with technology. I'm not an "early adopter." I think before I leap. I've got a lot of old hardware, and I like making it work.</p>
+                    <p>My main computer runs the <a href="http://fedoraproject.org/">Fedora</a> distribution of the GNU/Linux operating system.
+
+<p>Right now I'm using the <a href="http://xfce.org">Xfce</a> desktop environment. I'm OK with <a href="http://www.gnome.org/">GNOME</a> 3 but am very happy with Xfce at the moment.</p>
+
+<p>In the past, from distant to recent, I've run <a href="http://openbsd.org">OpenBSD</a>, <a href="http://ubuntu.com">Ubuntu</a> and <a href="http://debian.org">Debian</a> on the desktop. I also  run Windows 7 rather heavily as well as a very little bit of Windows 8.</p>
+
+<p>I'd like to write less about technology and more about other aspects of life and work. We'll see how that plays out.</p>
+                   <div class="footer5">&nbsp;</div>
+                </div><!-- block END -->
+                <div class="spacer">&nbsp;</div>
+                <!-- SIDEBAR BLOCK END -->
+
+  <!-- SIDEBAR BLOCK --> 			
+				<div class="block">
+                    <h1>License</h1>
+		<h2>CC BY-NC-SA</h2>
+                   <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Frugal technology, simple living and guerrilla large-appliance repair </span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://stevenrosenberg.net/blog" property="cc:attributionName" rel="cc:attributionURL">Steven Rosenberg</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+
+                   <div class="footer5">&nbsp;</div>
+                </div><!-- block END -->
+                <div class="spacer">&nbsp;</div>
+                <!-- SIDEBAR BLOCK END -->
+
+ <!-- SIDEBAR BLOCK -->
+                <div class="block">
+
+<!-- Ode archives by hand -->
+
+<div class="block">
+
+		<h1>Archives</h1>
+		<h2>By year and month</h2>
+
+<ul>
+<li><a href="/blog/2014/">2014</a></li>
+<li><a href="/blog/2014/06/">June 2014</a></li>
+<li><a href="/blog/2014/05/">May 2014</a></li>
+<li><a href="/blog/2014/04/">April 2014</a></li>
+<li><a href="/blog/2014/03/">March 2014</a></li>
+<li><a href="/blog/2014/02/">February 2014</a></li>
+<li><a href="/blog/2014/01/">January 2014</a></li>
+<li><a href="/blog/2013/">2013</a></li>
+<li><a href="/blog/2013/12/">December 2013</a></li>
+<li><a href="/blog/2013/11/">November 2013</a></li>
+<li><a href="/blog/2013/10/">October 2013</a></li>
+<li><a href="/blog/2013/09/">September 2013</a></li>
+<li><a href="/blog/2013/08/">August 2013</a></li>
+<li><a href="/blog/2013/07/">July 2013</a></li>
+<li><a href="/blog/2013/06/">June 2013</a></li>
+<li><a href="/blog/2013/05/">May 2013</a></li>
+<li><a href="/blog/2013/04/">April 2013</a></li>
+<!-- <li><a href="/blog/2013/03/">March 2013</a></li> -->
+<li><a href="/blog/2013/02/">February 2013</a></li>
+<li><a href="/blog/2013/01/">January 2013</a></li>
+<li><a href="/blog/2012/">2012</a></li>
+<li><a href="/blog/2012/12/">December 2012</a></li>
+<li><a href="/blog/2012/11/">November 2012</a></li>
+<li><a href="/blog/2012/10/">October 2012</a></li>
+<li><a href="/blog/2012/09/">September 2012</a></li>
+<li><a href="/blog/2012/08/">August 2012</a></li>
+<li><a href="/blog/2012/07/">July 2012</a></li>
+<li><a href="/blog/2012/06/">June 2012</a></li>
+<li><a href="/blog/2012/05/">May 2012</a></li>
+<li><a href="/blog/2012/04/">April 2012</a></li>
+<li><a href="/blog/2012/03/">March 2012</a></li>
+<li><a href="/blog/2012/02/">February 2012</a></li>
+<li><a href="/blog/2012/01/">January 2012</a></li>
+<li><a href="/blog/2011/">2011</a></li>
+<li><a href="/blog/2011/12/">December 2011</a></li>
+<li><a href="/blog/2011/11/">November 2011</a></li>
+<li><a href="/blog/2011/10/">October 2011</a></li>
+<li><a href="/blog/2011/09/">September 2011</a></li>
+<li><a href="/blog/2011/08/">August 2011</a></li>
+<li><a href="/blog/2011/07/">July 2011</a></li>
+<li><a href="/blog/2011/06/">June 2011</a></li>
+<li><a href="/blog/2011/05/">May 2011</a></li>
+<li><a href="/blog/2011/04/">April 2011</a></li>
+<li><a href="/blog/2011/03/">March 2011</a></li>
+<li><a href="/blog/2011/02/">February 2011</a></li>
+<li><a href="/blog/2011/01/">January 2011</a></li>
+<li><a href="/blog/2011/">2011</a></li>
+<li><a href="/blog/2011/12/">December 2011</a></li>
+<li><a href="/blog/2011/11/">November 2011</a></li>
+<li><a href="/blog/2011/10/">October 2011</a></li>
+<li><a href="/blog/2011/09/">September 2011</a></li>
+<li><a href="/blog/2011/08/">August 2011</a></li>
+<li><a href="/blog/2011/07/">July 2011</a></li>
+<li><a href="/blog/2011/06/">June 2011</a></li>
+<li><a href="/blog/2011/05/">May 2011</a></li>
+<li><a href="/blog/2011/04/">April 2011</a></li>
+<li><a href="/blog/2011/03/">March 2011</a></li>
+<li><a href="/blog/2011/02/">February 2011</a></li>
+<li><a href="/blog/2011/01/">January 2011</a></li>
+
+</ul>
+
+                    <h1>Links</h1>
+                    <h2>My sites</h2>
+                    
+		    <ul>
+                    <li><a href="http://stevenrosenberg.net/blog/index.rss2">RSS of this blog</a></li>
+	            <li><a href="http://blogs.dailynews.com/click">Click</a></li>
+                    <li><a href="http://blogs.dailynews.com/feelthenuys">Come on Feel the Nuys</a></li>
+	            <li><a href="http://identi.ca/passthejoe">Steven Rosenberg on Identi.ca</a></li>
+		    <li><a href="http://twitter.com/passthejoe">Steven Rosenberg on Twitter</a></li>
+		    <li><a href="https://plus.google.com/103536724636669220804">Steven Rosenberg on Google+</a></li>
+		    <li><a href="https://joindiaspora.com/u/passthejoe">Steven Rosenberg on Diaspora</a></li>
+
+		    </ul>
+
+		<h2>Ode sites</h2>
+
+		<ul>
+		<li><a href="http://ode.io">Ode home</a></li>
+		<li><a href="http://ode.io/weblog">Ode blog</a></li>
+		<li><a href="http://forum.ode-is-simple.com/">Ode community forum</a></li>
+		
+		<!-- <li><a href="http://jennmartinelli.net/weblog/">Jenn Martinelli</a></li>
+		<li><a href="http://themonkpress.com.au/lib">The Monk Chronicles</a></li> -->
+		<li><a href="http://surfacemarkup.com/home/blog/">Surface Markup</a></li>
+		<!--<li><a href="http://www.codex99.com/annex">Codex 99 Annex</a></li>-->
+		<li><a href="http://embassylaw.com/">Embassy Law</a></li>
+		<li><a href="http://metarace.com.au/">Metarace</a></li>
+		<li><a href="http://renewmind.net/">Renew Your Mind</a></li>
+		</ul>
+
+		<h2>Free software news sites</h2>
+
+		<ul>
+		<li><a href="http://distrowatch.com/">Distrowatch</a></li>
+		<li><a href="http://lwn.net">Linux Weekly News</a></li>
+		<li><a href="http://LXer.com">LXer</a></li>
+		<li><a href="http://www.phoronix.com">Phoronix</a></li>
+
+		</ul>
+
+		<h2>Planet blogs</h2>
+	
+		<ul>
+		<li><a href="http://blogs.perl.org">blogs.perl.org</a></li>
+		<li><a href="http://planet.debian.org">Planet Debian</a></li>	
+                <li><a href="http://planet.fedoraproject.org">Planet Fedora</a></li>
+		<li><a href="http://planet.gnome.org">Planet GNOME</a></li>	
+		<li><a href="http://planet.python.org">Planet Python</a></li>
+		<li><a href="http://planet.ubuntu.com">Planet Ubuntu</a></li> 
+
+
+
+		</ul>
+
+		<h2>Linux sites</h2>
+	
+		<ul>
+		
+		<li><a href="http://debian.org">Debian</a></li>
+        <li><a href="http://forums.debian.net">Debian Forums</a></li>
+		<li><a href="http://fedoraproject.org">Fedora</a></li>
+		<li><a href="http://fedoraftw.com/">Fedora FTW</a></li>
+		<li><a href="http://fedoramagazine.org/">Fedora Magazine</a></li>
+		<li><a href="https://ask.fedoraproject.org/">Ask Fedora</a></li>
+		<li><a href="http://omgubuntu.co.uk">OMG! Ubuntu</a></li> 
+		<li><a href="http://ubuntu.com">Ubuntu</a></li>		
+
+		</ul>
+   
+   
+                   <div class="footer5">&nbsp;</div>
+                </div><!-- block END -->
+                <div class="spacer">&nbsp;</div>
+                <!-- SIDEBAR BLOCK END -->
+
+            
+
+                <!-- SIDEBAR BLOCK -->
+                <div class="block">
+                    <h1>I support the open web</h1>
+                    <p>Powered by</p>
+                    <a href="http://ode.io">
+                        <img src="/documents/themes/html/images/ode_mascot110x50.png"
+                            width="110px"
+                            height="50px"
+                            alt="Ode mascot (Atlantic Cod)"
+                            title="ode (o-dee) at ode-is-simple.com"
+                        />
+                    </a>
+                    <div class="footer5">&nbsp;</div>
+                </div>
+                <div class="spacer">&nbsp;</div>
+                <!-- SIDEBAR BLOCK END -->
+
+            </div>
+
+<!-- sidebar END -->
+
+        </div>
+
+<!-- two_column_container END -->
+
+    </div>
+
+<!-- wrapper END -->
+
+<!-- disqus_addin:cat_root_only start -->
+
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'stevenrosenberg';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+
+<!-- disqus_addin:cat_root_only end -->
+
+</body>
+</html>

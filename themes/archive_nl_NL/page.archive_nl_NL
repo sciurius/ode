@@ -1,0 +1,303 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<!-- Page structure
+head ]
+[ body
+    [ wrapper
+        site header
+        content header
+        [ two column container
+            [ content area container
+                site description
+                ode response (status messages from the script and addins)
+                request breadcrumb trail
+                content area message
+                content area banner
+                [ posts container
+                    [ individual post
+                        post title
+                        post body
+                        [ post footer
+                            post breadcrumb trail
+                        post footer ]
+                    individual post ]
+                posts container ]
+                content area footer
+            content area container ]
+            [ sidebar
+                [ sidebar block
+                    block header
+                    block content
+                    block footer
+                sidebar block]
+                spacer
+            sidebar ]
+        two column container ]
+    wrapper ]
+body ]
+-->
+
+<head>
+    <meta
+        http-equiv="Content-Type"
+        content="text/html; charset=UTF-8"
+    />
+
+<!-- 'meta name' line added for the Hans Fast's responsive design 
+
+http://surfacemarkup.com/home/blog/site/development/quick-responsive-fixes
+and
+http://surfacemarkup.com/home/blog/site/development/responsive-fixes-mobile-update
+
+-->
+
+<meta name="viewport" content="width=device-width" />
+
+    <!-- Page title -->
+    <title>
+        $ode::page_title
+    </title>
+
+
+    <!-- RSS 2.0 feed -->
+    <link
+        rel="alternate"
+        type="application/rss+xml"
+        title="RSS 2.0 feed for $ode::page_title"
+        href="$req_base_url${req_path_wo_file}index.rss2"
+    />
+
+    <!-- Stylesheets -->
+    <link
+        rel="stylesheet"
+        type="text/css"
+        href="logic.css"
+    />
+
+    <!-- empty, see external stylesheet referenced above
+        <style type="text/css"></style>
+    -->
+
+<!-- Adding Google fonts -- 12/27/12 -->
+<!-- <link href='http://fonts.googleapis.com/css?family=Carme' rel='stylesheet' type='text/css'> -->
+<!-- <link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'> -->
+
+    <!-- Scripts -->
+
+</head>
+<body>
+
+<!-- wrapper -->
+
+    <div id="wrapper">
+
+<!-- site_header -->
+
+        <div id="site_header">
+            <span id="site_header_text">
+                <a href="/blog">$config::site_title</a>
+            </span>
+        </div>
+<!-- added link on 7/26/11 - sr -->
+<!-- site_header END -->
+<!-- content_header -->
+
+        <!-- <div id="content_header">
+            <img src="images/mascot_header.png"
+            width="325px"
+            height="131px"
+            alt="Title photo"
+            title="Atlantic Cod - Project Ode mascot"
+            />
+        </div> -->
+
+       <!--   <div id="content_header">
+            <img src="images/pdp-11_panel_ode.jpg"
+            width="676px"
+            height="131px"
+            alt="Title photo"
+            title="The DEC PDP-11/20"
+            />
+        </div> -->
+
+          <div id="content_header">
+         
+<!--	 <a href="/blog">   
+	 <img src="images/eyes_cropped.jpg"
+            width="518px"
+		height="131px"
+		height="auto"
+            alt="Title photo"
+            title="Eyes"
+            />
+		</a>
+-->
+
+<a href="/blog">   
+	 <img src="images/bocht.jpg"
+            style="width: 60%; max-width: 518px; height: auto;"
+            alt="Title photo"
+            title="Eyes"
+            />
+		</a>
+        </div>
+
+<!-- content_header END -->
+<!-- two_column_container -->
+
+        <div id="two_column_container">
+
+<!-- content_area_container -->
+
+            <div id="content_area_container">
+
+<!-- site_description -->
+
+                <div id="site_description">
+                    <span id="site_description_text">
+                        $config::site_description
+                    </span>
+                </div>
+
+<!-- site_description END-->
+<!-- content_area_message -->
+
+                <!--<div id="content_area_message">
+
+                    <h1>The content_area hed goes here</h1>
+                    
+                    <div id="content_area_message_text">
+<p>The content_area text goes here. On this site, the content_area is commented out and is not visible on the HTML page. If you are reading it now, you have viewed the page's source.
+                    </div>
+
+                </div>-->
+
+<!-- content_area_message END -->
+
+
+<!-- content_area_banner -->
+<!-- Un-hiding this ... 4/17/14 ... -->
+
+                <div id="content_area_banner">
+                    <h1>Archief &mdash; alle artikelen op een enkele pagina</h1>
+                </div>
+
+<!-- content_area_banner END -->
+<!-- posts_container -->
+
+                <div id="posts_container">
+
+<!-- Ode: ^ head/posts v -->
+<!-- individual_post -->
+
+                    <div class="block">
+
+<!-- post_title -->
+
+                          <div class="post_footer">
+                           
+
+                 
+                 <a name="$filename" /><a href="$req_base_url$path$filename">$title</a> ($month_name $month_day, $year)
+
+
+
+                          
+                        </div>
+
+<!-- post_title END -->
+<!-- post_body-->
+
+                        
+
+<!-- post_body END-->
+<!-- post_footer -->
+
+                       
+
+
+			
+
+                           
+
+                          
+
+                        
+
+<!-- post_breadcrumb_trail END -->
+
+<!-- disqus_addin:post_only start -->
+
+
+                        </div>
+
+
+
+<!-- individual_post END -->
+<!-- Ode: ^ posts/foot v -->
+
+                </div>
+
+<!-- posts_container END -->
+<!-- content_area_footer -->
+
+               
+
+<!-- content_area_footer END -->
+
+            </div>
+
+<!-- content_area_container END -->
+<!-- sidebar -->
+
+            <div id="sidebar">
+
+ <!-- SIDEBAR BLOCK -->
+
+<!-- Ode archives by hand -->
+
+<div class="block">
+
+		<h1>Archief</h1>
+		<h2>Per jaar en maand</h2>
+
+<ul>
+<li><a href="$req_base_url/2014/">2014</a></li>
+<li>&nbsp;&nbsp;<a href="$req_base_url/2014/07/">Juli 2014</a></li>
+</ul>
+                    <a
+                href="$req_base_url/index.archive?first_post=1&num_posts=all">Alle
+                artikelen</a>
+
+
+            </div>
+
+                <!-- SIDEBAR BLOCK -->
+                <div class="block">
+                    <h1>Deze website is gebouwd met</h1>
+                    <a href="http://ode-is-simple.com">
+                        <img src="http://ode-is-simple.com/shared_resources/theme_resources/images/ode_mascot110x50.png"
+                            width="110px"
+                            height="50px"
+                            alt="Ode mascot (Atlantic Cod)"
+                            title="ode (o-dee) at ode-is-simple.com"
+                        />
+                    </a>
+                    <div class="footer5">&nbsp;</div>
+                </div>
+                <div class="spacer">&nbsp;</div>
+                <!-- SIDEBAR BLOCK END -->
+<!-- sidebar END -->
+
+        </div>
+
+<!-- two_column_container END -->
+
+    </div>
+
+<!-- wrapper END -->
+
+</body>
+</html>
