@@ -65,6 +65,12 @@ our (
     $breadcrumb_trail_category_separator, $eol,
 );
 
+# LOCALISATION SECTION  ------------------------------------------------------
+
+####TODO: I18N
+
+# We cannot use _T and friends, since the localisation plugin is not
+# yet loaded at this point.
 
 # CONFIGURATION SECTION -----------------------------------------------------
 
